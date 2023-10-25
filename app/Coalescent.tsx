@@ -1,6 +1,7 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import { vertical, horizontal } from "./positions";
 
 export const Coalescent = () => {
   const { nodes } = useGLTF("/horizontal.glb");
@@ -11,13 +12,20 @@ export const Coalescent = () => {
   const material = new THREE.MeshNormalMaterial();
   const mesh = new THREE.InstancedMesh(geometry, material, 3);
   const dummy = new THREE.Object3D();
-  for (let i = 0; i < 3; i++) {
-    dummy.position.x = Math.random();
-    dummy.position.y = Math.random();
-    dummy.position.z = Math.random();
+
+  // TODO: Control with state
+  const coordinates = horizontal;
+
+  // TODO: Find a way to transition with animation
+  // Maybe put this in a useFrame, and lerp on each frame
+  coordinates.forEach((coordinateSet, i) => {
+    dummy.position.x = coordinateSet.x;
+    dummy.position.y = coordinateSet.y;
+    dummy.position.z = coordinateSet.z;
 
     dummy.updateMatrix();
     mesh.setMatrixAt(i, dummy.matrix);
-  }
+  });
+
   return <primitive object={mesh} />;
 };
