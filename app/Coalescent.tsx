@@ -1,9 +1,12 @@
-import React from "react";
-import { useGLTF } from "@react-three/drei";
+import React, { useState } from "react";
+import { Html, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions";
 
 export const Coalescent = () => {
+  const [positionSet, setPositionSet] =
+    useState<keyof typeof positionSetMap>("horizontal");
+
   const { nodes } = useGLTF("/horizontal.glb");
   const children = nodes.Scene.children;
   const positions = children.map((child) => child.position);
@@ -13,12 +16,14 @@ export const Coalescent = () => {
   const mesh = new THREE.InstancedMesh(geometry, material, 3);
   const dummy = new THREE.Object3D();
 
-  // TODO: Control with state
-  const coordinates = horizontal;
+  const positionSetMap = {
+    horizontal,
+    vertical,
+  };
 
   // TODO: Find a way to transition with animation
   // Maybe put this in a useFrame, and lerp on each frame
-  coordinates.forEach((coordinateSet, i) => {
+  positionSetMap[positionSet].forEach((coordinateSet, i) => {
     dummy.position.x = coordinateSet.x;
     dummy.position.y = coordinateSet.y;
     dummy.position.z = coordinateSet.z;
@@ -27,5 +32,13 @@ export const Coalescent = () => {
     mesh.setMatrixAt(i, dummy.matrix);
   });
 
-  return <primitive object={mesh} />;
+  return (
+    <>
+      <Html fullscreen>
+        <button onClick={() => setPositionSet("horizontal")}>Horizontal</button>
+        <button onClick={() => setPositionSet("vertical")}>Vertical</button>
+      </Html>
+      <primitive object={mesh} />
+    </>
+  );
 };
