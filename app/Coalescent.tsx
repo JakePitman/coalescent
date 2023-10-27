@@ -4,6 +4,39 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions";
 
+const positionSetMap = {
+  horizontal,
+  vertical,
+};
+
+type PositionSetName = keyof typeof positionSetMap;
+type ButtonProps = {
+  positionSetName: PositionSetName;
+  setPositionSet: React.Dispatch<React.SetStateAction<PositionSetName>>;
+  isActive: boolean;
+  children: React.ReactNode;
+};
+const Button = ({
+  positionSetName,
+  setPositionSet,
+  isActive,
+  children,
+}: ButtonProps) => {
+  const activeStyles = "text-black bg-purple-300";
+  const inactiveStyles = "text-purple-300";
+  return (
+    <button
+      onClick={() => setPositionSet(positionSetName)}
+      className={
+        "px-5 m-5 rounded-md border-2 border-purple-300 border-solid " +
+        (isActive ? activeStyles : inactiveStyles)
+      }
+    >
+      {children}
+    </button>
+  );
+};
+
 export const Coalescent = () => {
   const [positionSet, setPositionSet] =
     useState<keyof typeof positionSetMap>("horizontal");
@@ -20,11 +53,6 @@ export const Coalescent = () => {
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
     []
   );
-
-  const positionSetMap = {
-    horizontal,
-    vertical,
-  };
 
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
   function lerp(x: number, y: number, a: number) {
@@ -47,8 +75,22 @@ export const Coalescent = () => {
   return (
     <>
       <Html fullscreen>
-        <button onClick={() => setPositionSet("horizontal")}>Horizontal</button>
-        <button onClick={() => setPositionSet("vertical")}>Vertical</button>
+        <div className="flex absolute bottom-28 justify-center w-full">
+          <Button
+            positionSetName="horizontal"
+            setPositionSet={setPositionSet}
+            isActive={true}
+          >
+            Horizontal
+          </Button>
+          <Button
+            positionSetName="vertical"
+            setPositionSet={setPositionSet}
+            isActive={false}
+          >
+            Vertical
+          </Button>
+        </div>
       </Html>
       <primitive object={mesh} />
     </>
