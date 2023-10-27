@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -14,7 +14,10 @@ export const Coalescent = () => {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshNormalMaterial();
   const mesh = new THREE.InstancedMesh(geometry, material, cubesCount);
-  const dummies = [...new Array(cubesCount)].map(() => new THREE.Object3D());
+  const dummies = useMemo(
+    () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
+    []
+  );
 
   const positionSetMap = {
     horizontal,
@@ -25,7 +28,6 @@ export const Coalescent = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
-  // TODO: Find out why dummy position values reset on state change
   useFrame(() => {
     positionSetMap[positionSet].forEach((coordinateSet, i) => {
       const dummy = dummies[i];
