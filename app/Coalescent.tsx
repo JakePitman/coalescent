@@ -11,9 +11,11 @@ export const Coalescent = () => {
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
   const cubesCount = 3;
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshNormalMaterial();
-  const mesh = new THREE.InstancedMesh(geometry, material, cubesCount);
+  const mesh = useMemo(() => {
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshNormalMaterial();
+    return new THREE.InstancedMesh(geometry, material, cubesCount);
+  }, []);
   const dummies = useMemo(
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
     []
@@ -24,6 +26,7 @@ export const Coalescent = () => {
     vertical,
   };
 
+  // Like Math.lerp, but stops when difference between x and y is less than 0.001
   function lerp(x: number, y: number, a: number) {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
