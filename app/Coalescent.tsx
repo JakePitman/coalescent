@@ -8,10 +8,6 @@ export const Coalescent = () => {
   const [positionSet, setPositionSet] =
     useState<keyof typeof positionSetMap>("horizontal");
 
-  const { nodes } = useGLTF("/horizontal.glb");
-  const children = nodes.Scene.children;
-  const positions = children.map((child) => child.position);
-
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
   const cubesCount = 3;
@@ -29,6 +25,7 @@ export const Coalescent = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
+  // TODO: Find out why dummy position values reset on state change
   useFrame(() => {
     positionSetMap[positionSet].forEach((coordinateSet, i) => {
       const dummy = dummies[i];
