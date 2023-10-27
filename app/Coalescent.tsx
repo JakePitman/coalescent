@@ -12,17 +12,20 @@ export const Coalescent = () => {
   const children = nodes.Scene.children;
   const positions = children.map((child) => child.position);
 
+  // This needs to be the same as the amount of positions
+  // Each position set must have exactly this many positions
+  const cubesCount = 3;
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshNormalMaterial();
-  const mesh = new THREE.InstancedMesh(geometry, material, 3);
-  const dummies = [...new Array(3)].map((el) => new THREE.Object3D());
+  const mesh = new THREE.InstancedMesh(geometry, material, cubesCount);
+  const dummies = [...new Array(cubesCount)].map(() => new THREE.Object3D());
 
   const positionSetMap = {
     horizontal,
     vertical,
   };
 
-  function lerp(x, y, a) {
+  function lerp(x: number, y: number, a: number) {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
