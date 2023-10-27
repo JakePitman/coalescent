@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Html, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions";
 
@@ -14,22 +15,28 @@ export const Coalescent = () => {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshNormalMaterial();
   const mesh = new THREE.InstancedMesh(geometry, material, 3);
-  const dummy = new THREE.Object3D();
+  const dummies = [...new Array(3)].map((el) => new THREE.Object3D());
 
   const positionSetMap = {
     horizontal,
     vertical,
   };
 
-  // TODO: Find a way to transition with animation
-  // Maybe put this in a useFrame, and lerp on each frame
-  positionSetMap[positionSet].forEach((coordinateSet, i) => {
-    dummy.position.x = coordinateSet.x;
-    dummy.position.y = coordinateSet.y;
-    dummy.position.z = coordinateSet.z;
+  function lerp(x, y, a) {
+    const r = (1 - a) * x + a * y;
+    return Math.abs(x - y) < 0.001 ? y : r;
+  }
+  useFrame(() => {
+    positionSetMap[positionSet].forEach((coordinateSet, i) => {
+      const dummy = dummies[i];
+      dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
+      dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
+      dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
 
-    dummy.updateMatrix();
-    mesh.setMatrixAt(i, dummy.matrix);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
   });
 
   return (
