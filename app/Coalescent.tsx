@@ -53,7 +53,7 @@ export const Coalescent = () => {
   // Each position set must have exactly this many positions
   const cubesCount = jakePositions.length;
   const mesh = useMemo(() => {
-    const geometry = new THREE.BoxGeometry(0.01, 0.01, 0.01);
+    const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
     const material = new THREE.MeshNormalMaterial();
     return new THREE.InstancedMesh(geometry, material, cubesCount);
   }, []);

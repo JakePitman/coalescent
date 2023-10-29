@@ -7,7 +7,7 @@ import { Coalescent } from "./Coalescent";
 
 export const Experience = () => {
   return (
-    <Canvas>
+    <Canvas camera={{ position: [0, 15, 10] }}>
       <color args={["black"]} attach="background" />
       <OrbitControls />
       <ambientLight />
