@@ -3,10 +3,12 @@ import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions";
+import { jakePositions } from "./jakePositions";
 
 const positionSetMap = {
-  horizontal,
+  jake: jakePositions,
   vertical,
+  horizontal,
 };
 
 type PositionSetName = keyof typeof positionSetMap;
@@ -38,14 +40,20 @@ const Button = ({
 };
 
 export const Coalescent = () => {
+  // -- Get
+  // const { nodes } = useGLTF("pixel-jake.glb");
+  // const positions = nodes.Scene.children.map((child) => child.position);
+  // console.log(positions);
+  // --
+
   const [positionSet, setPositionSet] =
-    useState<keyof typeof positionSetMap>("horizontal");
+    useState<keyof typeof positionSetMap>("jake");
 
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
-  const cubesCount = 3;
+  const cubesCount = jakePositions.length;
   const mesh = useMemo(() => {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(0.01, 0.01, 0.01);
     const material = new THREE.MeshNormalMaterial();
     return new THREE.InstancedMesh(geometry, material, cubesCount);
   }, []);
@@ -77,16 +85,23 @@ export const Coalescent = () => {
       <Html fullscreen>
         <div className="flex absolute bottom-28 justify-center w-full">
           <Button
+            positionSetName="jake"
+            setPositionSet={setPositionSet}
+            isActive={positionSet === "jake"}
+          >
+            Jake
+          </Button>
+          <Button
             positionSetName="horizontal"
             setPositionSet={setPositionSet}
-            isActive={true}
+            isActive={positionSet === "horizontal"}
           >
             Horizontal
           </Button>
           <Button
             positionSetName="vertical"
             setPositionSet={setPositionSet}
-            isActive={false}
+            isActive={positionSet === "vertical"}
           >
             Vertical
           </Button>
