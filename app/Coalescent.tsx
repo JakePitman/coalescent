@@ -39,6 +39,11 @@ const Button = ({
   );
 };
 
+// TODO:
+// 1. Find out longest positionSet programatically
+// 2. Use a useEffect hook to remove opacity/ un-display extra
+//    pixels. Subtract current positionSet from largest positionSet
+//    (eg. 5 - 3 = 2, so don't display the last two)
 export const Coalescent = () => {
   // -- Get
   // const { nodes } = useGLTF("pixel-jake.glb");
