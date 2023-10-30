@@ -46,9 +46,9 @@ const Button = ({
 //    (eg. 5 - 3 = 2, so don't display the last two)
 export const Coalescent = () => {
   // -- Get
-  // const { nodes } = useGLTF("pixel-jake.glb");
-  // const positions = nodes.Scene.children.map((child) => child.position);
-  // console.log(positions);
+  //const { nodes } = useGLTF("pixel-jake.glb");
+  //const positions = nodes.Scene.children.map((child) => child.position);
+  //console.log(positions);
   // --
 
   const [positionSet, setPositionSet] =
