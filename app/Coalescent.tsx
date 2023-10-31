@@ -86,6 +86,11 @@ export const Coalescent = () => {
         dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
         dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
       } else {
+        // TODO:
+        // Create another 'scattered' position set for extra positions.
+        // Use i % NUMBER_OF_SCATTERED_POSITIONS to index a scattered position.
+        // eg. if there are 15 scattered positions, then scatteredPositions[i % scatteredPositions.length]
+        // should always index the same position according to i.
         dummy.position.x = lerp(dummy.position.x, 0, 0.025);
         dummy.position.y = lerp(dummy.position.y, 0, 0.025);
         dummy.position.z = lerp(dummy.position.z, 0, 0.025);
