@@ -51,12 +51,21 @@ export const Coalescent = () => {
   //console.log(positions);
   // --
 
+  const positionsAsArray = Object.keys(positionSetMap).map(
+    (key) => positionSetMap[key as keyof typeof positionSetMap]
+  );
+  const highestNumberOfPositions = positionsAsArray.reduce(
+    (accumulator, currentValue) =>
+      currentValue.length > accumulator ? currentValue.length : accumulator,
+    0
+  );
+
   const [positionSet, setPositionSet] =
     useState<keyof typeof positionSetMap>("jake");
 
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
-  const cubesCount = jakePositions.length;
+  const cubesCount = highestNumberOfPositions;
   const mesh = useMemo(() => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
     const material = new THREE.MeshNormalMaterial();
@@ -72,12 +81,15 @@ export const Coalescent = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
-  useFrame(() => {
+  useFrame((_state, delta) => {
     positionSetMap[positionSet].forEach((coordinateSet, i) => {
       const dummy = dummies[i];
       dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
       dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
       dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
+      dummy.rotation.x += delta * 0.6;
+      dummy.rotation.y += delta * 0.5;
+      dummy.rotation.z += delta * 0.4;
 
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
