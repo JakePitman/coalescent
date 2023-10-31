@@ -40,7 +40,6 @@ const Button = ({
 };
 
 // TODO:
-// 1. Find out longest positionSet programatically
 // 2. Use a useEffect hook to remove opacity/ un-display extra
 //    pixels. Subtract current positionSet from largest positionSet
 //    (eg. 5 - 3 = 2, so don't display the last two)
@@ -75,6 +74,23 @@ export const Coalescent = () => {
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
     []
   );
+
+  useEffect(() => {
+    [...new Array(highestNumberOfPositions)].forEach(
+      (_coordinateSet, i: number) => {
+        // TODO: Make this part of the useframe instead
+        const dummy = dummies[i];
+        if (i > positionSetMap[positionSet].length) {
+          dummy.position.x = 0;
+          dummy.position.y = 1;
+          dummy.position.z = 0;
+          dummy.updateMatrix();
+          mesh.setMatrixAt(i, dummy.matrix);
+        }
+      }
+    );
+    mesh.instanceMatrix.needsUpdate = true;
+  }, [positionSet]);
 
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
   function lerp(x: number, y: number, a: number) {
