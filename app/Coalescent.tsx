@@ -39,10 +39,6 @@ const Button = ({
   );
 };
 
-// TODO:
-// 2. Use a useEffect hook to remove opacity/ un-display extra
-//    pixels. Subtract current positionSet from largest positionSet
-//    (eg. 5 - 3 = 2, so don't display the last two)
 export const Coalescent = () => {
   // -- Get
   //const { nodes } = useGLTF("pixel-jake.glb");
@@ -75,34 +71,25 @@ export const Coalescent = () => {
     []
   );
 
-  useEffect(() => {
-    [...new Array(highestNumberOfPositions)].forEach(
-      (_coordinateSet, i: number) => {
-        // TODO: Make this part of the useframe instead
-        const dummy = dummies[i];
-        if (i > positionSetMap[positionSet].length) {
-          dummy.position.x = 0;
-          dummy.position.y = 1;
-          dummy.position.z = 0;
-          dummy.updateMatrix();
-          mesh.setMatrixAt(i, dummy.matrix);
-        }
-      }
-    );
-    mesh.instanceMatrix.needsUpdate = true;
-  }, [positionSet]);
-
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
   function lerp(x: number, y: number, a: number) {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
   useFrame((_state, delta) => {
-    positionSetMap[positionSet].forEach((coordinateSet, i) => {
+    //positionSetMap[positionSet].forEach((coordinateSet, i) => {
+    [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
-      dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
-      dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
-      dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
+      const coordinateSet = positionSetMap[positionSet][i];
+      if (coordinateSet) {
+        dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
+        dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
+        dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
+      } else {
+        dummy.position.x = lerp(dummy.position.x, 0, 0.025);
+        dummy.position.y = lerp(dummy.position.y, 0, 0.025);
+        dummy.position.z = lerp(dummy.position.z, 0, 0.025);
+      }
       dummy.rotation.x += delta * 0.6;
       dummy.rotation.y += delta * 0.5;
       dummy.rotation.z += delta * 0.4;
