@@ -2,8 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { vertical, horizontal } from "./positions";
-import { jakePositions } from "./jakePositions";
+import { vertical, horizontal } from "./positions/positions";
+import { jakePositions } from "./positions/jakePositions";
 
 const positionSetMap = {
   jake: jakePositions,
