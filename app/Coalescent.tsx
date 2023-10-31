@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions/positions";
 import { jakePositions } from "./positions/jakePositions";
+import { scatteredPositions } from "./positions/scatteredPositions";
 
 const positionSetMap = {
   jake: jakePositions,
@@ -86,14 +87,15 @@ export const Coalescent = () => {
         dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
         dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
       } else {
-        // TODO:
-        // Create another 'scattered' position set for extra positions.
-        // Use i % NUMBER_OF_SCATTERED_POSITIONS to index a scattered position.
-        // eg. if there are 15 scattered positions, then scatteredPositions[i % scatteredPositions.length]
-        // should always index the same position according to i.
-        dummy.position.x = lerp(dummy.position.x, 0, 0.025);
-        dummy.position.y = lerp(dummy.position.y, 0, 0.025);
-        dummy.position.z = lerp(dummy.position.z, 0, 0.025);
+        const numberOfTimesLengthFitsIni = Math.floor(
+          i / scatteredPositions.length
+        );
+        const indexWithinScattered =
+          i - scatteredPositions.length * numberOfTimesLengthFitsIni;
+        const { x, y, z } = scatteredPositions[indexWithinScattered];
+        dummy.position.x = lerp(dummy.position.x, x, 0.025);
+        dummy.position.y = lerp(dummy.position.y, y, 0.025);
+        dummy.position.z = lerp(dummy.position.z, z, 0.025);
       }
       dummy.rotation.x += delta * 0.6;
       dummy.rotation.y += delta * 0.5;
