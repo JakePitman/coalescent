@@ -4,10 +4,12 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { vertical, horizontal } from "./positions/positions";
 import { jakePositions } from "./positions/jakePositions";
+import { whaleAndDiversPositions } from "./positions/whaleAndDiversPositions";
 import { scatteredPositions } from "./positions/scatteredPositions";
 
 const positionSetMap = {
   jake: jakePositions,
+  whale: whaleAndDiversPositions,
   vertical,
   horizontal,
 };
@@ -41,9 +43,16 @@ const Button = ({
 };
 
 export const Coalescent = () => {
-  // -- Get
+  // -- Get positions
+  //function shuffle(array) {
+  //for (let i = array.length - 1; i > 0; i--) {
+  //let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+  //[array[i], array[j]] = [array[j], array[i]];
+  //}
+  //}
   //const { nodes } = useGLTF("pixel-jake.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
+  //shuffle(positions);
   //console.log(positions);
   // --
 
@@ -117,6 +126,13 @@ export const Coalescent = () => {
             isActive={positionSet === "jake"}
           >
             Jake
+          </Button>
+          <Button
+            positionSetName="whale"
+            setPositionSet={setPositionSet}
+            isActive={positionSet === "whale"}
+          >
+            Whale
           </Button>
           <Button
             positionSetName="horizontal"
