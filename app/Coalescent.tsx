@@ -50,7 +50,7 @@ export const Coalescent = () => {
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("pixel-jake.glb");
+  //const { nodes } = useGLTF("scattered.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
