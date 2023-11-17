@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { vertical, horizontal } from "./positions/positions";
 import { jakePositions } from "./positions/jakePositions";
 import { whaleAndDiversPositions } from "./positions/whaleAndDiversPositions";
+import { contactMePositions } from "./positions/contactMePositions";
 import { scatteredPositions } from "./positions/scatteredPositions";
 
 const positionSetMap = {
@@ -13,8 +14,8 @@ const positionSetMap = {
     pixelPositions: whaleAndDiversPositions,
     cameraPosition: [-7, 11, -8],
   },
-  vertical: { pixelPositions: vertical, cameraPosition: [0, 0, 0] },
-  horizontal: { pixelPositions: horizontal, cameraPosition: [0, 0, 0] },
+  contact: { pixelPositions: contactMePositions, cameraPosition: [5, 10, -13] },
+  empty: { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
 
 type PositionSetName = keyof typeof positionSetMap;
@@ -69,7 +70,7 @@ export const Coalescent = () => {
   );
 
   const [positionSet, setPositionSet] =
-    useState<keyof typeof positionSetMap>("whale");
+    useState<keyof typeof positionSetMap>("empty");
 
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
@@ -141,6 +142,13 @@ export const Coalescent = () => {
       <Html fullscreen>
         <div className="flex absolute bottom-28 justify-center w-full">
           <Button
+            positionSetName="empty"
+            setPositionSet={setPositionSet}
+            isActive={positionSet === "empty"}
+          >
+            Empty
+          </Button>
+          <Button
             positionSetName="jake"
             setPositionSet={setPositionSet}
             isActive={positionSet === "jake"}
@@ -155,18 +163,11 @@ export const Coalescent = () => {
             Whale
           </Button>
           <Button
-            positionSetName="horizontal"
+            positionSetName="contact"
             setPositionSet={setPositionSet}
-            isActive={positionSet === "horizontal"}
+            isActive={positionSet === "contact"}
           >
-            Horizontal
-          </Button>
-          <Button
-            positionSetName="vertical"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "vertical"}
-          >
-            Vertical
+            Contact me
           </Button>
         </div>
       </Html>
