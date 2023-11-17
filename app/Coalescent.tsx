@@ -54,7 +54,7 @@ export const Coalescent = () => {
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("scattered.glb");
+  //const { nodes } = useGLTF("whale-and-divers-2.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
