@@ -7,6 +7,7 @@ import { jakePositions } from "./positions/jakePositions";
 import { whaleAndDiversPositions } from "./positions/whaleAndDiversPositions";
 import { contactMePositions } from "./positions/contactMePositions";
 import { scatteredPositions } from "./positions/scatteredPositions";
+import { projectsPositions } from "./positions/projectsPositions";
 
 const positionSetMap = {
   jake: { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
@@ -14,6 +15,7 @@ const positionSetMap = {
     pixelPositions: whaleAndDiversPositions,
     cameraPosition: [-7, 11, -8],
   },
+  projects: { pixelPositions: projectsPositions, cameraPosition: [0, 5, 17] },
   contact: { pixelPositions: contactMePositions, cameraPosition: [5, 10, -13] },
   empty: { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
@@ -47,14 +49,14 @@ const Button = ({
 };
 
 export const Coalescent = () => {
-  // -- Get positions
+  //-- Get positions
   //function shuffle(array) {
   //for (let i = array.length - 1; i > 0; i--) {
   //let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("whale-and-divers-2.glb");
+  //const { nodes } = useGLTF("projects.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
@@ -161,6 +163,13 @@ export const Coalescent = () => {
             isActive={positionSet === "whale"}
           >
             Whale
+          </Button>
+          <Button
+            positionSetName="projects"
+            setPositionSet={setPositionSet}
+            isActive={positionSet === "projects"}
+          >
+            Projects
           </Button>
           <Button
             positionSetName="contact"
