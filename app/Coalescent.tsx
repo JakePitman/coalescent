@@ -15,7 +15,7 @@ const positionSetMap = {
     pixelPositions: whaleAndDiversPositions,
     cameraPosition: [7, 11, 8],
   },
-  projects: { pixelPositions: projectsPositions, cameraPosition: [0, 5, 17] },
+  projects: { pixelPositions: projectsPositions, cameraPosition: [0, 3, 17] },
   contact: { pixelPositions: contactMePositions, cameraPosition: [-5, 10, 10] },
   empty: { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
