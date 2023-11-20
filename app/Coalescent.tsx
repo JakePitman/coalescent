@@ -16,7 +16,7 @@ const positionSetMap = {
     cameraPosition: [7, 11, 8],
   },
   projects: { pixelPositions: projectsPositions, cameraPosition: [0, 5, 17] },
-  contact: { pixelPositions: contactMePositions, cameraPosition: [5, 10, -13] },
+  contact: { pixelPositions: contactMePositions, cameraPosition: [-5, 10, 10] },
   empty: { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
 
@@ -56,7 +56,7 @@ export const Coalescent = () => {
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("whale-and-divers.glb");
+  //const { nodes } = useGLTF("contact-with-words-2.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
