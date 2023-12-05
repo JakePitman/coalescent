@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Html, useGLTF } from "@react-three/drei";
+import React, { useState, useMemo } from "react";
+import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { vertical, horizontal } from "./positions/positions";
-import { jakePositions } from "./positions/jakePositions";
-import { whaleAndDiversPositions } from "./positions/whaleAndDiversPositions";
-import { contactMePositions } from "./positions/contactMePositions";
-import { scatteredPositions } from "./positions/scatteredPositions";
-import { projectsPositions } from "./positions/projectsPositions";
+import {
+  scatteredPositions,
+  jakePositions,
+  whaleAndDiversPositions,
+  projectsPositions,
+  contactMePositions,
+} from "./positions";
 
 const positionSetMap = {
   jake: { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
