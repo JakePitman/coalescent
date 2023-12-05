@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Experience } from "./_components/Experience";
+import { Navigation } from "./_components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <>
-          {children}
-          <Experience />
+          <Navigation className="absolute z-20" />
+          <div className="absolute z-10">{children}</div>
+          <Experience style={{ position: "absolute", zIndex: "0" }} />
         </>
       </body>
     </html>
