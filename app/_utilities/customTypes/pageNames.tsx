@@ -1,9 +1,9 @@
 export const pageNames = [
   "/",
   "/jake",
-  "/about",
+  "/interests",
   "/projects",
   "/contact",
 ] as const;
 
-export type PageNames = typeof pageNames;
+export type PageNames = (typeof pageNames)[number];

@@ -9,48 +9,28 @@ import {
   projectsPositions,
   contactMePositions,
 } from "./positions";
+import { PageNames } from "@customTypes/pageNames";
+import { usePage } from "@hooks/usePage";
 
 const positionSetMap = {
-  jake: { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
-  whale: {
+  "/jake": { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
+  "/interests": {
     pixelPositions: whaleAndDiversPositions,
     cameraPosition: [7, 11, 8],
   },
-  projects: { pixelPositions: projectsPositions, cameraPosition: [0, 3, 17] },
-  contact: { pixelPositions: contactMePositions, cameraPosition: [-5, 10, 10] },
-  empty: { pixelPositions: [], cameraPosition: [-11, 3, 0] },
-};
-
-type PositionSetName = keyof typeof positionSetMap;
-type ButtonProps = {
-  positionSetName: PositionSetName;
-  setPositionSet: React.Dispatch<React.SetStateAction<PositionSetName>>;
-  isActive: boolean;
-  children: React.ReactNode;
-};
-const Button = ({
-  positionSetName,
-  setPositionSet,
-  isActive,
-  children,
-}: ButtonProps) => {
-  const activeStyles = "text-black bg-purple-300";
-  const inactiveStyles = "text-purple-300";
-  return (
-    <button
-      onClick={() => setPositionSet(positionSetName)}
-      className={
-        "px-5 m-5 rounded-md border-2 border-purple-300 border-solid " +
-        (isActive ? activeStyles : inactiveStyles)
-      }
-    >
-      {children}
-    </button>
-  );
+  "/projects": {
+    pixelPositions: projectsPositions,
+    cameraPosition: [0, 3, 17],
+  },
+  "/contact": {
+    pixelPositions: contactMePositions,
+    cameraPosition: [-5, 10, 10],
+  },
+  "/": { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
 
 export const Coalescent = () => {
-  //-- Get positions
+  //-- Get positions. Run this on a glb file to extract and randomize the position set
   //function shuffle(array) {
   //for (let i = array.length - 1; i > 0; i--) {
   //let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
@@ -72,8 +52,10 @@ export const Coalescent = () => {
     0,
   );
 
-  const [positionSet, setPositionSet] =
-    useState<keyof typeof positionSetMap>("empty");
+  const page = usePage();
+  if (page === undefined) {
+    return <></>;
+  }
 
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
@@ -97,7 +79,7 @@ export const Coalescent = () => {
     // Update pixel positions
     [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
-      const coordinateSet = positionSetMap[positionSet].pixelPositions[i];
+      const coordinateSet = positionSetMap[page].pixelPositions[i];
       if (coordinateSet) {
         dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
         dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
@@ -125,62 +107,24 @@ export const Coalescent = () => {
     // Update camera position
     state.camera.position.x = lerp(
       state.camera.position.x,
-      positionSetMap[positionSet].cameraPosition[0],
+      positionSetMap[page].cameraPosition[0],
       0.01,
     );
     state.camera.position.y = lerp(
       state.camera.position.y,
-      positionSetMap[positionSet].cameraPosition[1],
+      positionSetMap[page].cameraPosition[1],
       0.01,
     );
     state.camera.position.z = lerp(
       state.camera.position.z,
-      positionSetMap[positionSet].cameraPosition[2],
+      positionSetMap[page].cameraPosition[2],
       0.01,
     );
   });
 
   return (
     <>
-      <Html fullscreen>
-        <div className="flex absolute bottom-28 justify-center w-full">
-          <Button
-            positionSetName="empty"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "empty"}
-          >
-            Empty
-          </Button>
-          <Button
-            positionSetName="jake"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "jake"}
-          >
-            Jake
-          </Button>
-          <Button
-            positionSetName="whale"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "whale"}
-          >
-            Whale
-          </Button>
-          <Button
-            positionSetName="projects"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "projects"}
-          >
-            Projects
-          </Button>
-          <Button
-            positionSetName="contact"
-            setPositionSet={setPositionSet}
-            isActive={positionSet === "contact"}
-          >
-            Contact me
-          </Button>
-        </div>
-      </Html>
+      <Html fullscreen></Html>
       <primitive object={mesh} />
     </>
   );
