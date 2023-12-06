@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -11,8 +11,10 @@ import {
 } from "./positions";
 import { PageNames } from "@customTypes/pageNames";
 import { usePage } from "@hooks/usePage";
+import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 const positionSetMap = {
+  "/": { pixelPositions: [], cameraPosition: [-11, 11, 5] },
   "/jake": { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
@@ -26,7 +28,6 @@ const positionSetMap = {
     pixelPositions: contactMePositions,
     cameraPosition: [-5, 10, 10],
   },
-  "/": { pixelPositions: [], cameraPosition: [-11, 3, 0] },
 };
 
 export const Coalescent = () => {
@@ -42,6 +43,26 @@ export const Coalescent = () => {
   //shuffle(positions);
   //console.log(positions);
   // --
+
+  // Convert number to range from 0 -> 1, based on min/max bounds
+  const normalize = (val: number, min: number, max: number) =>
+    (val - min) / (max - min);
+
+  // Track mouse location
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mouseCameraOffset, setMouseCameraOffset] = useState({ x: 0, y: 0 });
+  const { height, width } = useWindowDimensions();
+  window.addEventListener("mousemove", (event) => {
+    setMousePos({ x: event.clientX, y: event.clientY });
+  });
+  useEffect(() => {
+    const normalized = {
+      x: normalize(mousePos.x, 0, width),
+      y: normalize(mousePos.y, 0, height),
+    };
+    console.log(normalized.x - 0.5, normalized.y - 0.5);
+    setMouseCameraOffset(normalized);
+  }, [mousePos, height, width]);
 
   const positionsAsArray = Object.keys(positionSetMap).map(
     (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions,
@@ -79,12 +100,13 @@ export const Coalescent = () => {
     // Update pixel positions
     [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
-      const coordinateSet = positionSetMap[page].pixelPositions[i];
+      const coordinateSet = positionSetMap[page].pixelPositions[i]; // xyz
       if (coordinateSet) {
         dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
         dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
         dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
       } else {
+        // Move to random scattered position if no positions left in current positionSet
         const numberOfTimesLengthFitsIni = Math.floor(
           i / scatteredPositions.length,
         );
@@ -107,12 +129,12 @@ export const Coalescent = () => {
     // Update camera position
     state.camera.position.x = lerp(
       state.camera.position.x,
-      positionSetMap[page].cameraPosition[0],
+      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x * 2,
       0.01,
     );
     state.camera.position.y = lerp(
       state.camera.position.y,
-      positionSetMap[page].cameraPosition[1],
+      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y * 2,
       0.01,
     );
     state.camera.position.z = lerp(

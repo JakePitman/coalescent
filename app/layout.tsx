@@ -22,7 +22,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <>
           <Navigation className="absolute z-20" />
-          <div className="absolute z-10">{children}</div>
+          <div className="flex absolute z-10 justify-center items-center w-full h-full">
+            {children}
+          </div>
           <Experience style={{ position: "absolute", zIndex: "0" }} />
         </>
       </body>
