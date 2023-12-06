@@ -1,9 +1,14 @@
+"use client";
+
 import { NavButton } from "./NavButton";
+import { usePage } from "@hooks/usePage";
 
 type Props = {
   className?: string;
 };
 export const Navigation = ({ className }: Props) => {
+  const page = usePage();
+  console.log(page);
   return (
     <ul className={className}>
       <NavButton href="/" label="Home" />
