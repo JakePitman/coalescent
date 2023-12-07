@@ -22,7 +22,7 @@ const positionSetMap = {
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    cameraPosition: [0, 3, 17],
+    cameraPosition: [1, 3, 17],
   },
   "/contact": {
     pixelPositions: contactMePositions,
