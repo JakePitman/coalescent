@@ -60,7 +60,6 @@ export const Coalescent = () => {
       x: normalize(mousePos.x, 0, width),
       y: normalize(mousePos.y, 0, height),
     };
-    console.log(normalized.x - 0.5, normalized.y - 0.5);
     setMouseCameraOffset(normalized);
   }, [mousePos, height, width]);
 
