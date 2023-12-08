@@ -7,8 +7,6 @@ type Props = {
   className?: string;
 };
 export const Navigation = ({ className }: Props) => {
-  const page = usePage();
-  console.log(page);
   return (
     <ul className={className}>
       <NavButton href="/" label="Home" />

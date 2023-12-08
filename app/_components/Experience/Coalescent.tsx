@@ -9,9 +9,9 @@ import {
   projectsPositions,
   contactMePositions,
 } from "./positions";
-import { PageNames } from "@customTypes/pageNames";
 import { usePage } from "@hooks/usePage";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
+import { usePageContext } from "@contexts/pageContext";
 
 const positionSetMap = {
   "/": { pixelPositions: [], cameraPosition: [-11, 11, 5] },
@@ -44,6 +44,11 @@ export const Coalescent = () => {
   //console.log(positions);
   // --
 
+  const { page } = usePageContext();
+  if (page === undefined) {
+    return <></>;
+  }
+
   // Convert number to range from 0 -> 1, based on min/max bounds
   const normalize = (val: number, min: number, max: number) =>
     (val - min) / (max - min);
@@ -71,11 +76,6 @@ export const Coalescent = () => {
       currentValue.length > accumulator ? currentValue.length : accumulator,
     0,
   );
-
-  const page = usePage();
-  if (page === undefined) {
-    return <></>;
-  }
 
   // This needs to be the same as the amount of positions
   // Each position set must have exactly this many positions
