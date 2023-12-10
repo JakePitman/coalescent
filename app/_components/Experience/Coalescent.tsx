@@ -111,12 +111,12 @@ export const Coalescent = () => {
     // Update camera position
     state.camera.position.x = lerp(
       state.camera.position.x,
-      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x * 2,
+      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x,
       0.01,
     );
     state.camera.position.y = lerp(
       state.camera.position.y,
-      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y * 2,
+      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y,
       0.01,
     );
     state.camera.position.z = lerp(

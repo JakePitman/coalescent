@@ -5,6 +5,8 @@ import React, { useState } from "react";
 const normalize = (val: number, min: number, max: number) =>
   (val - min) / (max - min);
 
+// Calculates the amount that the camera should offset itelf
+// on the x & y axes, based on mouse position.
 export const useMouseCameraOffset = () => {
   const { height, width } = useWindowDimensions();
   const [mousePosition, setMousePosition] = useState({
@@ -21,8 +23,8 @@ export const useMouseCameraOffset = () => {
     };
   }, []);
   const normalized = {
-    x: normalize(mousePosition.x, 0, width),
-    y: normalize(mousePosition.y, 0, height),
+    x: normalize(mousePosition.x, 0, width) * 2,
+    y: normalize(mousePosition.y, 0, height) * 2,
   };
   return normalized;
 };
