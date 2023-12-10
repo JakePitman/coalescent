@@ -9,7 +9,7 @@ import {
   projectsPositions,
   contactMePositions,
 } from "./positions";
-import { usePage } from "@hooks/usePage";
+import { useMousePosition } from "@hooks/useMousePosition";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import { usePageContext } from "@contexts/pageContext";
 
@@ -49,24 +49,8 @@ export const Coalescent = () => {
     return <></>;
   }
 
-  // Convert number to range from 0 -> 1, based on min/max bounds
-  const normalize = (val: number, min: number, max: number) =>
-    (val - min) / (max - min);
-
   // Track mouse location
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [mouseCameraOffset, setMouseCameraOffset] = useState({ x: 0, y: 0 });
-  const { height, width } = useWindowDimensions();
-  window.addEventListener("mousemove", (event) => {
-    setMousePos({ x: event.clientX, y: event.clientY });
-  });
-  useEffect(() => {
-    const normalized = {
-      x: normalize(mousePos.x, 0, width),
-      y: normalize(mousePos.y, 0, height),
-    };
-    setMouseCameraOffset(normalized);
-  }, [mousePos, height, width]);
+  const mouseCameraOffset = useMousePosition();
 
   const positionsAsArray = Object.keys(positionSetMap).map(
     (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions,
