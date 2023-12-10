@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const normalize = (val: number, min: number, max: number) =>
   (val - min) / (max - min);
 
-export const useMousePosition = () => {
+export const useMouseCameraOffset = () => {
   const { height, width } = useWindowDimensions();
   const [mousePosition, setMousePosition] = useState({
     x: 0,

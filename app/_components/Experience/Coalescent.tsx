@@ -9,8 +9,7 @@ import {
   projectsPositions,
   contactMePositions,
 } from "./positions";
-import { useMousePosition } from "@hooks/useMousePosition";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
+import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
 
 const positionSetMap = {
@@ -50,7 +49,7 @@ export const Coalescent = () => {
   }
 
   // Track mouse location
-  const mouseCameraOffset = useMousePosition();
+  const mouseCameraOffset = useMouseCameraOffset();
 
   const positionsAsArray = Object.keys(positionSetMap).map(
     (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions,
