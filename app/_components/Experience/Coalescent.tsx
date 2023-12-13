@@ -65,10 +65,10 @@ export const Coalescent = () => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
     const material = new THREE.MeshNormalMaterial();
     return new THREE.InstancedMesh(geometry, material, cubesCount);
-  }, []);
+  }, [cubesCount]);
   const dummies = useMemo(
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
-    []
+    [cubesCount]
   );
 
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
