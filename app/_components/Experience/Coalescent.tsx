@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, use } from "react";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -43,21 +43,19 @@ export const Coalescent = () => {
   //console.log(positions);
   // --
 
-  const { page } = usePageContext();
-  if (page === undefined) {
-    return <></>;
-  }
+  const { page: pageFromContext } = usePageContext();
+  const page = pageFromContext ? pageFromContext : "/"; // Default to the scattered position
 
   // Track mouse location
   const mouseCameraOffset = useMouseCameraOffset();
 
   const positionsAsArray = Object.keys(positionSetMap).map(
-    (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions,
+    (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions
   );
   const highestNumberOfPositions = positionsAsArray.reduce(
     (accumulator, currentValue) =>
       currentValue.length > accumulator ? currentValue.length : accumulator,
-    0,
+    0
   );
 
   // This needs to be the same as the amount of positions
@@ -70,7 +68,7 @@ export const Coalescent = () => {
   }, []);
   const dummies = useMemo(
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
-    [],
+    []
   );
 
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
@@ -90,7 +88,7 @@ export const Coalescent = () => {
       } else {
         // Move to random scattered position if no positions left in current positionSet
         const numberOfTimesLengthFitsIni = Math.floor(
-          i / scatteredPositions.length,
+          i / scatteredPositions.length
         );
         const indexWithinScattered =
           i - scatteredPositions.length * numberOfTimesLengthFitsIni;
@@ -112,17 +110,17 @@ export const Coalescent = () => {
     state.camera.position.x = lerp(
       state.camera.position.x,
       positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x,
-      0.01,
+      0.01
     );
     state.camera.position.y = lerp(
       state.camera.position.y,
       positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y,
-      0.01,
+      0.01
     );
     state.camera.position.z = lerp(
       state.camera.position.z,
       positionSetMap[page].cameraPosition[2],
-      0.01,
+      0.01
     );
   });
 
