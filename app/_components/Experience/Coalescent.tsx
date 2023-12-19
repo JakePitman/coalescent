@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, use } from "react";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -9,8 +9,7 @@ import {
   projectsPositions,
   contactMePositions,
 } from "./positions";
-import { usePage } from "@hooks/usePage";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
+import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
 
 const positionSetMap = {
@@ -44,37 +43,19 @@ export const Coalescent = () => {
   //console.log(positions);
   // --
 
-  const { page } = usePageContext();
-  if (page === undefined) {
-    return <></>;
-  }
-
-  // Convert number to range from 0 -> 1, based on min/max bounds
-  const normalize = (val: number, min: number, max: number) =>
-    (val - min) / (max - min);
+  const { page: pageFromContext } = usePageContext();
+  const page = pageFromContext ? pageFromContext : "/"; // Default to the scattered position
 
   // Track mouse location
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [mouseCameraOffset, setMouseCameraOffset] = useState({ x: 0, y: 0 });
-  const { height, width } = useWindowDimensions();
-  window.addEventListener("mousemove", (event) => {
-    setMousePos({ x: event.clientX, y: event.clientY });
-  });
-  useEffect(() => {
-    const normalized = {
-      x: normalize(mousePos.x, 0, width),
-      y: normalize(mousePos.y, 0, height),
-    };
-    setMouseCameraOffset(normalized);
-  }, [mousePos, height, width]);
+  const mouseCameraOffset = useMouseCameraOffset();
 
   const positionsAsArray = Object.keys(positionSetMap).map(
-    (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions,
+    (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions
   );
   const highestNumberOfPositions = positionsAsArray.reduce(
     (accumulator, currentValue) =>
       currentValue.length > accumulator ? currentValue.length : accumulator,
-    0,
+    0
   );
 
   // This needs to be the same as the amount of positions
@@ -84,10 +65,10 @@ export const Coalescent = () => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
     const material = new THREE.MeshNormalMaterial();
     return new THREE.InstancedMesh(geometry, material, cubesCount);
-  }, []);
+  }, [cubesCount]);
   const dummies = useMemo(
     () => [...new Array(cubesCount)].map(() => new THREE.Object3D()),
-    [],
+    [cubesCount]
   );
 
   // Like Math.lerp, but stops when difference between x and y is less than 0.001
@@ -107,7 +88,7 @@ export const Coalescent = () => {
       } else {
         // Move to random scattered position if no positions left in current positionSet
         const numberOfTimesLengthFitsIni = Math.floor(
-          i / scatteredPositions.length,
+          i / scatteredPositions.length
         );
         const indexWithinScattered =
           i - scatteredPositions.length * numberOfTimesLengthFitsIni;
@@ -128,18 +109,18 @@ export const Coalescent = () => {
     // Update camera position
     state.camera.position.x = lerp(
       state.camera.position.x,
-      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x * 2,
-      0.01,
+      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x,
+      0.01
     );
     state.camera.position.y = lerp(
       state.camera.position.y,
-      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y * 2,
-      0.01,
+      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y,
+      0.01
     );
     state.camera.position.z = lerp(
       state.camera.position.z,
       positionSetMap[page].cameraPosition[2],
-      0.01,
+      0.01
     );
   });
 
