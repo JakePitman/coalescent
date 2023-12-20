@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, use } from "react";
-import { Html } from "@react-three/drei";
+import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import {
@@ -7,7 +7,9 @@ import {
   jakePositions,
   whaleAndDiversPositions,
   projectsPositions,
+  skillsPositions,
   contactMePositions,
+  blogPositions,
 } from "./positions";
 import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
@@ -23,6 +25,14 @@ const positionSetMap = {
     pixelPositions: projectsPositions,
     cameraPosition: [1, 3, 17],
   },
+  "/skills": {
+    pixelPositions: skillsPositions,
+    cameraPosition: [1, 8, 19],
+  },
+  "/blog": {
+    pixelPositions: blogPositions,
+    cameraPosition: [1, 20, 10],
+  },
   "/contact": {
     pixelPositions: contactMePositions,
     cameraPosition: [-5, 10, 10],
@@ -37,7 +47,7 @@ export const Coalescent = () => {
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("contact-with-words-2.glb");
+  //const { nodes } = useGLTF("blog.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
