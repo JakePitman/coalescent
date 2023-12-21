@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
@@ -12,7 +13,6 @@ const nextConfig = {
         },
       ],
     });
-    config.module.output = "export";
     return config;
   },
 };
