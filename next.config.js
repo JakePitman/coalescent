@@ -12,6 +12,7 @@ const nextConfig = {
         },
       ],
     });
+    config.module.output = "export";
     return config;
   },
 };
