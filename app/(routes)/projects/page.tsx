@@ -1,1 +1,3 @@
-export default () => <h1>Projects</h1>;
+const ProjectsPage = () => <h1>Projects</h1>;
+export default ProjectsPage;
+ProjectsPage.displayName = "ProjectsPage";
