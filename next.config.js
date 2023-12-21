@@ -12,6 +12,7 @@ const nextConfig = {
         },
       ],
     });
+    config.output = "export";
     return config;
   },
 };
