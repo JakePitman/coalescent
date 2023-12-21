@@ -25,10 +25,6 @@ const positionSetMap = {
     pixelPositions: projectsPositions,
     cameraPosition: [1, 3, 17],
   },
-  "/skills": {
-    pixelPositions: skillsPositions,
-    cameraPosition: [1, 8, 19],
-  },
   "/blog": {
     pixelPositions: blogPositions,
     cameraPosition: [1, 20, 10],

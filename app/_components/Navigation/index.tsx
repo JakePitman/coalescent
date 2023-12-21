@@ -13,7 +13,6 @@ export const Navigation = ({ className }: Props) => {
       <NavButton href="/jake" label="Jake" />
       <NavButton href="/interests" label="Interests" />
       <NavButton href="/projects" label="Projects" />
-      <NavButton href="/skills" label="Skills" />
       <NavButton href="/blog" label="Blog" />
       <NavButton href="/contact" label="Contact" />
     </ul>
