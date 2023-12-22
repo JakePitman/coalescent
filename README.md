@@ -1,19 +1,8 @@
-# R3F Template
+# Coalescent
 
-A basic NextJS template, set up with r3f, drei, three, Tailwind and Typescript.
+My latest (the third) portfolio site.  
+This project started as a spike to see how many InstancedMesh objects a browser could reasonably manage without crashing, and I liked the results so much I decided to turn it into a website.
 
-Happy 3D coding!
+Currently WIP
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+See it live at [jakepitman.com](www.jakepitman.com)
