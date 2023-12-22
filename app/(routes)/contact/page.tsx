@@ -1,3 +1,3 @@
-const ContactPage = () => <h1>Contact</h1>;
+const ContactPage = () => <></>;
 export default ContactPage;
 ContactPage.displayName = "ContactPage";

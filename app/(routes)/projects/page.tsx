@@ -1,3 +1,3 @@
-const ProjectsPage = () => <h1>Projects</h1>;
+const ProjectsPage = () => <></>;
 export default ProjectsPage;
 ProjectsPage.displayName = "ProjectsPage";

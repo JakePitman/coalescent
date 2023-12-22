@@ -1,3 +1,3 @@
-const InterestsPage = () => <h1>Interests</h1>;
+const InterestsPage = () => <></>;
 export default InterestsPage;
 InterestsPage.displayName = "InterestsPage";

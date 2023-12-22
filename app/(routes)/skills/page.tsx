@@ -1,3 +1,3 @@
-const SkillsPage = () => <h1>Skills</h1>;
+const SkillsPage = () => <></>;
 export default SkillsPage;
 SkillsPage.displayName = "SkillsPage";

@@ -1,3 +1,3 @@
-const JakePage = () => <h1>Jake</h1>;
+const JakePage = () => <></>;
 export default JakePage;
 JakePage.displayName = "JakePage";

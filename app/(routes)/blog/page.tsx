@@ -1,3 +1,3 @@
-const BlogPage = () => <h1>Blog</h1>;
+const BlogPage = () => <></>;
 export default BlogPage;
 BlogPage.displayName = "BlogPage";
