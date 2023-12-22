@@ -10,8 +10,8 @@ import { RouteChangeListener } from "@components/RouteChangeListener";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "R3F Template",
-  description: "R3F Template, with Next, Tailwind and Typescript",
+  title: "Jake Pitman",
+  description: "Jake Pitman's personal portfolio website",
 };
 
 export default function RootLayout({
