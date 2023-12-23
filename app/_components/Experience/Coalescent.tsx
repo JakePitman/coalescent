@@ -130,10 +130,11 @@ export const Coalescent = () => {
     );
   });
 
+  const scalingFactor = window.innerWidth < 768 ? 0.5 : 1;
+
   return (
     <>
-      <Html fullscreen></Html>
-      <primitive object={mesh} />
+      <primitive object={mesh} scale={scalingFactor} />
     </>
   );
 };
