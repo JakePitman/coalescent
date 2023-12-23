@@ -132,7 +132,6 @@ export const Coalescent = () => {
 
   return (
     <>
-      <Html fullscreen></Html>
       <primitive object={mesh} />
     </>
   );

@@ -8,7 +8,7 @@ type Props = {
 };
 export const Navigation = ({ className }: Props) => {
   return (
-    <ul className={className}>
+    <ul className={`${className} flex flex-col sm:flex-row`}>
       <NavButton href="/" label="Home" />
       <NavButton href="/jake" label="Jake" />
       <NavButton href="/interests" label="Interests" />
