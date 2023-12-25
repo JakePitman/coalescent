@@ -64,8 +64,6 @@ export const Coalescent = () => {
     0
   );
 
-  // This needs to be the same as the amount of positions
-  // Each position set must have exactly this many positions
   const cubesCount = highestNumberOfPositions;
   const mesh = useMemo(() => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
