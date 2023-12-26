@@ -23,11 +23,11 @@ const positionSetMap = {
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    rotation: [0.3, 0, 0],
+    rotation: [0.3, -0.05, 0],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, 0, 0],
+    rotation: [1, -0.05, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
