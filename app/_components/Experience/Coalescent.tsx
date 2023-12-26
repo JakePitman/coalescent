@@ -14,6 +14,7 @@ import {
 import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
 
+const xOffsetReducer = 0.05;
 const positionSetMap = {
   "/": { pixelPositions: [], rotation: [-0.1, 0.54, 0] },
   "/jake": { pixelPositions: jakePositions, rotation: [-0.3, 1.02, 0.06] },
@@ -23,11 +24,11 @@ const positionSetMap = {
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    rotation: [0.3, -0.05, 0],
+    rotation: [0.3, -xOffsetReducer, 0],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, -0.05, 0],
+    rotation: [1, -xOffsetReducer, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
@@ -117,21 +118,21 @@ export const Coalescent = () => {
       const xRotationAfterLerp = lerp(
         coalescentRef.current.rotation.x,
         positionSetMap[page].rotation[0] + mouseCameraOffset.y * 0.07,
-        0.025
+        0.015
       );
       coalescentRef.current.rotation.x = xRotationAfterLerp;
 
       const yRotationAfterLerp = lerp(
         coalescentRef.current.rotation.y,
-        positionSetMap[page].rotation[1] + mouseCameraOffset.x * 0.05,
-        0.025
+        positionSetMap[page].rotation[1] + mouseCameraOffset.x * xOffsetReducer,
+        0.015
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
 
       const zRotationAfterLerp = lerp(
         coalescentRef.current.rotation.z,
         positionSetMap[page].rotation[2],
-        0.025
+        0.015
       );
       coalescentRef.current.rotation.z = zRotationAfterLerp;
     }
