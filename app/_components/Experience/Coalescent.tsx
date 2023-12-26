@@ -138,7 +138,7 @@ export const Coalescent = () => {
     }
   });
 
-  const scalingFactor = window.innerWidth < 768 ? 0.5 : 1;
+  const scalingFactor = window.innerWidth < 768 ? 0.7 : 1;
 
   return (
     <>
