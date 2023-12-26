@@ -116,14 +116,14 @@ export const Coalescent = () => {
       // why is lerp not eventually reaching the target value?
       const xRotationAfterLerp = lerp(
         coalescentRef.current.rotation.x,
-        positionSetMap[page].rotation[0],
+        positionSetMap[page].rotation[0] + mouseCameraOffset.y * 0.07,
         0.025
       );
       coalescentRef.current.rotation.x = xRotationAfterLerp;
 
       const yRotationAfterLerp = lerp(
         coalescentRef.current.rotation.y,
-        positionSetMap[page].rotation[1],
+        positionSetMap[page].rotation[1] + mouseCameraOffset.x * 0.05,
         0.025
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
