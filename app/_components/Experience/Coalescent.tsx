@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, use } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -14,24 +14,25 @@ import {
 import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
 
+const xOffsetReducer = 0.05;
 const positionSetMap = {
-  "/": { pixelPositions: [], cameraPosition: [-11, 11, 5] },
-  "/jake": { pixelPositions: jakePositions, cameraPosition: [-13, -1, 8] },
+  "/": { pixelPositions: [], rotation: [-0.1, 0.54, 0] },
+  "/jake": { pixelPositions: jakePositions, rotation: [-0.3, 1.02, 0.06] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
-    cameraPosition: [7, 11, 8],
+    rotation: [0.9, -0.5, 0.06],
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    cameraPosition: [1, 3, 17],
+    rotation: [0.3, -xOffsetReducer, 0],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    cameraPosition: [1, 20, 10],
+    rotation: [1, -xOffsetReducer, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
-    cameraPosition: [-5, 10, 10],
+    rotation: [0.6, 0.3, 0],
   },
 };
 
@@ -49,6 +50,7 @@ export const Coalescent = () => {
   //console.log(positions);
   // --
 
+  const coalescentRef = useRef<THREE.Mesh>();
   const { page: pageFromContext } = usePageContext();
   const page = pageFromContext ? pageFromContext : "/"; // Default to the scattered position
 
@@ -64,8 +66,6 @@ export const Coalescent = () => {
     0
   );
 
-  // This needs to be the same as the amount of positions
-  // Each position set must have exactly this many positions
   const cubesCount = highestNumberOfPositions;
   const mesh = useMemo(() => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
@@ -112,29 +112,42 @@ export const Coalescent = () => {
     });
     mesh.instanceMatrix.needsUpdate = true;
 
-    // Update camera position
-    state.camera.position.x = lerp(
-      state.camera.position.x,
-      positionSetMap[page].cameraPosition[0] - mouseCameraOffset.x,
-      0.01
-    );
-    state.camera.position.y = lerp(
-      state.camera.position.y,
-      positionSetMap[page].cameraPosition[1] + mouseCameraOffset.y,
-      0.01
-    );
-    state.camera.position.z = lerp(
-      state.camera.position.z,
-      positionSetMap[page].cameraPosition[2],
-      0.01
-    );
+    // Rotate coalescentRef
+    if (coalescentRef.current) {
+      // why is lerp not eventually reaching the target value?
+      const xRotationAfterLerp = lerp(
+        coalescentRef.current.rotation.x,
+        positionSetMap[page].rotation[0] + mouseCameraOffset.y * 0.07,
+        0.015
+      );
+      coalescentRef.current.rotation.x = xRotationAfterLerp;
+
+      const yRotationAfterLerp = lerp(
+        coalescentRef.current.rotation.y,
+        positionSetMap[page].rotation[1] + mouseCameraOffset.x * xOffsetReducer,
+        0.015
+      );
+      coalescentRef.current.rotation.y = yRotationAfterLerp;
+
+      const zRotationAfterLerp = lerp(
+        coalescentRef.current.rotation.z,
+        positionSetMap[page].rotation[2],
+        0.015
+      );
+      coalescentRef.current.rotation.z = zRotationAfterLerp;
+    }
   });
 
-  const scalingFactor = window.innerWidth < 768 ? 0.5 : 1;
+  const scalingFactor = window.innerWidth < 768 ? 0.7 : 1;
 
   return (
     <>
-      <primitive object={mesh} scale={scalingFactor} />
+      <primitive
+        object={mesh}
+        position={[0, -3, 0]}
+        scale={scalingFactor}
+        ref={coalescentRef}
+      />
     </>
   );
 };

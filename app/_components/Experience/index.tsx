@@ -10,7 +10,7 @@ type Props = {
 };
 export const Experience = ({ style }: Props) => {
   return (
-    <Canvas camera={{ position: [2, 2, 2] }} style={{ ...style }}>
+    <Canvas camera={{ position: [0, 0, 20] }} style={{ ...style }}>
       <color args={["black"]} attach="background" />
       <OrbitControls />
       <ambientLight />
