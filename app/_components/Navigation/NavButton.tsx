@@ -14,7 +14,7 @@ export const NavButton = ({ href, label }: Props) => {
   const isActive = page === href;
   return (
     <Link
-      className={`mx-8 text-center ${isActive && activeStyles}`}
+      className={`mx-8 text-white text-center ${isActive && activeStyles}`}
       href={href}
       onClick={() => setPage(href)}
     >
