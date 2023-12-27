@@ -16,7 +16,7 @@ export const Experience = ({ style }: Props) => {
       <color args={["black"]} attach="background" />
       <OrbitControls />
       <ambientLight />
-      <Spaceship />
+      {/*  <Spaceship /> */}
       <Dashboard />
       <Coalescent />
     </Canvas>
