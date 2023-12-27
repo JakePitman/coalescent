@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import { Coalescent } from "./Coalescent";
+import { Spaceship } from "./Spaceship";
 
 type Props = {
   style?: {};
@@ -14,7 +15,7 @@ export const Experience = ({ style }: Props) => {
       <color args={["black"]} attach="background" />
       <OrbitControls />
       <ambientLight />
-
+      <Spaceship />
       <Coalescent />
     </Canvas>
   );
