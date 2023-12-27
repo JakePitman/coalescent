@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
+import { Dashboard } from "./Dashboard";
 
 type Props = {
   style?: {};
@@ -16,6 +17,7 @@ export const Experience = ({ style }: Props) => {
       <OrbitControls />
       <ambientLight />
       <Spaceship />
+      <Dashboard />
       <Coalescent />
     </Canvas>
   );
