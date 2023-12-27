@@ -16,7 +16,7 @@ import { usePageContext } from "@contexts/pageContext";
 
 const xOffsetReducer = 0.05;
 const positionSetMap = {
-  "/": { pixelPositions: [], rotation: [-0.1, 0.54, 0] },
+  "/": { pixelPositions: [], rotation: [0, 2, 0] },
   "/jake": { pixelPositions: jakePositions, rotation: [-0.3, 1.02, 0.06] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
