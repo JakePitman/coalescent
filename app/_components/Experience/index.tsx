@@ -1,7 +1,6 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
@@ -14,11 +13,10 @@ export const Experience = ({ style }: Props) => {
   return (
     <Canvas camera={{ position: [0, 0, 20] }} style={{ ...style }}>
       <color args={["black"]} attach="background" />
-      <OrbitControls />
       <ambientLight />
-      {/*  <Spaceship /> */}
+      <Spaceship />
       <Dashboard />
-      <Coalescent />
+      {/* <Coalescent /> */}
     </Canvas>
   );
 };
