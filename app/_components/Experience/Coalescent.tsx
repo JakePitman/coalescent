@@ -144,7 +144,7 @@ export const Coalescent = () => {
     <>
       <primitive
         object={mesh}
-        position={[0, -3, 0]}
+        position={[0, -1, 0]}
         scale={scalingFactor}
         ref={coalescentRef}
       />
