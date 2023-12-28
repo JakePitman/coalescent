@@ -20,7 +20,7 @@ export const Dashboard = () => {
       className="z-20 absolute bottom-6"
     >
       <div
-        className="bg-green-900/20 text-green-100 border border-green-100 w-[520px] h-[190px]"
+        className="bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px]"
         style={{ transform: "rotateX(26deg)" }}
       >
         <ul className={`flex flex-col h-full justify-center`}>

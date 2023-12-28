@@ -6,5 +6,10 @@ export const Spaceship = () => {
 
   const { camera } = useThree();
   const { x, y, z } = camera.position;
-  return <primitive position={[x, y, z]} object={nodes.Scene} />;
+  return (
+    <group position={[x, y, z]}>
+      <pointLight intensity={20} />
+      <primitive object={nodes.Scene} />
+    </group>
+  );
 };
