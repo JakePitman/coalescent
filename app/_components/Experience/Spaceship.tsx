@@ -3,10 +3,8 @@ import { useThree } from "@react-three/fiber";
 export const Spaceship = () => {
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
-  console.log(nodes.Scene);
 
   const { camera } = useThree();
-  console.log(camera.position);
   const { x, y, z } = camera.position;
   return <primitive position={[x, y, z]} object={nodes.Scene} />;
 };
