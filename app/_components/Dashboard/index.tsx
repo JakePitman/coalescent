@@ -1,6 +1,16 @@
+"use client";
+import { motion } from "framer-motion";
+
 export const Dashboard = () => {
   return (
-    <div
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 1, duration: 0.5 },
+      }}
       style={{
         perspective: "500px",
         left: "50%",
@@ -14,6 +24,6 @@ export const Dashboard = () => {
       >
         Dashboard
       </div>
-    </div>
+    </motion.div>
   );
 };
