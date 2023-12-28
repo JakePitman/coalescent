@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { Experience } from "@components/Experience";
 import { Navigation } from "@components/Navigation";
+import { Dashboard } from "@components/Dashboard";
 import { PageContextProvider } from "@contexts/pageContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
 
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <PageContextProvider>
           <RouteChangeListener />
-          <Navigation className="absolute z-20" />
+          <Dashboard />
           <div className="flex absolute z-10 justify-center items-center w-full h-full">
             {children}
           </div>
