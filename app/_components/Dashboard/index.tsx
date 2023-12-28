@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { NavButton } from "./NavButton";
 
 export const Dashboard = () => {
   return (
@@ -19,10 +20,17 @@ export const Dashboard = () => {
       className="z-20 absolute bottom-6"
     >
       <div
-        className="bg-green-900/20 text-green-100 border border-green-100 w-[520px] h-[210px]"
+        className="bg-green-900/20 text-green-100 border border-green-100 w-[520px] h-[190px]"
         style={{ transform: "rotateX(26deg)" }}
       >
-        Dashboard
+        <ul className={`flex flex-col h-full justify-center`}>
+          <NavButton href="/" label="Home" />
+          <NavButton href="/jake" label="Jake" />
+          <NavButton href="/interests" label="Interests" />
+          <NavButton href="/projects" label="Projects" />
+          <NavButton href="/blog" label="Blog" />
+          <NavButton href="/contact" label="Contact" />
+        </ul>
       </div>
     </motion.div>
   );

@@ -4,7 +4,6 @@ import { Canvas } from "@react-three/fiber";
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
-import { Dashboard } from "./Dashboard";
 
 type Props = {
   style?: {};

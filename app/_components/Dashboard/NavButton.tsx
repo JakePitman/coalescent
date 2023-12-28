@@ -9,12 +9,11 @@ type Props = {
 
 export const NavButton = ({ href, label }: Props) => {
   const { page, setPage } = usePageContext();
-  // write tw styles for a white border-bottom
   const activeStyles = "border-b-2 border-green-100";
   const isActive = page === href;
   return (
     <Link
-      className={`mx-8 text-green-100 text-center ${
+      className={`w-max mx-8 text-green-100 text-center ${
         isActive ? activeStyles : ""
       }`}
       href={href}
