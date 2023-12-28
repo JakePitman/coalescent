@@ -16,7 +16,7 @@ export const Experience = ({ style }: Props) => {
       <ambientLight />
       <Spaceship />
       <Dashboard />
-      {/* <Coalescent /> */}
+      <Coalescent />
     </Canvas>
   );
 };
