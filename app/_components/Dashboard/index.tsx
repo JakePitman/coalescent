@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { NavButton } from "./NavButton";
+import styles from "./Dashboard.module.css";
 
 export const Dashboard = () => {
   return (
@@ -20,8 +21,7 @@ export const Dashboard = () => {
       className="z-20 absolute bottom-6"
     >
       <div
-        className="bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px]"
-        style={{ transform: "rotateX(26deg)" }}
+        className={`bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px] ${styles.content}`}
       >
         <ul className={`flex flex-col h-full justify-center`}>
           <NavButton href="/" label="Home" />

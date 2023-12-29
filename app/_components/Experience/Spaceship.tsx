@@ -9,6 +9,7 @@ import { space } from "postcss/lib/list";
 export const Spaceship = () => {
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
+
   const scalingFactor =
     window.innerWidth < mobileBreakPoint
       ? spaceshipMobileScalingFactor
