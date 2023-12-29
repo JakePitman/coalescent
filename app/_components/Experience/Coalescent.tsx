@@ -13,6 +13,7 @@ import {
 } from "./positions";
 import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 import { usePageContext } from "@contexts/pageContext";
+import { mobileBreakPoint } from "@sharedData/index";
 
 const xOffsetReducer = 0.05;
 const positionSetMap = {
@@ -138,7 +139,7 @@ export const Coalescent = () => {
     }
   });
 
-  const scalingFactor = window.innerWidth < 768 ? 0.7 : 1;
+  const scalingFactor = window.innerWidth < mobileBreakPoint ? 0.7 : 1;
 
   return (
     <>

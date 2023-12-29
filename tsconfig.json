@@ -23,7 +23,8 @@
       "@components/*": ["./app/_components/*"],
       "@hooks/*": ["./app/_utilities/hooks/*"],
       "@customTypes/*": ["./app/_utilities/customTypes/*"],
-      "@contexts/*": ["./app/_contexts/*"]
+      "@contexts/*": ["./app/_contexts/*"],
+      "@sharedData/*": ["./app/_utilities/sharedData/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
