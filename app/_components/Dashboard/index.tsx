@@ -7,6 +7,15 @@ import {
 } from "@sharedData/index";
 import styles from "./Dashboard.module.css";
 
+const desktopSize = {
+  width: 540,
+  height: 210,
+};
+const mobileSize = {
+  width: desktopSize.width * spaceshipMobileScalingFactor.x,
+  height: desktopSize.height * spaceshipMobileScalingFactor.y,
+};
+
 export const Dashboard = () => {
   return (
     <motion.div
@@ -27,15 +36,18 @@ export const Dashboard = () => {
       <style>
         {`
         .dashboardContent {
-          transform: rotateX(26deg) scale(1, 1);
+          transform: rotateX(26deg);
+          width: ${desktopSize.width}px;
+          height: ${desktopSize.height}px;
           @media (max-width: ${mobileBreakPoint}px) {
-            transform: rotateX(26deg) scale(${spaceshipMobileScalingFactor.x}, ${spaceshipMobileScalingFactor.y});
+            width: ${mobileSize.width}px;
+            height: ${mobileSize.height}px;
           }
         }
         `}
       </style>
       <div
-        className={`bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px] dashboardContent`}
+        className={`bg-green-900/30 text-green-100 border border-green-100 dashboardContent`}
       >
         <ul className={`flex flex-col h-full justify-center`}>
           <NavButton href="/" label="Home" />
