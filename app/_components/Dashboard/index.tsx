@@ -33,6 +33,8 @@ export const Dashboard = () => {
       }}
       className="z-20 absolute bottom-6"
     >
+      {/* Using a style tag here so I can use media query + variable interpolation */}
+      {/* This keeps the scaling consistent with the spaceship's 3D dashboard*/}
       <style>
         {`
         .dashboardContent {
