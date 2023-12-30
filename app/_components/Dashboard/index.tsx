@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { NavButton } from "./NavButton";
+import {
+  spaceshipMobileScalingFactor,
+  mobileBreakPoint,
+} from "@sharedData/index";
 import styles from "./Dashboard.module.css";
 
 export const Dashboard = () => {
@@ -20,8 +24,18 @@ export const Dashboard = () => {
       }}
       className="z-20 absolute bottom-6"
     >
+      <style>
+        {`
+        .dashboardContent {
+          transform: rotateX(26deg) scale(1, 1);
+          @media (max-width: ${mobileBreakPoint}px) {
+            transform: rotateX(26deg) scale(${spaceshipMobileScalingFactor.x}, ${spaceshipMobileScalingFactor.y});
+          }
+        }
+        `}
+      </style>
       <div
-        className={`bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px] ${styles.content}`}
+        className={`bg-green-900/30 text-green-100 border border-green-100 w-[540px] h-[210px] dashboardContent`}
       >
         <ul className={`flex flex-col h-full justify-center`}>
           <NavButton href="/" label="Home" />
