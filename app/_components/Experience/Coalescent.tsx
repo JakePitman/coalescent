@@ -25,11 +25,11 @@ const positionSetMap = {
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    rotation: [0.3, -xOffsetReducer, 0],
+    rotation: [0.3, +xOffsetReducer, 0],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, -xOffsetReducer, 0],
+    rotation: [1, +xOffsetReducer, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
@@ -118,14 +118,14 @@ export const Coalescent = () => {
       // why is lerp not eventually reaching the target value?
       const xRotationAfterLerp = lerp(
         coalescentRef.current.rotation.x,
-        positionSetMap[page].rotation[0] + mouseCameraOffset.y * 0.07,
+        positionSetMap[page].rotation[0] - mouseCameraOffset.y * 0.07,
         0.015
       );
       coalescentRef.current.rotation.x = xRotationAfterLerp;
 
       const yRotationAfterLerp = lerp(
         coalescentRef.current.rotation.y,
-        positionSetMap[page].rotation[1] + mouseCameraOffset.x * xOffsetReducer,
+        positionSetMap[page].rotation[1] - mouseCameraOffset.x * xOffsetReducer,
         0.015
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
