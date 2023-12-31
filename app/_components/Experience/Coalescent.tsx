@@ -18,7 +18,7 @@ import { mobileBreakPoint } from "@sharedData/index";
 const xOffsetReducer = 0.05;
 const positionSetMap = {
   "/": { pixelPositions: [], rotation: [0, 2, 0] },
-  "/jake": { pixelPositions: jakePositions, rotation: [-0.3, 1.02, 0.06] },
+  "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0, 0.06] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
     rotation: [0.9, -0.5, 0.06],
