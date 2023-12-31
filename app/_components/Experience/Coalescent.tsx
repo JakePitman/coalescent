@@ -83,15 +83,30 @@ export const Coalescent = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
+  const positionSetLerpSpeed = 0.045;
+  const scatteredPositionLerpSpeed = 0.005;
+  const rotationLerpSpeed = 0.015;
   useFrame((state, delta) => {
     // Update pixel positions
     [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
       const coordinateSet = positionSetMap[page].pixelPositions[i]; // xyz
       if (coordinateSet) {
-        dummy.position.x = lerp(dummy.position.x, coordinateSet.x, 0.025);
-        dummy.position.y = lerp(dummy.position.y, coordinateSet.y, 0.025);
-        dummy.position.z = lerp(dummy.position.z, coordinateSet.z, 0.025);
+        dummy.position.x = lerp(
+          dummy.position.x,
+          coordinateSet.x,
+          positionSetLerpSpeed
+        );
+        dummy.position.y = lerp(
+          dummy.position.y,
+          coordinateSet.y,
+          positionSetLerpSpeed
+        );
+        dummy.position.z = lerp(
+          dummy.position.z,
+          coordinateSet.z,
+          positionSetLerpSpeed
+        );
       } else {
         // Move to random scattered position if no positions left in current positionSet
         const numberOfTimesLengthFitsIni = Math.floor(
@@ -100,9 +115,21 @@ export const Coalescent = () => {
         const indexWithinScattered =
           i - scatteredPositions.length * numberOfTimesLengthFitsIni;
         const { x, y, z } = scatteredPositions[indexWithinScattered];
-        dummy.position.x = lerp(dummy.position.x, x, 0.005);
-        dummy.position.y = lerp(dummy.position.y, y, 0.005);
-        dummy.position.z = lerp(dummy.position.z, z, 0.005);
+        dummy.position.x = lerp(
+          dummy.position.x,
+          x,
+          scatteredPositionLerpSpeed
+        );
+        dummy.position.y = lerp(
+          dummy.position.y,
+          y,
+          scatteredPositionLerpSpeed
+        );
+        dummy.position.z = lerp(
+          dummy.position.z,
+          z,
+          scatteredPositionLerpSpeed
+        );
       }
       dummy.rotation.x += delta * 0.6;
       dummy.rotation.y += delta * 0.5;
@@ -115,25 +142,24 @@ export const Coalescent = () => {
 
     // Rotate coalescentRef
     if (coalescentRef.current) {
-      // why is lerp not eventually reaching the target value?
       const xRotationAfterLerp = lerp(
         coalescentRef.current.rotation.x,
         positionSetMap[page].rotation[0] - mouseCameraOffset.y * 0.07,
-        0.015
+        rotationLerpSpeed
       );
       coalescentRef.current.rotation.x = xRotationAfterLerp;
 
       const yRotationAfterLerp = lerp(
         coalescentRef.current.rotation.y,
         positionSetMap[page].rotation[1] - mouseCameraOffset.x * xOffsetReducer,
-        0.015
+        rotationLerpSpeed
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
 
       const zRotationAfterLerp = lerp(
         coalescentRef.current.rotation.z,
         positionSetMap[page].rotation[2],
-        0.015
+        rotationLerpSpeed
       );
       coalescentRef.current.rotation.z = zRotationAfterLerp;
     }
