@@ -28,11 +28,11 @@ const positionSetMap = {
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, 0.88, 0],
+    rotation: [1, 0.83 + xOffsetReducer, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
-    rotation: [0.6, 0.3, 0],
+    rotation: [0.6, 1.2, 0],
   },
 };
 
