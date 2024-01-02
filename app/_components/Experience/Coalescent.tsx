@@ -20,7 +20,7 @@ const positionSetMap = {
   "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0, 0.0] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
-    rotation: [0.9, -0.5, 0.0],
+    rotation: [1.1, -0.4, 0.0],
   },
   "/projects": {
     pixelPositions: projectsPositions,
