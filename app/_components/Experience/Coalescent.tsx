@@ -7,7 +7,6 @@ import {
   jakePositions,
   whaleAndDiversPositions,
   projectsPositions,
-  skillsPositions,
   contactMePositions,
   blogPositions,
 } from "./positions";
@@ -17,23 +16,24 @@ import { mobileBreakPoint } from "@sharedData/index";
 
 const xOffsetReducer = 0.05;
 const positionSetMap = {
-  "/": { pixelPositions: [], rotation: [0, 2, 0] },
-  "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0, 0.06] },
+  // z rotation values removed. X and Y only
+  "/": { pixelPositions: [], rotation: [0, 2] },
+  "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
-    rotation: [0.9, -0.5, 0.06],
+    rotation: [1.1, -0.4],
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    rotation: [0.3, +xOffsetReducer, 0],
+    rotation: [0.3, +xOffsetReducer],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, +xOffsetReducer, 0],
+    rotation: [1, 0.83 + xOffsetReducer],
   },
   "/contact": {
     pixelPositions: contactMePositions,
-    rotation: [0.6, 0.3, 0],
+    rotation: [0.6, 1.2],
   },
 };
 
@@ -45,7 +45,7 @@ export const Coalescent = () => {
   //[array[i], array[j]] = [array[j], array[i]];
   //}
   //}
-  //const { nodes } = useGLTF("blog.glb");
+  //const { nodes } = useGLTF("contact.glb");
   //const positions = nodes.Scene.children.map((child) => child.position);
   //shuffle(positions);
   //console.log(positions);
@@ -155,13 +155,6 @@ export const Coalescent = () => {
         rotationLerpSpeed
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
-
-      const zRotationAfterLerp = lerp(
-        coalescentRef.current.rotation.z,
-        positionSetMap[page].rotation[2],
-        rotationLerpSpeed
-      );
-      coalescentRef.current.rotation.z = zRotationAfterLerp;
     }
   });
 
