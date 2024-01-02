@@ -83,10 +83,10 @@ export const Coalescent = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
-  const positionSetLerpSpeed = 0.045;
-  const scatteredPositionLerpSpeed = 0.005;
-  const rotationLerpSpeed = 0.015;
   useFrame((state, delta) => {
+    const positionSetLerpSpeed = 2.0 * delta;
+    const scatteredPositionLerpSpeed = 1 * delta;
+    const rotationLerpSpeed = 0.8 * delta;
     // Update pixel positions
     [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
