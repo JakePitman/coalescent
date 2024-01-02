@@ -7,7 +7,6 @@ import {
   jakePositions,
   whaleAndDiversPositions,
   projectsPositions,
-  skillsPositions,
   contactMePositions,
   blogPositions,
 } from "./positions";
@@ -18,10 +17,10 @@ import { mobileBreakPoint } from "@sharedData/index";
 const xOffsetReducer = 0.05;
 const positionSetMap = {
   "/": { pixelPositions: [], rotation: [0, 2, 0] },
-  "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0, 0.06] },
+  "/jake": { pixelPositions: jakePositions, rotation: [-0.1, 1.0, 0.0] },
   "/interests": {
     pixelPositions: whaleAndDiversPositions,
-    rotation: [0.9, -0.5, 0.06],
+    rotation: [0.9, -0.5, 0.0],
   },
   "/projects": {
     pixelPositions: projectsPositions,
@@ -29,7 +28,7 @@ const positionSetMap = {
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, +xOffsetReducer, 0],
+    rotation: [1, 0.88, 0],
   },
   "/contact": {
     pixelPositions: contactMePositions,
