@@ -4,25 +4,49 @@ import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
-import { space } from "postcss/lib/list";
+import * as THREE from "three";
 
 export const Spaceship = () => {
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
+  console.log(nodes);
+  const materials = Object.values(nodes)
+    .map((node: any) => node.material)
+    .filter((material: any) => !!material);
+
+  materials.forEach((material) => {
+    material.depthTest = false;
+    material.needsUpdate = true;
+  });
 
   const scalingFactor =
     window.innerWidth < mobileBreakPoint
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
 
+  // find out why there's no material
+  // Maybe try baking
+  console.log(nodes.spaceship);
+
   const { camera } = useThree();
   const { x, y, z } = camera.position;
   return (
-    <group position={[x, y - 0.2, z - 4]}>
-      <pointLight intensity={20} />
-      <primitive
-        object={nodes.Scene}
-        scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
+    <group
+      position={[x, y - 0.2, z - 0.6]}
+      scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
+    >
+      <pointLight intensity={25} />
+      <mesh
+        geometry={nodes.hull.geometry}
+        material={nodes.hull.material}
+        renderOrder={100}
+      />
+      <mesh
+        geometry={nodes.dashboard.geometry}
+        material={nodes.dashboard.material}
+        renderOrder={101}
+        position={[0, -2, -3.5]}
+        rotation={[-0.6, 0, 0]}
       />
     </group>
   );
