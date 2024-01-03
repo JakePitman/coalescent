@@ -39,6 +39,10 @@ export const Spaceship = () => {
       <mesh
         geometry={nodes.hull.geometry}
         material={nodes.hull.material}
+        // Render orders will be important when adding to the spaceship.
+        // As the spaceship grows in complexity, it may be worth referencing these
+        // from a single file, so they can be seen relative to each other
+        // The higher the number, the later it renders
         renderOrder={100}
       />
       <mesh
