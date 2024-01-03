@@ -36,14 +36,14 @@ export const Spaceship = () => {
     if (spaceshipRef.current && direction) {
       const xRotationAfterLerp = lerp(
         spaceshipRef.current.rotation.x,
-        direction.x * 0.03,
-        0.5 * delta
+        direction.x * 0.02,
+        0.8 * delta
       );
       spaceshipRef.current.rotation.x = xRotationAfterLerp;
       const yRotationAfterLerp = lerp(
         spaceshipRef.current.rotation.y,
-        direction.y * 0.03,
-        0.5 * delta
+        direction.y * 0.02,
+        0.8 * delta
       );
       spaceshipRef.current.rotation.y = yRotationAfterLerp;
     }

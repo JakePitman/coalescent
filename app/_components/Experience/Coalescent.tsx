@@ -15,6 +15,7 @@ import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
 
+const flightDirectionLimit = 0.01;
 const xOffsetReducer = 0.05;
 const positionSetMap = {
   // z rotation values removed. X and Y only
@@ -164,26 +165,26 @@ export const Coalescent = () => {
       );
       coalescentRef.current.rotation.y = yRotationAfterLerp;
 
-      if (targetXPosition > currentXPosition) {
-        if (targetYPosition > currentYPosition) {
+      if (targetXPosition - currentXPosition > flightDirectionLimit) {
+        if (targetYPosition - currentYPosition > flightDirectionLimit) {
           setDirection({ x: 1, y: 1 });
-        } else if (targetYPosition < currentYPosition) {
+        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
           setDirection({ x: 1, y: -1 });
         } else {
           setDirection({ x: 1, y: 0 });
         }
-      } else if (targetXPosition < currentXPosition) {
-        if (targetYPosition > currentYPosition) {
+      } else if (targetXPosition - currentXPosition < -flightDirectionLimit) {
+        if (targetYPosition - currentYPosition > flightDirectionLimit) {
           setDirection({ x: -1, y: 1 });
-        } else if (targetYPosition < currentYPosition) {
+        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
           setDirection({ x: -1, y: -1 });
         } else {
           setDirection({ x: -1, y: 0 });
         }
       } else {
-        if (targetYPosition > currentYPosition) {
+        if (targetYPosition - currentYPosition > flightDirectionLimit) {
           setDirection({ x: 0, y: 1 });
-        } else if (targetYPosition < currentYPosition) {
+        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
           setDirection({ x: 0, y: -1 });
         } else {
           setDirection({ x: 0, y: 0 });
