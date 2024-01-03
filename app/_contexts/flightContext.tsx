@@ -29,7 +29,7 @@ export const FlightContextProvider = ({ children }: Props) => {
   );
 };
 
-export const usePageContext = () => {
+export const useFlightContext = () => {
   const context = useContext(FlightContext);
   if (!context) {
     throw new Error(

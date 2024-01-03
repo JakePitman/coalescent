@@ -1,15 +1,18 @@
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
-import * as THREE from "three";
+import { useFlightContext } from "@contexts/flightContext";
+import { Group } from "three";
 
 export const Spaceship = () => {
+  const spaceshipRef = useRef<THREE.Group>(null);
+  const { direction } = useFlightContext();
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
-  console.log(nodes);
   const materials = Object.values(nodes)
     .map((node: any) => node.material)
     .filter((material: any) => !!material);
@@ -24,12 +27,35 @@ export const Spaceship = () => {
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
 
+  // Like Math.lerp, but stops when difference between x and y is less than 0.001
+  function lerp(x: number, y: number, a: number) {
+    const r = (1 - a) * x + a * y;
+    return Math.abs(x - y) < 0.001 ? y : r;
+  }
+  useFrame((_, delta) => {
+    if (spaceshipRef.current && direction) {
+      const xRotationAfterLerp = lerp(
+        spaceshipRef.current.rotation.x,
+        direction.x * 0.03,
+        0.5 * delta
+      );
+      spaceshipRef.current.rotation.x = xRotationAfterLerp;
+      const yRotationAfterLerp = lerp(
+        spaceshipRef.current.rotation.y,
+        direction.y * 0.03,
+        0.5 * delta
+      );
+      spaceshipRef.current.rotation.y = yRotationAfterLerp;
+    }
+  });
+
   const { camera } = useThree();
   const { x, y, z } = camera.position;
   return (
     <group
       position={[x, y - 0.2, z - 0.6]}
       scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
+      ref={spaceshipRef}
     >
       <pointLight intensity={25} />
       <mesh
