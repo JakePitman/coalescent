@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
@@ -23,10 +23,6 @@ export const Spaceship = () => {
     window.innerWidth < mobileBreakPoint
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
-
-  // find out why there's no material
-  // Maybe try baking
-  console.log(nodes.spaceship);
 
   const { camera } = useThree();
   const { x, y, z } = camera.position;
