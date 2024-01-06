@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState } from "react";
 import { PageNames } from "@customTypes/pageNames";
-import { usePage } from "@hooks/usePage";
 
 type PageContext = {
   page: PageNames | undefined;
