@@ -7,19 +7,12 @@ import {
 } from "@sharedData/index";
 import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
+import { initialCameraPosition } from "@sharedData/index";
 
-// TODO
-// 1. Base direction on mouse
-// 2. Set camera position once in a global var, and use it here
-//    instead of using useThree
 export const Spaceship = () => {
-  console.log("SPACESHIP");
   const spaceshipRef = useRef<Group>(null);
 
-  // use mouse here
-  const mouseCameraOffset = useNormalizedMouseCoords();
-  console.log(mouseCameraOffset);
-  const direction = { x: 1, y: 1 };
+  const mouseCoords = useNormalizedMouseCoords();
 
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
@@ -42,25 +35,25 @@ export const Spaceship = () => {
     const r = (1 - a) * x + a * y;
     return Math.abs(x - y) < 0.001 ? y : r;
   }
+  console.log(mouseCoords);
   useFrame((_, delta) => {
-    if (spaceshipRef.current && direction) {
+    if (spaceshipRef.current && mouseCoords) {
       const xRotationAfterLerp = lerp(
         spaceshipRef.current.rotation.x,
-        direction.x * 0.02,
+        -mouseCoords.y * 0.05,
         0.8 * delta
       );
       spaceshipRef.current.rotation.x = xRotationAfterLerp;
       const yRotationAfterLerp = lerp(
         spaceshipRef.current.rotation.y,
-        direction.y * 0.02,
+        -mouseCoords.x * 0.05,
         0.8 * delta
       );
       spaceshipRef.current.rotation.y = yRotationAfterLerp;
     }
   });
 
-  // Get this from global var
-  const { x, y, z } = { x: 0, y: 0, z: 0 };
+  const [x, y, z] = initialCameraPosition;
   return (
     <group
       position={[x, y - 0.2, z - 0.6]}
