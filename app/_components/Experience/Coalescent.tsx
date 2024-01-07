@@ -10,7 +10,7 @@ import {
   contactMePositions,
   blogPositions,
 } from "./positions";
-import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
+import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
@@ -58,7 +58,7 @@ export const Coalescent = () => {
   const { setDirection } = useFlightContext();
 
   // Track mouse location
-  const mouseCameraOffset = useMouseCameraOffset();
+  const mouseCoords = useNormalizedMouseCoords();
 
   const positionsAsArray = Object.keys(positionSetMap).map(
     (key) => positionSetMap[key as keyof typeof positionSetMap].pixelPositions
@@ -146,7 +146,7 @@ export const Coalescent = () => {
     if (coalescentRef.current) {
       const currentXPosition = coalescentRef.current.rotation.x;
       const targetXPosition =
-        positionSetMap[page].rotation[0] - mouseCameraOffset.y * 0.07;
+        positionSetMap[page].rotation[0] - mouseCoords.y * 0.07;
       const xRotationAfterLerp = lerp(
         currentXPosition,
         targetXPosition,
@@ -156,7 +156,7 @@ export const Coalescent = () => {
 
       const currentYPosition = coalescentRef.current.rotation.y;
       const targetYPosition =
-        positionSetMap[page].rotation[1] - mouseCameraOffset.x * 0.1;
+        positionSetMap[page].rotation[1] - mouseCoords.x * 0.1;
       const yRotationAfterLerp = lerp(
         currentYPosition,
         targetYPosition,

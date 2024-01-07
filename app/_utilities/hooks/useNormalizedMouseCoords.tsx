@@ -7,7 +7,7 @@ const normalize = (val: number, min: number, max: number) =>
 
 // Calculates the amount that the camera should offset itelf
 // on the x & y axes, based on mouse position.
-export const useMouseCameraOffset = () => {
+export const useNormalizedMouseCoords = () => {
   const { height, width } = useWindowDimensions();
   const [mousePosition, setMousePosition] = useState({
     x: 0,

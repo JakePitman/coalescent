@@ -6,7 +6,7 @@ import {
   mobileBreakPoint,
 } from "@sharedData/index";
 import { Group } from "three";
-import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
+import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 
 // TODO
 // 1. Base direction on mouse
@@ -17,7 +17,7 @@ export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
 
   // use mouse here
-  const mouseCameraOffset = useMouseCameraOffset();
+  const mouseCameraOffset = useNormalizedMouseCoords();
   console.log(mouseCameraOffset);
   const direction = { x: 1, y: 1 };
 
