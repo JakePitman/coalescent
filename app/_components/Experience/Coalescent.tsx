@@ -16,7 +16,6 @@ import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
 
 const flightDirectionLimit = 0.01;
-const xOffsetReducer = 0.05;
 const positionSetMap = {
   // z rotation values removed. X and Y only
   "/": { pixelPositions: [], rotation: [0, 2] },
@@ -157,7 +156,7 @@ export const Coalescent = () => {
 
       const currentYPosition = coalescentRef.current.rotation.y;
       const targetYPosition =
-        positionSetMap[page].rotation[1] - mouseCameraOffset.x * xOffsetReducer;
+        positionSetMap[page].rotation[1] - mouseCameraOffset.x * 0.1;
       const yRotationAfterLerp = lerp(
         currentYPosition,
         targetYPosition,
