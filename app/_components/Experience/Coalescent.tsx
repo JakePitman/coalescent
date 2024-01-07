@@ -27,11 +27,11 @@ const positionSetMap = {
   },
   "/projects": {
     pixelPositions: projectsPositions,
-    rotation: [0.3, +xOffsetReducer],
+    rotation: [0.3, 0],
   },
   "/blog": {
     pixelPositions: blogPositions,
-    rotation: [1, 0.83 + xOffsetReducer],
+    rotation: [1, 0.83],
   },
   "/contact": {
     pixelPositions: contactMePositions,

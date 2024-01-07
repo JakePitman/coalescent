@@ -5,12 +5,22 @@ import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
-import { useFlightContext } from "@contexts/flightContext";
 import { Group } from "three";
+import { useMouseCameraOffset } from "@hooks/useMouseCameraOffset";
 
+// TODO
+// 1. Base direction on mouse
+// 2. Set camera position once in a global var, and use it here
+//    instead of using useThree
 export const Spaceship = () => {
-  const spaceshipRef = useRef<THREE.Group>(null);
-  const { direction } = useFlightContext();
+  console.log("SPACESHIP");
+  const spaceshipRef = useRef<Group>(null);
+
+  // use mouse here
+  const mouseCameraOffset = useMouseCameraOffset();
+  console.log(mouseCameraOffset);
+  const direction = { x: 1, y: 1 };
+
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
   const materials = Object.values(nodes)
@@ -49,8 +59,8 @@ export const Spaceship = () => {
     }
   });
 
-  const { camera } = useThree();
-  const { x, y, z } = camera.position;
+  // Get this from global var
+  const { x, y, z } = { x: 0, y: 0, z: 0 };
   return (
     <group
       position={[x, y - 0.2, z - 0.6]}
