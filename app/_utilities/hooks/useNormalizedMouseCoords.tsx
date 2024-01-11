@@ -3,11 +3,11 @@ import React, { useState } from "react";
 
 // Convert number to range from 0 -> 1, based on min/max bounds
 const normalize = (val: number, min: number, max: number) =>
-  (val - min) / (max - min);
+  ((val - min) / (max - min)) * 2 - 1;
 
 // Calculates the amount that the camera should offset itelf
 // on the x & y axes, based on mouse position.
-export const useMouseCameraOffset = () => {
+export const useNormalizedMouseCoords = () => {
   const { height, width } = useWindowDimensions();
   const [mousePosition, setMousePosition] = useState({
     x: 0,
@@ -23,8 +23,8 @@ export const useMouseCameraOffset = () => {
     };
   }, []);
   const normalized = {
-    x: normalize(mousePosition.x, 0, width) * 2,
-    y: normalize(mousePosition.y, 0, height) * 2,
+    x: normalize(mousePosition.x, 0, width),
+    y: normalize(mousePosition.y, 0, height),
   };
   return normalized;
 };

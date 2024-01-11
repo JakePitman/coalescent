@@ -24,7 +24,8 @@
       "@hooks/*": ["./app/_utilities/hooks/*"],
       "@customTypes/*": ["./app/_utilities/customTypes/*"],
       "@contexts/*": ["./app/_contexts/*"],
-      "@sharedData/*": ["./app/_utilities/sharedData/*"]
+      "@sharedData/*": ["./app/_utilities/sharedData/*"],
+      "@functions/*": ["./app/_utilities/functions/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

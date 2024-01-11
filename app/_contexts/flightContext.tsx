@@ -1,4 +1,8 @@
 "use client";
+// This hook returns an object with x,y coords normalized to a range of -1 to 1, and a setter function
+// Originally designed to set the coords based on the movement of Coalescent,
+// for example, when rotating to the right, set x to 1, to the left, -1
+// No longer used, but may be useful in future
 import { createContext, useContext, useState } from "react";
 
 type DirectionValue = -1 | 0 | 1;
