@@ -14,7 +14,8 @@ import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMo
 import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
-import { lerpAndStop } from "@functions/lerpAndStop";
+// import { lerpAndStop } from "@functions/lerpAndStop";
+import { damp3, dampE } from "maath/easing";
 
 const flightDirectionLimit = 0.01;
 const positionSetMap = {
@@ -82,28 +83,19 @@ export const Coalescent = () => {
   );
 
   useFrame((state, delta) => {
-    const positionSetLerpSpeed = 2.0 * delta;
-    const scatteredPositionLerpSpeed = 1 * delta;
-    const rotationLerpSpeed = 0.8 * delta;
+    const positionSetLerpSpeed = 0.5;
+    const scatteredPositionLerpSpeed = 1;
+    const rotationLerpSpeed = 0.8;
     // Update pixel positions
     [...new Array(highestNumberOfPositions)].forEach((_, i) => {
       const dummy = dummies[i];
       const coordinateSet = positionSetMap[page].pixelPositions[i]; // xyz
       if (coordinateSet) {
-        dummy.position.x = lerpAndStop(
-          dummy.position.x,
-          coordinateSet.x,
-          positionSetLerpSpeed
-        );
-        dummy.position.y = lerpAndStop(
-          dummy.position.y,
-          coordinateSet.y,
-          positionSetLerpSpeed
-        );
-        dummy.position.z = lerpAndStop(
-          dummy.position.z,
-          coordinateSet.z,
-          positionSetLerpSpeed
+        damp3(
+          dummy.position,
+          [coordinateSet.x, coordinateSet.y, coordinateSet.z],
+          positionSetLerpSpeed,
+          delta
         );
       } else {
         // Move to random scattered position if no positions left in current positionSet
@@ -113,21 +105,7 @@ export const Coalescent = () => {
         const indexWithinScattered =
           i - scatteredPositions.length * numberOfTimesLengthFitsIni;
         const { x, y, z } = scatteredPositions[indexWithinScattered];
-        dummy.position.x = lerpAndStop(
-          dummy.position.x,
-          x,
-          scatteredPositionLerpSpeed
-        );
-        dummy.position.y = lerpAndStop(
-          dummy.position.y,
-          y,
-          scatteredPositionLerpSpeed
-        );
-        dummy.position.z = lerpAndStop(
-          dummy.position.z,
-          z,
-          scatteredPositionLerpSpeed
-        );
+        damp3(dummy.position, [x, y, z], scatteredPositionLerpSpeed, delta);
       }
       dummy.rotation.x += delta * 0.6;
       dummy.rotation.y += delta * 0.5;
@@ -140,51 +118,43 @@ export const Coalescent = () => {
 
     // Rotate coalescentRef
     if (coalescentRef.current) {
-      const currentXPosition = coalescentRef.current.rotation.x;
-      const targetXPosition =
+      const targetXRotation =
         positionSetMap[page].rotation[0] - mouseCoords.y * 0.07;
-      const xRotationAfterLerp = lerpAndStop(
-        currentXPosition,
-        targetXPosition,
-        rotationLerpSpeed
-      );
-      coalescentRef.current.rotation.x = xRotationAfterLerp;
-
-      const currentYPosition = coalescentRef.current.rotation.y;
-      const targetYPosition =
+      const targetYRotation =
         positionSetMap[page].rotation[1] - mouseCoords.x * 0.1;
-      const yRotationAfterLerp = lerpAndStop(
-        currentYPosition,
-        targetYPosition,
-        rotationLerpSpeed
+      dampE(
+        coalescentRef.current.rotation,
+        [targetXRotation, targetYRotation, 0],
+        rotationLerpSpeed,
+        delta
       );
-      coalescentRef.current.rotation.y = yRotationAfterLerp;
 
-      if (targetXPosition - currentXPosition > flightDirectionLimit) {
-        if (targetYPosition - currentYPosition > flightDirectionLimit) {
-          setDirection({ x: 1, y: 1 });
-        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-          setDirection({ x: 1, y: -1 });
-        } else {
-          setDirection({ x: 1, y: 0 });
-        }
-      } else if (targetXPosition - currentXPosition < -flightDirectionLimit) {
-        if (targetYPosition - currentYPosition > flightDirectionLimit) {
-          setDirection({ x: -1, y: 1 });
-        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-          setDirection({ x: -1, y: -1 });
-        } else {
-          setDirection({ x: -1, y: 0 });
-        }
-      } else {
-        if (targetYPosition - currentYPosition > flightDirectionLimit) {
-          setDirection({ x: 0, y: 1 });
-        } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-          setDirection({ x: 0, y: -1 });
-        } else {
-          setDirection({ x: 0, y: 0 });
-        }
-      }
+      // For setting the flightContext
+      // if (targetXPosition - currentXPosition > flightDirectionLimit) {
+      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
+      //     setDirection({ x: 1, y: 1 });
+      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
+      //     setDirection({ x: 1, y: -1 });
+      //   } else {
+      //     setDirection({ x: 1, y: 0 });
+      //   }
+      // } else if (targetXPosition - currentXPosition < -flightDirectionLimit) {
+      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
+      //     setDirection({ x: -1, y: 1 });
+      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
+      //     setDirection({ x: -1, y: -1 });
+      //   } else {
+      //     setDirection({ x: -1, y: 0 });
+      //   }
+      // } else {
+      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
+      //     setDirection({ x: 0, y: 1 });
+      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
+      //     setDirection({ x: 0, y: -1 });
+      //   } else {
+      //     setDirection({ x: 0, y: 0 });
+      //   }
+      // }
     }
   });
 
