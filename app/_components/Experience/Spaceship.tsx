@@ -8,9 +8,7 @@ import {
 import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
-import { lerpAndStop } from "@functions/lerpAndStop";
 import { dampE } from "maath/easing";
-import * as THREE from "three";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -42,18 +40,6 @@ export const Spaceship = () => {
         0.8,
         delta
       );
-      //   const xRotationAfterLerp = lerpAndStop(
-      //     spaceshipRef.current.rotation.x,
-      //     -mouseCoords.y * 0.05,
-      //     0.8 * delta
-      //   );
-      //   spaceshipRef.current.rotation.x = xRotationAfterLerp;
-      //   const yRotationAfterLerp = lerpAndStop(
-      //     spaceshipRef.current.rotation.y,
-      //     -mouseCoords.x * 0.05,
-      //     0.8 * delta
-      //   );
-      //   spaceshipRef.current.rotation.y = yRotationAfterLerp;
     }
   });
 

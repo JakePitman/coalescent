@@ -14,10 +14,9 @@ import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMo
 import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
-// import { lerpAndStop } from "@functions/lerpAndStop";
 import { damp3, dampE } from "maath/easing";
 
-const flightDirectionLimit = 0.01;
+// const flightDirectionLimit = 0.01;
 const positionSetMap = {
   // z rotation values removed. X and Y only
   "/": { pixelPositions: [], rotation: [0, 2] },
@@ -57,7 +56,7 @@ export const Coalescent = () => {
   const coalescentRef = useRef<THREE.Mesh>();
   const { page: pageFromContext } = usePageContext();
   const page = pageFromContext ? pageFromContext : "/"; // Default to the scattered position
-  const { setDirection } = useFlightContext();
+  // const { setDirection } = useFlightContext();
 
   // Track mouse location
   const mouseCoords = useNormalizedMouseCoords();
