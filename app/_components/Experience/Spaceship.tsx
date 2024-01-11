@@ -8,6 +8,9 @@ import {
 import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
+import { lerpAndStop } from "@functions/lerpAndStop";
+import { dampE } from "maath/easing";
+import * as THREE from "three";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -30,26 +33,27 @@ export const Spaceship = () => {
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
 
-  // Like Math.lerp, but stops when difference between x and y is less than 0.001
-  function lerp(x: number, y: number, a: number) {
-    const r = (1 - a) * x + a * y;
-    return Math.abs(x - y) < 0.001 ? y : r;
-  }
   console.log(mouseCoords);
   useFrame((_, delta) => {
     if (spaceshipRef.current && mouseCoords) {
-      const xRotationAfterLerp = lerp(
-        spaceshipRef.current.rotation.x,
-        -mouseCoords.y * 0.05,
-        0.8 * delta
+      dampE(
+        spaceshipRef.current.rotation,
+        [-mouseCoords.y * 0.05, -mouseCoords.x * 0.05, 0],
+        0.8,
+        delta
       );
-      spaceshipRef.current.rotation.x = xRotationAfterLerp;
-      const yRotationAfterLerp = lerp(
-        spaceshipRef.current.rotation.y,
-        -mouseCoords.x * 0.05,
-        0.8 * delta
-      );
-      spaceshipRef.current.rotation.y = yRotationAfterLerp;
+      //   const xRotationAfterLerp = lerpAndStop(
+      //     spaceshipRef.current.rotation.x,
+      //     -mouseCoords.y * 0.05,
+      //     0.8 * delta
+      //   );
+      //   spaceshipRef.current.rotation.x = xRotationAfterLerp;
+      //   const yRotationAfterLerp = lerpAndStop(
+      //     spaceshipRef.current.rotation.y,
+      //     -mouseCoords.x * 0.05,
+      //     0.8 * delta
+      //   );
+      //   spaceshipRef.current.rotation.y = yRotationAfterLerp;
     }
   });
 

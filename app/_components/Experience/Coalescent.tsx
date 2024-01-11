@@ -14,6 +14,7 @@ import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMo
 import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
+import { lerpAndStop } from "@functions/lerpAndStop";
 
 const flightDirectionLimit = 0.01;
 const positionSetMap = {
@@ -80,11 +81,6 @@ export const Coalescent = () => {
     [cubesCount]
   );
 
-  // Like Math.lerp, but stops when difference between x and y is less than 0.001
-  function lerp(x: number, y: number, a: number) {
-    const r = (1 - a) * x + a * y;
-    return Math.abs(x - y) < 0.001 ? y : r;
-  }
   useFrame((state, delta) => {
     const positionSetLerpSpeed = 2.0 * delta;
     const scatteredPositionLerpSpeed = 1 * delta;
@@ -94,17 +90,17 @@ export const Coalescent = () => {
       const dummy = dummies[i];
       const coordinateSet = positionSetMap[page].pixelPositions[i]; // xyz
       if (coordinateSet) {
-        dummy.position.x = lerp(
+        dummy.position.x = lerpAndStop(
           dummy.position.x,
           coordinateSet.x,
           positionSetLerpSpeed
         );
-        dummy.position.y = lerp(
+        dummy.position.y = lerpAndStop(
           dummy.position.y,
           coordinateSet.y,
           positionSetLerpSpeed
         );
-        dummy.position.z = lerp(
+        dummy.position.z = lerpAndStop(
           dummy.position.z,
           coordinateSet.z,
           positionSetLerpSpeed
@@ -117,17 +113,17 @@ export const Coalescent = () => {
         const indexWithinScattered =
           i - scatteredPositions.length * numberOfTimesLengthFitsIni;
         const { x, y, z } = scatteredPositions[indexWithinScattered];
-        dummy.position.x = lerp(
+        dummy.position.x = lerpAndStop(
           dummy.position.x,
           x,
           scatteredPositionLerpSpeed
         );
-        dummy.position.y = lerp(
+        dummy.position.y = lerpAndStop(
           dummy.position.y,
           y,
           scatteredPositionLerpSpeed
         );
-        dummy.position.z = lerp(
+        dummy.position.z = lerpAndStop(
           dummy.position.z,
           z,
           scatteredPositionLerpSpeed
@@ -147,7 +143,7 @@ export const Coalescent = () => {
       const currentXPosition = coalescentRef.current.rotation.x;
       const targetXPosition =
         positionSetMap[page].rotation[0] - mouseCoords.y * 0.07;
-      const xRotationAfterLerp = lerp(
+      const xRotationAfterLerp = lerpAndStop(
         currentXPosition,
         targetXPosition,
         rotationLerpSpeed
@@ -157,7 +153,7 @@ export const Coalescent = () => {
       const currentYPosition = coalescentRef.current.rotation.y;
       const targetYPosition =
         positionSetMap[page].rotation[1] - mouseCoords.x * 0.1;
-      const yRotationAfterLerp = lerp(
+      const yRotationAfterLerp = lerpAndStop(
         currentYPosition,
         targetYPosition,
         rotationLerpSpeed
