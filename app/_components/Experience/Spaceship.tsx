@@ -9,11 +9,12 @@ import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
+import { useFlightContext } from "@contexts/flightContext";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
-
   const mouseCoords = useNormalizedMouseCoords();
+  const { direction } = useFlightContext();
 
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");

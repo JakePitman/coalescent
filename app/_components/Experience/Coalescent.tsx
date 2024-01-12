@@ -16,7 +16,7 @@ import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
 import { damp3, dampE } from "@functions/damp";
 
-// const flightDirectionLimit = 0.01;
+const flightDirectionLimit = 0.01;
 const positionSetMap = {
   // z rotation values removed. X and Y only
   "/": { pixelPositions: [], rotation: [0, 2] },
@@ -56,7 +56,7 @@ export const Coalescent = () => {
   const coalescentRef = useRef<THREE.Mesh>();
   const { page: pageFromContext } = usePageContext();
   const page = pageFromContext ? pageFromContext : "/"; // Default to the scattered position
-  // const { setDirection } = useFlightContext();
+  const { setDirection } = useFlightContext();
 
   // Track mouse location
   const mouseCoords = useNormalizedMouseCoords();
@@ -117,6 +117,8 @@ export const Coalescent = () => {
 
     // Rotate coalescentRef
     if (coalescentRef.current) {
+      const currentXRotation = coalescentRef.current.rotation.x;
+      const currentYRotation = coalescentRef.current.rotation.y;
       const targetXRotation =
         positionSetMap[page].rotation[0] - mouseCoords.y * 0.07;
       const targetYRotation =
@@ -129,31 +131,31 @@ export const Coalescent = () => {
       );
 
       // For setting the flightContext
-      // if (targetXPosition - currentXPosition > flightDirectionLimit) {
-      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
-      //     setDirection({ x: 1, y: 1 });
-      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-      //     setDirection({ x: 1, y: -1 });
-      //   } else {
-      //     setDirection({ x: 1, y: 0 });
-      //   }
-      // } else if (targetXPosition - currentXPosition < -flightDirectionLimit) {
-      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
-      //     setDirection({ x: -1, y: 1 });
-      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-      //     setDirection({ x: -1, y: -1 });
-      //   } else {
-      //     setDirection({ x: -1, y: 0 });
-      //   }
-      // } else {
-      //   if (targetYPosition - currentYPosition > flightDirectionLimit) {
-      //     setDirection({ x: 0, y: 1 });
-      //   } else if (targetYPosition - currentYPosition < -flightDirectionLimit) {
-      //     setDirection({ x: 0, y: -1 });
-      //   } else {
-      //     setDirection({ x: 0, y: 0 });
-      //   }
-      // }
+      if (targetXRotation - currentXRotation > flightDirectionLimit) {
+        if (targetYRotation - currentYRotation > flightDirectionLimit) {
+          setDirection({ x: 1, y: 1 });
+        } else if (targetYRotation - currentYRotation < -flightDirectionLimit) {
+          setDirection({ x: 1, y: -1 });
+        } else {
+          setDirection({ x: 1, y: 0 });
+        }
+      } else if (targetXRotation - currentXRotation < -flightDirectionLimit) {
+        if (targetYRotation - currentYRotation > flightDirectionLimit) {
+          setDirection({ x: -1, y: 1 });
+        } else if (targetYRotation - currentYRotation < -flightDirectionLimit) {
+          setDirection({ x: -1, y: -1 });
+        } else {
+          setDirection({ x: -1, y: 0 });
+        }
+      } else {
+        if (targetYRotation - currentYRotation > flightDirectionLimit) {
+          setDirection({ x: 0, y: 1 });
+        } else if (targetYRotation - currentYRotation < -flightDirectionLimit) {
+          setDirection({ x: 0, y: -1 });
+        } else {
+          setDirection({ x: 0, y: 0 });
+        }
+      }
     }
   });
 
