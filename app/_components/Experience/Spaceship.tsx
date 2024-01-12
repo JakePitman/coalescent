@@ -34,6 +34,10 @@ export const Spaceship = () => {
 
   useFrame((_, delta) => {
     if (spaceshipRef.current && mouseCoords) {
+      if (direction?.x === 0 && direction?.y === 0) {
+        dampE(spaceshipRef.current.rotation, [0, 0, 0], 0.8, delta);
+      }
+
       dampE(
         spaceshipRef.current.rotation,
         [-mouseCoords.y * 0.05, -mouseCoords.x * 0.05, 0],
