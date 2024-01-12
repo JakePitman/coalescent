@@ -13,7 +13,6 @@ import { useFlightContext } from "@contexts/flightContext";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
-  const mouseCoords = useNormalizedMouseCoords();
   const { direction } = useFlightContext();
 
   //@ts-ignore - nodes does exist
