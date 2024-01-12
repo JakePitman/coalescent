@@ -14,7 +14,7 @@ import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMo
 import { usePageContext } from "@contexts/pageContext";
 import { useFlightContext } from "@contexts/flightContext";
 import { mobileBreakPoint } from "@sharedData/index";
-import { damp3, dampE } from "maath/easing";
+import { damp3, dampE } from "@functions/damp";
 
 // const flightDirectionLimit = 0.01;
 const positionSetMap = {

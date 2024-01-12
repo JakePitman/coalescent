@@ -8,7 +8,7 @@ import {
 import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
-import { dampE } from "maath/easing";
+import { dampE } from "@functions/damp";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
