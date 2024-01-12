@@ -9,11 +9,11 @@ import { Group } from "three";
 import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
+import { useFlightContext } from "@contexts/flightContext";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
-
-  const mouseCoords = useNormalizedMouseCoords();
+  const { direction } = useFlightContext();
 
   //@ts-ignore - nodes does exist
   const { nodes } = useGLTF("spaceship.glb");
@@ -31,13 +31,16 @@ export const Spaceship = () => {
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
 
-  console.log(mouseCoords);
   useFrame((_, delta) => {
-    if (spaceshipRef.current && mouseCoords) {
+    if (spaceshipRef.current && direction) {
+      if (direction.x === 0 && direction.y === 0) {
+        dampE(spaceshipRef.current.rotation, [0, 0, 0], 3.5, delta);
+      }
+
       dampE(
         spaceshipRef.current.rotation,
-        [-mouseCoords.y * 0.05, -mouseCoords.x * 0.05, 0],
-        0.8,
+        [direction.x * 0.03, direction.y * 0.03, 0],
+        1.5,
         delta
       );
     }
