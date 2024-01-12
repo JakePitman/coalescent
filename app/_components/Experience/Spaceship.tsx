@@ -31,7 +31,6 @@ export const Spaceship = () => {
       ? spaceshipMobileScalingFactor
       : { x: 1, y: 1, z: 1 };
 
-  console.log(mouseCoords);
   useFrame((_, delta) => {
     if (spaceshipRef.current && mouseCoords) {
       dampE(
