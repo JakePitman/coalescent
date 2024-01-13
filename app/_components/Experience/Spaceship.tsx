@@ -6,7 +6,6 @@ import {
   mobileBreakPoint,
 } from "@sharedData/index";
 import { Group } from "three";
-import { useNormalizedMouseCoords } from "@/app/_utilities/hooks/useNormalizedMouseCoords";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
