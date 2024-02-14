@@ -1,11 +1,11 @@
-import { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
-import { Group } from "three";
+import { Group, MeshBasicMaterial } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
@@ -13,16 +13,24 @@ import { useFlightContext } from "@contexts/flightContext";
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
   const { direction } = useFlightContext();
+  const { nodes } = useGLTF("/spaceship-baked.glb");
+  const meshes = nodes.Scene.children[0].children;
 
-  //@ts-ignore - nodes does exist
-  const { nodes } = useGLTF("spaceship.glb");
-  const materials = Object.values(nodes)
-    .map((node: any) => node.material)
-    .filter((material: any) => !!material);
-
-  materials.forEach((material) => {
-    material.depthTest = false;
-    material.needsUpdate = true;
+  // This actually works!
+  // But it requires careful planning in Blender.
+  // At the moment, gray console stripes in the back are overriding the
+  // front of the console's base material, as we have to set the renderOrder
+  // on the mesh itself. It seems that assigning materials to faces in blender
+  // will create a single mesh per material.
+  meshes[0].renderOrder = 1;
+  meshes[1].renderOrder = 2;
+  meshes[2].renderOrder = 3;
+  meshes[3].renderOrder = 4;
+  meshes[4].renderOrder = 5;
+  meshes.forEach((mesh) => {
+    mesh.material.depthTest = false;
+    mesh.material.depthWrite = false;
+    mesh.material.needsUpdate = true;
   });
 
   const scalingFactor =
@@ -48,27 +56,11 @@ export const Spaceship = () => {
   const [x, y, z] = initialCameraPosition;
   return (
     <group
-      position={[x, y - 0.2, z - 0.6]}
+      position={[x, y - 0.2, z - 4]}
       scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
       ref={spaceshipRef}
     >
-      <pointLight intensity={25} />
-      <mesh
-        geometry={nodes.hull.geometry}
-        material={nodes.hull.material}
-        // Render orders will be important when adding to the spaceship.
-        // As the spaceship grows in complexity, it may be worth referencing these
-        // from a single file, so they can be seen relative to each other
-        // The higher the number, the later it renders
-        renderOrder={100}
-      />
-      <mesh
-        geometry={nodes.dashboard.geometry}
-        material={nodes.dashboard.material}
-        renderOrder={101}
-        position={[0, -2, -3.5]}
-        rotation={[-0.6, 0, 0]}
-      />
+      <primitive object={nodes.Scene} />
     </group>
   );
 };
