@@ -9,29 +9,11 @@ import { Group, MeshBasicMaterial } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
+import { Model } from "./SpaceshipModel";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
   const { direction } = useFlightContext();
-  const { nodes } = useGLTF("/spaceship-baked.glb");
-  const meshes = nodes.Scene.children[0].children;
-
-  // This actually works!
-  // But it requires careful planning in Blender.
-  // At the moment, gray console stripes in the back are overriding the
-  // front of the console's base material, as we have to set the renderOrder
-  // on the mesh itself. It seems that assigning materials to faces in blender
-  // will create a single mesh per material.
-  meshes[0].renderOrder = 1;
-  meshes[1].renderOrder = 2;
-  meshes[2].renderOrder = 3;
-  meshes[3].renderOrder = 4;
-  meshes[4].renderOrder = 5;
-  meshes.forEach((mesh) => {
-    mesh.material.depthTest = false;
-    mesh.material.depthWrite = false;
-    mesh.material.needsUpdate = true;
-  });
 
   const scalingFactor =
     window.innerWidth < mobileBreakPoint
@@ -60,7 +42,7 @@ export const Spaceship = () => {
       scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
       ref={spaceshipRef}
     >
-      <primitive object={nodes.Scene} />
+      <Model />
     </group>
   );
 };
