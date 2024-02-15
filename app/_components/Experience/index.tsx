@@ -1,6 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
