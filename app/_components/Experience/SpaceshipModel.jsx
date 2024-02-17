@@ -6,17 +6,17 @@ Command: npx gltfjsx@6.2.16 public/spaceship-model-glass.glb
 import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 
-const renderOrders = {
-  glass: 1,
-  "ship-base": 2,
-  "ship-gray": 3,
-  "ship-orange": 4,
-  "console-base-back": 5,
-  "console-gray-back": 6,
-  "console-base": 7,
-  "console-gray": 8,
-  "console-black": 9,
-};
+const renderOrders = [
+  "glass",
+  "ship-base",
+  "ship-gray",
+  "ship-orange",
+  "console-base-back",
+  "console-gray-back",
+  "console-base",
+  "console-gray",
+  "console-black",
+];
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/spaceship-model.glb");
@@ -44,42 +44,58 @@ export function Model(props) {
       <mesh
         geometry={nodes.Cube020.geometry}
         material={materials["ship-base"]}
-        renderOrder={renderOrders["ship-base"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "ship-base"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_1.geometry}
         material={materials["ship-gray"]}
-        renderOrder={renderOrders["ship-gray"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "ship-gray"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_2.geometry}
         material={materials["ship-orange"]}
-        renderOrder={renderOrders["ship-orange"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "ship-orange"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_3.geometry}
         material={materials["console-base"]}
-        renderOrder={renderOrders["console-base"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "console-base"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_4.geometry}
         material={materials["console-black"]}
-        renderOrder={renderOrders["console-black"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "console-black"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_5.geometry}
         material={materials["console-gray"]}
-        renderOrder={renderOrders["console-gray"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "console-gray"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_6.geometry}
         material={materials["console-base-back"]}
-        renderOrder={renderOrders["console-base-back"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "console-base-back"
+        )}
       />
       <mesh
         geometry={nodes.Cube020_7.geometry}
         material={materials["console-gray-back"]}
-        renderOrder={renderOrders["console-gray-back"]}
+        renderOrder={renderOrders.findIndex(
+          (materialName) => materialName === "console-gray-back"
+        )}
       />
     </group>
   );
