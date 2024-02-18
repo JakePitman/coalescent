@@ -2,6 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
+import { Environment } from "@react-three/drei";
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";

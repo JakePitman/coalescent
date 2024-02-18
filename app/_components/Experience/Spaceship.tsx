@@ -10,6 +10,7 @@ import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
 import { Model } from "./SpaceshipModel";
+import { Light } from "./Light";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -44,8 +45,11 @@ export const Spaceship = () => {
         ref={spaceshipRef}
       >
         <Model />
+        <Light renderOrder={10} position={[0, 0, 0]} />
+        <Light renderOrder={10} position={[2.1, 0, 0]} />
+        <Light renderOrder={10} position={[-2.1, 0, 0]} />
       </group>
-      <pointLight position={[x, y - 0.2, z - 4]} intensity={30} />
+      <pointLight position={[x, y - 0.2, z - 4]} intensity={20} />
     </>
   );
 };
