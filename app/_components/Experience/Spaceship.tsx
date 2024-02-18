@@ -45,14 +45,8 @@ export const Spaceship = () => {
         ref={spaceshipRef}
       >
         <Model />
-        <Light renderOrder={10} position={[0, 2, 0]} />
-        <Light renderOrder={10} position={[2.1, 2, 0]} />
-        <Light renderOrder={10} position={[-2.1, 2, 0]} />
-        <Light renderOrder={10} position={[0, -2, 0]} />
-        <Light renderOrder={10} position={[2.1, -2, 0]} />
-        <Light renderOrder={10} position={[-2.1, -2, 0]} />
       </group>
-      <pointLight position={[x, y - 0.2, z - 4]} intensity={20} />
+      <pointLight position={[x, y - 0.2, z - 4.5]} intensity={20} />
     </>
   );
 };

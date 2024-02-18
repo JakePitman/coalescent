@@ -47,6 +47,7 @@ export const Light = ({ renderOrder, position = [0, 0, 0] }: Props) => {
     <mesh position={position}>
       <sphereGeometry />
       <colorShiftMaterial
+        emissive={[1, 1, 1]}
         color="green"
         transparent
         time={clock.elapsedTime}
