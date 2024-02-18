@@ -4,7 +4,7 @@ import { extend, ReactThreeFiber, useThree } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 
 type ShaderParams = any;
-const ColorShiftMaterial = shaderMaterial(
+export const ColorShiftMaterial = shaderMaterial(
   { time: 0, color: new THREE.Color(0.2, 0.0, 0.1), speed: 5.0 },
   // vertex shader
   /*glsl*/ `
@@ -48,6 +48,7 @@ export const Light = ({ renderOrder, position = [0, 0, 0] }: Props) => {
       <sphereGeometry />
       <colorShiftMaterial
         emissive={[1, 1, 1]}
+        emissiveIntensity={10}
         color="green"
         transparent
         time={clock.elapsedTime}
