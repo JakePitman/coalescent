@@ -46,7 +46,7 @@ export const Spaceship = () => {
       >
         <Model />
       </group>
-      <pointLight position={[x, y - 0.2, z - 4.5]} intensity={20} />
+      <pointLight position={[x, y - 0.2, z - 4.5]} intensity={5} />
     </>
   );
 };
