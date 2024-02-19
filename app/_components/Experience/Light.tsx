@@ -21,7 +21,7 @@ export const ColorShiftMaterial = shaderMaterial(
     uniform vec3 color;
     varying vec2 vUv;
     void main() {
-      gl_FragColor.rgba = vec4(1.0, 1.0, 1.0, sin(time * speed));
+      gl_FragColor.rgba = vec4(sin(time * speed), sin(time * speed), sin(time * speed), 1.0);
     }
   `
 );

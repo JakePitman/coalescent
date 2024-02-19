@@ -79,7 +79,6 @@ export function Model(props) {
           emissive={[1, 1, 1]}
           emissiveIntensity={30}
           color="green"
-          transparent
           time={clock.elapsedTime}
           speed={1.0}
           depthWrite={false}
@@ -94,7 +93,6 @@ export function Model(props) {
           emissive={[1, 1, 1]}
           emissiveIntensity={30}
           color="green"
-          transparent
           time={clock.elapsedTime}
           speed={1.0}
           depthWrite={false}
