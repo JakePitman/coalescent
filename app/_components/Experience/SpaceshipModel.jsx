@@ -11,14 +11,15 @@ import { useThree } from "@react-three/fiber";
 const renderOrders = [
   "glass",
   "ship-base",
-  "lightring",
+  "lightring-three",
   "ship-gray",
+  "lightring-two",
   "ship-orange",
   "console-base-back",
   "console-gray-back",
   "console-base",
   "console-gray",
-  "lightring-console",
+  "lightring-one",
   "console-black",
 ];
 
@@ -35,10 +36,7 @@ export function Model(props) {
 
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cube024_10.geometry}
-        renderOrder={renderOrders.findIndex((el) => el === "glass")}
-      >
+      <mesh geometry={nodes.Cube029_11.geometry}>
         <meshStandardMaterial
           transparent
           opacity={0.15}
@@ -46,74 +44,92 @@ export function Model(props) {
           depthWrite={false}
         />
       </mesh>
+
       <mesh
-        geometry={nodes.Cube024.geometry}
-        material={materials["console-base"]}
-        renderOrder={renderOrders.findIndex((el) => el === "console-base")}
-      />
-      <mesh
-        geometry={nodes.Cube024_1.geometry}
-        material={materials["console-black"]}
-        renderOrder={renderOrders.findIndex((el) => el === "console-black")}
-      />
-      <mesh
-        geometry={nodes.Cube024_2.geometry}
-        material={materials["console-gray"]}
-        renderOrder={renderOrders.findIndex((el) => el === "console-gray")}
-      />
-      <mesh
-        geometry={nodes.Cube024_3.geometry}
-        material={materials["console-base-back"]}
-        renderOrder={renderOrders.findIndex((el) => el === "console-base-back")}
-      />
-      <mesh
-        geometry={nodes.Cube024_4.geometry}
-        material={materials["console-gray-back"]}
-        renderOrder={renderOrders.findIndex((el) => el === "console-gray-back")}
-      />
-      <mesh
-        geometry={nodes.Cube024_5.geometry}
-        renderOrder={renderOrders.findIndex((el) => el === "lightring")}
-      >
-        <colorShiftMaterial
-          emissive={[1, 1, 1]}
-          emissiveIntensity={30}
-          color="green"
-          time={clock.elapsedTime}
-          speed={1.0}
-          depthWrite={false}
-          depthTest={false}
-        />
-      </mesh>
-      <mesh
-        geometry={nodes.Cube024_6.geometry}
-        renderOrder={renderOrders.findIndex((el) => el === "lightring-console")}
-      >
-        <colorShiftMaterial
-          emissive={[1, 1, 1]}
-          emissiveIntensity={30}
-          color="green"
-          time={clock.elapsedTime}
-          speed={1.0}
-          depthWrite={false}
-          depthTest={false}
-        />
-      </mesh>
-      <mesh
-        geometry={nodes.Cube024_7.geometry}
+        geometry={nodes.Cube029.geometry}
         material={materials["ship-base"]}
         renderOrder={renderOrders.findIndex((el) => el === "ship-base")}
       />
       <mesh
-        geometry={nodes.Cube024_8.geometry}
+        geometry={nodes.Cube029_1.geometry}
         material={materials["ship-gray"]}
         renderOrder={renderOrders.findIndex((el) => el === "ship-gray")}
       />
       <mesh
-        geometry={nodes.Cube024_9.geometry}
+        geometry={nodes.Cube029_2.geometry}
         material={materials["ship-orange"]}
         renderOrder={renderOrders.findIndex((el) => el === "ship-orange")}
       />
+      <mesh
+        geometry={nodes.Cube029_3.geometry}
+        material={materials["lightring-two"]}
+        renderOrder={renderOrders.findIndex((el) => el === "lightring-two")}
+      >
+        <colorShiftMaterial
+          emissive={[1, 1, 1]}
+          emissiveIntensity={30}
+          color="green"
+          time={clock.elapsedTime}
+          speed={1.0}
+          depthWrite={false}
+          depthTest={false}
+        />
+      </mesh>
+      <mesh
+        geometry={nodes.Cube029_4.geometry}
+        material={materials["lightring-three"]}
+        renderOrder={renderOrders.findIndex((el) => el === "lightring-three")}
+      >
+        <colorShiftMaterial
+          emissive={[1, 1, 1]}
+          emissiveIntensity={30}
+          color="green"
+          time={clock.elapsedTime}
+          speed={1.0}
+          depthWrite={false}
+          depthTest={false}
+        />
+      </mesh>
+      <mesh
+        geometry={nodes.Cube029_5.geometry}
+        material={materials["console-base"]}
+        renderOrder={renderOrders.findIndex((el) => el === "console-base")}
+      />
+      <mesh
+        geometry={nodes.Cube029_6.geometry}
+        material={materials["console-black"]}
+        renderOrder={renderOrders.findIndex((el) => el === "console-black")}
+      />
+      <mesh
+        geometry={nodes.Cube029_7.geometry}
+        material={materials["console-gray"]}
+        renderOrder={renderOrders.findIndex((el) => el === "console-gray")}
+      />
+      <mesh
+        geometry={nodes.Cube029_8.geometry}
+        material={materials["console-base-back"]}
+        renderOrder={renderOrders.findIndex((el) => el === "console-base-back")}
+      />
+      <mesh
+        geometry={nodes.Cube029_9.geometry}
+        material={materials["console-gray-back"]}
+        renderOrder={renderOrders.findIndex((el) => el === "console-gray-back")}
+      />
+      <mesh
+        geometry={nodes.Cube029_10.geometry}
+        material={materials["lightring-one"]}
+        renderOrder={renderOrders.findIndex((el) => el === "lightring-one")}
+      >
+        <colorShiftMaterial
+          emissive={[1, 1, 1]}
+          emissiveIntensity={30}
+          color="green"
+          time={clock.elapsedTime}
+          speed={1.0}
+          depthWrite={false}
+          depthTest={false}
+        />
+      </mesh>
     </group>
   );
 }
