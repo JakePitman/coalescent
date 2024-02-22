@@ -7,6 +7,7 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { ColorShiftMaterial } from "./Light";
 import { useThree } from "@react-three/fiber";
+import { MeshPhysicalMaterial } from "three";
 
 const renderOrders = [
   "glass",
@@ -23,6 +24,15 @@ const renderOrders = [
   "console-black",
 ];
 
+const glassMaterial = new MeshPhysicalMaterial({
+  metalness: 0,
+  roughness: 0,
+  depthTest: false,
+  depthWrite: false,
+  transmission: 1,
+  thickness: 0,
+});
+
 export function Model(props) {
   const { nodes, materials } = useGLTF("/spaceship-model.glb");
   useEffect(() => {
@@ -36,14 +46,11 @@ export function Model(props) {
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Cube029_11.geometry}>
-        <meshStandardMaterial
-          transparent
-          opacity={0.15}
-          depthTest={false}
-          depthWrite={false}
-        />
-      </mesh>
+      <mesh
+        geometry={nodes.Cube029_11.geometry}
+        material={glassMaterial}
+        renderOrder={renderOrders.findIndex((el) => el === "glass")}
+      />
 
       <mesh
         geometry={nodes.Cube029.geometry}
