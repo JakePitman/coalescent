@@ -1,16 +1,14 @@
-import { useEffect, useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
-import { Group, MeshBasicMaterial } from "three";
+import { Group } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
 import { Model } from "./SpaceshipModel";
-import { Light } from "./Light";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -46,7 +44,6 @@ export const Spaceship = () => {
       >
         <Model />
       </group>
-      <pointLight position={[x, y - 0.2, z - 4.5]} intensity={5} />
     </>
   );
 };
