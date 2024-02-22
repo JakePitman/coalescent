@@ -15,7 +15,12 @@ export const Experience = ({ style }: Props) => {
   return (
     <Canvas camera={{ position: initialCameraPosition }} style={{ ...style }}>
       {/* TODO: Find an env map like this, without clear objects in the scene */}
-      <Environment preset="sunset" background={false} blur={1} />
+      <Environment
+        preset="sunset"
+        background={false}
+        blur={1}
+        resolution={256}
+      />
       <ambientLight />
       <Spaceship />
       <Coalescent />
