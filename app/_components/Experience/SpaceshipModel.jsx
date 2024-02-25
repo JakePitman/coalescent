@@ -31,6 +31,7 @@ const glassMaterial = new MeshPhysicalMaterial({
   depthWrite: false,
   transmission: 1,
   thickness: 0,
+  roughness: 0.1,
 });
 
 export function Model(props) {
