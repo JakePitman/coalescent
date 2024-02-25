@@ -2,6 +2,10 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
+import { suspend } from "suspend-react";
+const sunset = import("@pmndrs/assets/hdri/sky.exr").then(
+  (module) => module.default
+);
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
@@ -14,7 +18,11 @@ type Props = {
 export const Experience = ({ style }: Props) => {
   return (
     <Canvas camera={{ position: initialCameraPosition }} style={{ ...style }}>
-      <Environment preset="sunset" blur={0} resolution={256} />
+      <Environment
+        files={suspend(sunset) as string}
+        blur={1}
+        resolution={256}
+      />
       <ambientLight />
       <Spaceship />
       <Coalescent />

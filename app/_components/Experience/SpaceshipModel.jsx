@@ -26,12 +26,12 @@ const renderOrders = [
 
 const glassMaterial = new MeshPhysicalMaterial({
   metalness: 0,
-  roughness: 0,
   depthTest: false,
   depthWrite: false,
   transmission: 1,
   thickness: 0,
   roughness: 0.1,
+  envMapIntensity: 0.3,
 });
 
 export function Model(props) {
