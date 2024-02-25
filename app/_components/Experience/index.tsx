@@ -26,6 +26,8 @@ export const Experience = ({ style }: Props) => {
       <ambientLight />
       <Spaceship />
       <Coalescent />
+      {/* This forms a backdrop that is necessary for the glass material's transmission property to work.
+      `transmission` has no effect when there is nothing behind the object, and renders grey, even if a background color is set on the Canvas */}
       <mesh position={[0, 0, -50]}>
         <boxGeometry args={[500, 500, 1]} />
         <meshStandardMaterial color={"black"} />
