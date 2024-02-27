@@ -30,7 +30,7 @@ const glassMaterial = new MeshPhysicalMaterial({
   depthWrite: false,
   transmission: 1,
   thickness: 0,
-  roughness: 0.1,
+  roughness: 0,
   envMapIntensity: 0.3,
 });
 
