@@ -24,15 +24,15 @@ export function Model(props) {
   // const { clock } = useThree();
   const texture = useTexture("/baked/baked-ship-8192.jpg");
   texture.flipY = false;
-  const { nodes } = useGLTF("/baked/ship.glb");
-  const panelNodes = useGLTF("/baked/panels.glb").nodes;
+  const shipGeometry = useGLTF("/baked/ship.glb").nodes.merged.geometry;
+  const panelsGeometry = useGLTF("/baked/panels.glb").nodes.panels.geometry;
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.merged.geometry} renderOrder={1}>
+      <mesh geometry={shipGeometry} renderOrder={1}>
         <meshBasicMaterial map={texture} depthTest={false} />
       </mesh>
-      <mesh geometry={panelNodes.panels.geometry} renderOrder={2}>
+      <mesh geometry={panelsGeometry} renderOrder={2}>
         <meshBasicMaterial map={texture} depthTest={false} />
       </mesh>
 
