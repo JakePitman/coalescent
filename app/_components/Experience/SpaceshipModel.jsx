@@ -21,18 +21,19 @@ import { useControls } from "leva";
 // });
 
 export function Model(props) {
-  const { rotation } = useControls({
-    rotation: [0, 0, 0],
-  });
   // const { clock } = useThree();
   const texture = useTexture("/baked/baked-ship-8192.jpg");
   texture.flipY = false;
   const { nodes } = useGLTF("/baked/ship.glb");
+  const panelNodes = useGLTF("/baked/panels.glb").nodes;
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.merged.geometry} rotation={rotation}>
-        <meshBasicMaterial map={texture} />
+      <mesh geometry={nodes.merged.geometry} renderOrder={1}>
+        <meshBasicMaterial map={texture} depthTest={false} />
+      </mesh>
+      <mesh geometry={panelNodes.panels.geometry} renderOrder={2}>
+        <meshBasicMaterial map={texture} depthTest={false} />
       </mesh>
 
       {/* 
