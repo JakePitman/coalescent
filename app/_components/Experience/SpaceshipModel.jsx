@@ -8,15 +8,15 @@ import { ColorShiftMaterial } from "./Light";
 import { useThree } from "@react-three/fiber";
 import { MeshPhysicalMaterial } from "three";
 
-// const glassMaterial = new MeshPhysicalMaterial({
-//   metalness: 0,
-//   depthTest: false,
-//   depthWrite: false,
-//   transmission: 1,
-//   thickness: 0,
-//   roughness: 0,
-//   envMapIntensity: 0.3,
-// });
+const glassMaterial = new MeshPhysicalMaterial({
+  metalness: 0,
+  depthTest: false,
+  depthWrite: false,
+  transmission: 1,
+  thickness: 0,
+  roughness: 0,
+  envMapIntensity: 0.3,
+});
 
 export function Model(props) {
   const { clock } = useThree();
@@ -30,12 +30,18 @@ export function Model(props) {
     consoleFront,
     consoleFrontDetails,
     consoleLightRings,
+    glass,
     ship,
     shipPanels,
   } = useGLTF("/baked/spaceship.glb").nodes;
 
   return (
     <group {...props} dispose={null}>
+      <mesh
+        geometry={glass.geometry}
+        material={glassMaterial}
+        renderOrder={1}
+      ></mesh>
       <mesh geometry={ship.geometry} renderOrder={1}>
         <meshBasicMaterial map={shipTexture} depthTest={false} />
       </mesh>
