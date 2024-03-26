@@ -12,15 +12,15 @@ export const Dashboard = () => {
   const { width, height } = useWindowDimensions();
 
   const desktopSize = {
-    width: 0.54 * height,
-    height: 0.18 * height,
+    width: 0.4 * height,
+    height: 0.13 * height,
   };
   const mobileSize = {
     width: desktopSize.width * spaceshipMobileScalingFactor.x,
     height: desktopSize.height * spaceshipMobileScalingFactor.y,
   };
   const mobileBottomOffset = 0.12 * height;
-  const bottomOffset = 0.08 * height;
+  const bottomOffset = 0.104 * height;
 
   return (
     <motion.div
@@ -51,20 +51,24 @@ export const Dashboard = () => {
             width: ${mobileSize.width}px;
             height: ${mobileSize.height}px;
           }
+          overflow: scroll;
+          scrollbar-width: none;
         }
         `}
       </style>
-      <div
-        className={`bg-green-900/30 text-green-100 border border-green-100 dashboardContent`}
-      >
-        <ul className={`flex flex-col h-full justify-center`}>
-          <NavButton href="/" label="Home" />
-          <NavButton href="/jake" label="Jake" />
-          <NavButton href="/interests" label="Interests" />
-          <NavButton href="/projects" label="Projects" />
-          <NavButton href="/blog" label="Blog" />
-          <NavButton href="/contact" label="Contact" />
-        </ul>
+      <div className={`text-green-100 dashboardContent`}>
+        <div className="h-full flex justify-around">
+          <ul className={`flex flex-col h-full justify-center`}>
+            <NavButton href="/" label="Home" />
+            <NavButton href="/jake" label="Jake" />
+            <NavButton href="/interests" label="Interests" />
+          </ul>
+          <ul className={`flex flex-col h-full justify-center`}>
+            <NavButton href="/projects" label="Projects" />
+            <NavButton href="/blog" label="Blog" />
+            <NavButton href="/contact" label="Contact" />
+          </ul>
+        </div>
       </div>
     </motion.div>
   );
