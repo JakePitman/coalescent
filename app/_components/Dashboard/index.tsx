@@ -5,18 +5,23 @@ import {
   spaceshipMobileScalingFactor,
   mobileBreakPoint,
 } from "@sharedData/index";
+import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import styles from "./Dashboard.module.css";
 
-const desktopSize = {
-  width: 540,
-  height: 210,
-};
-const mobileSize = {
-  width: desktopSize.width * spaceshipMobileScalingFactor.x,
-  height: desktopSize.height * spaceshipMobileScalingFactor.y,
-};
-
 export const Dashboard = () => {
+  const { width, height } = useWindowDimensions();
+
+  const desktopSize = {
+    width: 0.54 * height,
+    height: 0.18 * height,
+  };
+  const mobileSize = {
+    width: desktopSize.width * spaceshipMobileScalingFactor.x,
+    height: desktopSize.height * spaceshipMobileScalingFactor.y,
+  };
+  const mobileBottomOffset = 0.12 * height;
+  const bottomOffset = 0.08 * height;
+
   return (
     <motion.div
       initial={{
@@ -30,10 +35,11 @@ export const Dashboard = () => {
         perspective: "500px",
         left: "50%",
         transform: "translateX(-50%)",
+        bottom: `${width > 768 ? bottomOffset : mobileBottomOffset}px`,
       }}
-      className="z-20 absolute bottom-16 sm:bottom-6"
+      className="z-20 absolute"
     >
-      {/* Using a style tag here so I can use media query + variable interpolation */}
+      {/* Using a style tag hack here so I can use media query + variable interpolation */}
       {/* This keeps the scaling consistent with the spaceship's 3D dashboard*/}
       <style>
         {`
