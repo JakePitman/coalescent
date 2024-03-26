@@ -16,10 +16,10 @@ export const Dashboard = () => {
     height: 0.13 * height,
   };
   const mobileSize = {
-    width: desktopSize.width * spaceshipMobileScalingFactor.x,
-    height: desktopSize.height * spaceshipMobileScalingFactor.y,
+    width: desktopSize.width * 1.5 * spaceshipMobileScalingFactor.x,
+    height: desktopSize.height * 1.2 * spaceshipMobileScalingFactor.y,
   };
-  const mobileBottomOffset = 0.12 * height;
+  const mobileBottomOffset = 0.14 * height;
   const bottomOffset = 0.104 * height;
 
   return (
@@ -56,7 +56,9 @@ export const Dashboard = () => {
         }
         `}
       </style>
-      <div className={`text-green-100 dashboardContent`}>
+      <div
+        className={`text-green-100 dashboardContent sm:border-transparent sm:bg-transparent bg-green-800/70 border-2 border-green-100`}
+      >
         <div className="h-full flex justify-around">
           <ul className={`flex flex-col h-full justify-center`}>
             <NavButton href="/" label="Home" />
