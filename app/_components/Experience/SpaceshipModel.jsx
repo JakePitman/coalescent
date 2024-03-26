@@ -73,6 +73,15 @@ export function Model(props) {
           />
         </mesh>
       </group>
+
+      {/* 
+      // Reference for adding glass to the spaceship model
+      <mesh
+        geometry={nodes.Cube029_11.geometry}
+        material={glassMaterial}
+        renderOrder={renderOrders.findIndex((el) => el === "glass")}
+      />
+  */}
     </group>
   );
 }
