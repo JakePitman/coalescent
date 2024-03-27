@@ -27,10 +27,10 @@ export default function RootLayout({
         <PageContextProvider>
           <FlightContextProvider>
             <RouteChangeListener />
-            <Dashboard />
-            <div className="flex absolute z-10 justify-center items-center w-full h-full">
+            {/* <Dashboard /> */}
+            {/* <div className="flex absolute z-10 justify-center items-center w-full h-full">
               {children}
-            </div>
+            </div> */}
             <Experience style={{ position: "absolute", zIndex: "0" }} />
           </FlightContextProvider>
         </PageContextProvider>
