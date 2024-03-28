@@ -35,7 +35,7 @@ export const Dashboard = () => {
     <Html
       transform
       position={[0, -2.29, -0.86]}
-      rotation={[-0.5, 0, 0]}
+      rotation={[-0.6, 0, 0]}
       as="div"
       className="flex w-72 justify-around"
       distanceFactor={4}
