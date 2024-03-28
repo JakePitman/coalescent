@@ -70,7 +70,7 @@ export const Coalescent = () => {
     0
   );
 
-  const cubesCount = highestNumberOfPositions;
+  const cubesCount = highestNumberOfPositions + 5000;
   const mesh = useMemo(() => {
     const geometry = new THREE.BoxGeometry(0.03, 0.03, 0.03);
     const material = new THREE.MeshNormalMaterial();
@@ -86,7 +86,7 @@ export const Coalescent = () => {
     const scatteredPositionLerpSpeed = 1;
     const rotationLerpSpeed = 0.8;
     // Update pixel positions
-    [...new Array(highestNumberOfPositions)].forEach((_, i) => {
+    [...new Array(cubesCount)].forEach((_, i) => {
       const dummy = dummies[i];
       const coordinateSet = positionSetMap[page].pixelPositions[i]; // xyz
       if (coordinateSet) {
