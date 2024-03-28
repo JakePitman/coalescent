@@ -27,7 +27,6 @@ export default function RootLayout({
         <PageContextProvider>
           <FlightContextProvider>
             <RouteChangeListener />
-            {/* <Dashboard /> */}
             {/* <div className="flex absolute z-10 justify-center items-center w-full h-full">
               {children}
             </div> */}

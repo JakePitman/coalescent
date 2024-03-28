@@ -36,15 +36,13 @@ export const Spaceship = () => {
 
   const [x, y, z] = initialCameraPosition;
   return (
-    <>
-      <group
-        position={[x, y - 0.2, z - 4]}
-        scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
-        ref={spaceshipRef}
-      >
-        <Model />
-        <Dashboard />
-      </group>
-    </>
+    <group
+      position={[x, y - 0.2, z - 4]}
+      scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
+      ref={spaceshipRef}
+    >
+      <Dashboard />
+      <Model />
+    </group>
   );
 };

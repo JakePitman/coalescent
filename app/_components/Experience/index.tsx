@@ -9,7 +9,6 @@ const sunset = import("@pmndrs/assets/hdri/sky.exr").then(
 
 import { Coalescent } from "./Coalescent";
 import { Spaceship } from "./Spaceship";
-import { Dashboard } from "./Dashboard";
 
 import { initialCameraPosition } from "@sharedData/index";
 
@@ -27,7 +26,6 @@ export const Experience = ({ style }: Props) => {
       <ambientLight />
       <Spaceship />
       <Coalescent />
-      <Dashboard />
       {/* This forms a backdrop that is necessary for the glass material's transmission property to work.
       `transmission` has no effect when there is nothing behind the object, and renders grey, even if a background color is set on the Canvas */}
       <mesh position={[0, 0, -50]}>
