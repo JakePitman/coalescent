@@ -1,7 +1,0 @@
-.content {
-  transform: rotateX(26deg);
-
-  @media (max-width: 768px) {
-    transform: rotateX(26deg) scale(0.5, 0.9);
-  }
-}
