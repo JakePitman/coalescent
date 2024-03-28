@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Experience } from "@components/Experience";
-import { Navigation } from "@components/Navigation";
-import { Dashboard } from "@components/Dashboard";
 import { PageContextProvider } from "@contexts/pageContext";
 import { FlightContextProvider } from "@contexts/flightContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
