@@ -15,7 +15,8 @@ const NavItem = ({ label, handleClick, isActive }: NavItemProps) => {
   return (
     <button
       className={
-        "border-b-2 border-b-transparent" + ` ${isActive ? activeStyles : ""}`
+        "border-b-2 border-b-transparent text-white" +
+        ` ${isActive ? activeStyles : ""}`
       }
       onClick={handleClick}
     >
