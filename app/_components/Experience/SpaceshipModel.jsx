@@ -67,7 +67,7 @@ export function Model(props) {
             emissiveIntensity={30}
             color="green"
             time={clock.elapsedTime}
-            speed={1.0}
+            speed={0.6}
             depthWrite={false}
             depthTest={false}
           />
