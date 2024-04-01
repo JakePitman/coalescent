@@ -61,6 +61,8 @@ export function Model(props) {
 
   const isMobile = width <= mobileBreakPoint;
   const shipScalingFactor = isMobile ? [0.5, 0.9, 1] : 1;
+  const consoleScalingFactor = isMobile ? [0.9, 1.2, 1.2] : 1;
+  const consolePosition = isMobile ? [0, 0.9, 0] : [0, 0.4, 0];
 
   return (
     <group {...props} dispose={null}>
@@ -86,8 +88,8 @@ export function Model(props) {
 
       {/* Console */}
       <group
-        position={isMobile ? [0, 1.4, 0] : [0, 0.4, 0]}
-        scale={isMobile ? [1.8, 1.5, 1.5] : 1}
+        position={consolePosition}
+        scale={isMobile ? consoleScalingFactor : 1}
       >
         {/* Console Center */}
         <mesh
