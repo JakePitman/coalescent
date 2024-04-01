@@ -59,6 +59,8 @@ export function Model(props) {
     shipPanels,
   } = useGLTF("/baked/spaceship.glb").nodes;
 
+  const isMobile = width <= mobileBreakPoint;
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -79,7 +81,10 @@ export function Model(props) {
       </mesh>
 
       {/* Console */}
-      <group position={[0, 0.4, 0]}>
+      <group
+        position={isMobile ? [0, 1.4, 0] : [0, 0.4, 0]}
+        scale={isMobile ? [1.8, 1.5, 1.5] : 1}
+      >
         {/* Console Center */}
         <mesh
           geometry={consoleBack.geometry}
@@ -118,7 +123,7 @@ export function Model(props) {
         </mesh>
 
         {/* Console Sides */}
-        {width > mobileBreakPoint ? (
+        {!isMobile ? (
           <>
             <mesh
               geometry={consoleBackSides.geometry}
