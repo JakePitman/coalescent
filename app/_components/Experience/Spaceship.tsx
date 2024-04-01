@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import {
-  spaceshipMobileScalingFactor,
-  mobileBreakPoint,
-} from "@sharedData/index";
+import { mobileBreakPoint } from "@sharedData/index";
 import { Group } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
@@ -14,11 +11,6 @@ import { Dashboard } from "./Dashboard";
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
   const { direction } = useFlightContext();
-
-  const scalingFactor =
-    window.innerWidth < mobileBreakPoint
-      ? spaceshipMobileScalingFactor
-      : { x: 1, y: 1, z: 1 };
 
   useFrame((_, delta) => {
     if (spaceshipRef.current && direction) {
@@ -36,11 +28,7 @@ export const Spaceship = () => {
 
   const [x, y, z] = initialCameraPosition;
   return (
-    <group
-      position={[x, y - 0.2, z - 4]}
-      scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
-      ref={spaceshipRef}
-    >
+    <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
       <Model />
     </group>

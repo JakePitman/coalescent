@@ -38,6 +38,11 @@ export function Model(props) {
   shipTexture.flipY = false;
   const consoleTexture = useTexture("/baked/baked-console-4096.jpg");
   consoleTexture.flipY = false;
+  // Note: Splitting the model like this is necessary in order to work around
+  //       the limitations of ejecting from depthTest. Certain parts of the model
+  //       must be explicitly rendered on top of others.
+  // Note: Splitting the console into center/side parts is necessary for removing
+  //       the sides on mobile
   const {
     console,
     consoleBack,
@@ -54,27 +59,38 @@ export function Model(props) {
     shipPanels,
   } = useGLTF("/baked/spaceship.glb").nodes;
 
+  const isMobile = width <= mobileBreakPoint;
+  const shipScalingFactor = isMobile ? [0.5, 0.9, 1] : 1;
+  const consoleScalingFactor = isMobile ? [0.9, 1.2, 1.2] : 1;
+  const consolePosition = isMobile ? [0, 0.9, 0] : [0, 0.4, 0];
+
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={glass.geometry}
-        material={glassMaterial}
-        renderOrder={renderOrders.glass}
-      ></mesh>
+      {/* Ship & Glass */}
+      <group scale={shipScalingFactor}>
+        <mesh
+          geometry={glass.geometry}
+          material={glassMaterial}
+          renderOrder={renderOrders.glass}
+        ></mesh>
 
-      {/* Ship */}
-      <mesh geometry={ship.geometry} renderOrder={renderOrders.ship}>
-        <meshBasicMaterial map={shipTexture} depthTest={false} />
-      </mesh>
-      <mesh
-        geometry={shipPanels.geometry}
-        renderOrder={renderOrders.shipPanels}
-      >
-        <meshBasicMaterial map={shipTexture} depthTest={false} />
-      </mesh>
+        {/* Ship */}
+        <mesh geometry={ship.geometry} renderOrder={renderOrders.ship}>
+          <meshBasicMaterial map={shipTexture} depthTest={false} />
+        </mesh>
+        <mesh
+          geometry={shipPanels.geometry}
+          renderOrder={renderOrders.shipPanels}
+        >
+          <meshBasicMaterial map={shipTexture} depthTest={false} />
+        </mesh>
+      </group>
 
       {/* Console */}
-      <group position={[0, 0.4, 0]}>
+      <group
+        position={consolePosition}
+        scale={isMobile ? consoleScalingFactor : 1}
+      >
         {/* Console Center */}
         <mesh
           geometry={consoleBack.geometry}
@@ -113,7 +129,7 @@ export function Model(props) {
         </mesh>
 
         {/* Console Sides */}
-        {width > mobileBreakPoint ? (
+        {!isMobile ? (
           <>
             <mesh
               geometry={consoleBackSides.geometry}
