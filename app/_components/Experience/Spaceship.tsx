@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import {
-  spaceshipMobileScalingFactor,
-  mobileBreakPoint,
-} from "@sharedData/index";
+import { mobileBreakPoint } from "@sharedData/index";
 import { Group } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
