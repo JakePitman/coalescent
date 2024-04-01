@@ -18,6 +18,17 @@ const glassMaterial = new MeshPhysicalMaterial({
   envMapIntensity: 0.3,
 });
 
+const renderOrders = {
+  glass: 1,
+  ship: 2,
+  shipPanels: 3,
+  consoleBack: 4,
+  console: 5,
+  consoleFront: 6,
+  consoleFrontDetails: 7,
+  consoleLightRings: 8,
+};
+
 export function Model(props) {
   const { clock } = useThree();
   const shipTexture = useTexture("/baked/baked-ship-8192.jpg");
@@ -40,28 +51,43 @@ export function Model(props) {
       <mesh
         geometry={glass.geometry}
         material={glassMaterial}
-        renderOrder={1}
+        renderOrder={renderOrders.glass}
       ></mesh>
-      <mesh geometry={ship.geometry} renderOrder={1}>
+      <mesh geometry={ship.geometry} renderOrder={renderOrders.ship}>
         <meshBasicMaterial map={shipTexture} depthTest={false} />
       </mesh>
-      <mesh geometry={shipPanels.geometry} renderOrder={2}>
+      <mesh
+        geometry={shipPanels.geometry}
+        renderOrder={renderOrders.shipPanels}
+      >
         <meshBasicMaterial map={shipTexture} depthTest={false} />
       </mesh>
       <group position={[0, 0.4, 0]}>
-        <mesh geometry={consoleBack.geometry} renderOrder={3}>
+        <mesh
+          geometry={consoleBack.geometry}
+          renderOrder={renderOrders.consoleBack}
+        >
           <meshBasicMaterial map={consoleTexture} depthTest={false} />
         </mesh>
-        <mesh geometry={console.geometry} renderOrder={4}>
+        <mesh geometry={console.geometry} renderOrder={renderOrders.console}>
           <meshBasicMaterial map={consoleTexture} depthTest={false} />
         </mesh>
-        <mesh geometry={consoleFront.geometry} renderOrder={5}>
+        <mesh
+          geometry={consoleFront.geometry}
+          renderOrder={renderOrders.consoleFront}
+        >
           <meshBasicMaterial map={consoleTexture} depthTest={false} />
         </mesh>
-        <mesh geometry={consoleFrontDetails.geometry} renderOrder={6}>
+        <mesh
+          geometry={consoleFrontDetails.geometry}
+          renderOrder={renderOrders.consoleFrontDetails}
+        >
           <meshBasicMaterial map={consoleTexture} depthTest={false} />
         </mesh>
-        <mesh geometry={consoleLightRings.geometry} renderOrder={7}>
+        <mesh
+          geometry={consoleLightRings.geometry}
+          renderOrder={renderOrders.consoleLightRings}
+        >
           <colorShiftMaterial
             emissive={[1, 1, 1]}
             emissiveIntensity={30}
