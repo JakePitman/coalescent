@@ -7,6 +7,8 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { ColorShiftMaterial } from "./Light";
 import { useThree } from "@react-three/fiber";
 import { MeshPhysicalMaterial } from "three";
+import { mobileBreakPoint } from "@sharedData/index.ts";
+import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 const glassMaterial = new MeshPhysicalMaterial({
   metalness: 0,
@@ -31,6 +33,7 @@ const renderOrders = {
 
 export function Model(props) {
   const { clock } = useThree();
+  const { width } = useWindowDimensions();
   const shipTexture = useTexture("/baked/baked-ship-8192.jpg");
   shipTexture.flipY = false;
   const consoleTexture = useTexture("/baked/baked-console-4096.jpg");
@@ -41,6 +44,11 @@ export function Model(props) {
     consoleFront,
     consoleFrontDetails,
     consoleLightRings,
+    consoleSides,
+    consoleBackSides,
+    consoleFrontSides,
+    consoleFrontDetailsSides,
+    consoleLightRingsSides,
     glass,
     ship,
     shipPanels,
@@ -53,6 +61,8 @@ export function Model(props) {
         material={glassMaterial}
         renderOrder={renderOrders.glass}
       ></mesh>
+
+      {/* Ship */}
       <mesh geometry={ship.geometry} renderOrder={renderOrders.ship}>
         <meshBasicMaterial map={shipTexture} depthTest={false} />
       </mesh>
@@ -62,7 +72,10 @@ export function Model(props) {
       >
         <meshBasicMaterial map={shipTexture} depthTest={false} />
       </mesh>
+
+      {/* Console */}
       <group position={[0, 0.4, 0]}>
+        {/* Console Center */}
         <mesh
           geometry={consoleBack.geometry}
           renderOrder={renderOrders.consoleBack}
@@ -98,6 +111,50 @@ export function Model(props) {
             depthTest={false}
           />
         </mesh>
+
+        {/* Console Sides */}
+        {width > mobileBreakPoint ? (
+          <>
+            <mesh
+              geometry={consoleBackSides.geometry}
+              renderOrder={renderOrders.consoleBack}
+            >
+              <meshBasicMaterial map={consoleTexture} depthTest={false} />
+            </mesh>
+            <mesh
+              geometry={consoleSides.geometry}
+              renderOrder={renderOrders.console}
+            >
+              <meshBasicMaterial map={consoleTexture} depthTest={false} />
+            </mesh>
+            <mesh
+              geometry={consoleFrontSides.geometry}
+              renderOrder={renderOrders.consoleFront}
+            >
+              <meshBasicMaterial map={consoleTexture} depthTest={false} />
+            </mesh>
+            <mesh
+              geometry={consoleFrontDetailsSides.geometry}
+              renderOrder={renderOrders.consoleFrontDetails}
+            >
+              <meshBasicMaterial map={consoleTexture} depthTest={false} />
+            </mesh>
+            <mesh
+              geometry={consoleLightRingsSides.geometry}
+              renderOrder={renderOrders.consoleLightRings}
+            >
+              <colorShiftMaterial
+                emissive={[1, 1, 1]}
+                emissiveIntensity={30}
+                color="green"
+                time={clock.elapsedTime}
+                speed={0.6}
+                depthWrite={false}
+                depthTest={false}
+              />
+            </mesh>
+          </>
+        ) : null}
       </group>
     </group>
   );
