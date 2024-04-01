@@ -15,11 +15,6 @@ export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
   const { direction } = useFlightContext();
 
-  const scalingFactor =
-    window.innerWidth < mobileBreakPoint
-      ? spaceshipMobileScalingFactor
-      : { x: 1, y: 1, z: 1 };
-
   useFrame((_, delta) => {
     if (spaceshipRef.current && direction) {
       if (direction.x === 0 && direction.y === 0) {
@@ -36,11 +31,7 @@ export const Spaceship = () => {
 
   const [x, y, z] = initialCameraPosition;
   return (
-    <group
-      position={[x, y - 0.2, z - 4]}
-      scale={[scalingFactor.x, scalingFactor.y, scalingFactor.z]}
-      ref={spaceshipRef}
-    >
+    <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
       <Model />
     </group>
