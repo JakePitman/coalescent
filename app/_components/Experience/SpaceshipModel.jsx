@@ -38,6 +38,11 @@ export function Model(props) {
   shipTexture.flipY = false;
   const consoleTexture = useTexture("/baked/baked-console-4096.jpg");
   consoleTexture.flipY = false;
+  // Note: Splitting the model like this is necessary in order to work around
+  //       the limitations of ejecting from depthTest. Certain parts of the model
+  //       must be explicitly rendered on top of others.
+  // Note: Splitting the console into center/side parts is necessary for removing
+  //       the sides on mobile
   const {
     console,
     consoleBack,
