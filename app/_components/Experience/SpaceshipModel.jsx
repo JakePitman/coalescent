@@ -7,10 +7,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { ColorShiftMaterial } from "./Light";
 import { useThree } from "@react-three/fiber";
 import { MeshPhysicalMaterial } from "three";
-import {
-  spaceshipMobileScalingFactor,
-  mobileBreakPoint,
-} from "@sharedData/index.ts";
+import { mobileBreakPoint } from "@sharedData/index.ts";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 const glassMaterial = new MeshPhysicalMaterial({
@@ -63,7 +60,7 @@ export function Model(props) {
   } = useGLTF("/baked/spaceship.glb").nodes;
 
   const isMobile = width <= mobileBreakPoint;
-  const shipScalingFactor = isMobile ? spaceshipMobileScalingFactor : 1;
+  const shipScalingFactor = isMobile ? [0.5, 0.9, 1] : 1;
 
   return (
     <group {...props} dispose={null}>
