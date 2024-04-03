@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { mobileBreakPoint } from "@sharedData/index";
+import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import { Group } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
@@ -12,6 +13,8 @@ import { Hologram } from "./Hologram";
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
   const { direction } = useFlightContext();
+  const { width } = useWindowDimensions();
+  const isMobile = width <= mobileBreakPoint;
 
   useFrame((_, delta) => {
     if (spaceshipRef.current && direction) {
@@ -31,7 +34,7 @@ export const Spaceship = () => {
   return (
     <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
-      <Hologram />
+      {!isMobile && <Hologram />}
       <Model />
     </group>
   );
