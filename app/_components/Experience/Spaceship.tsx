@@ -7,6 +7,7 @@ import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
 import { Model } from "./SpaceshipModel";
 import { Dashboard } from "./Dashboard";
+import { Hologram } from "./Hologram";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -30,6 +31,7 @@ export const Spaceship = () => {
   return (
     <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
+      <Hologram />
       <Model />
     </group>
   );
