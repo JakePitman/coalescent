@@ -1,36 +1,38 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, BoxGeometry } from "three";
+import { Group } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
+import { pageNames } from "@customTypes/pageNames";
 
 import HolographicMaterial from "./HolographicMaterial";
 
 export const Hologram = () => {
   const ref = useRef<Group>(null);
+  // @ts-ignore
   const { nodes } = useGLTF("/hologram.glb");
-  const { Blog, Contact, Jake, Projects, Whale } = nodes;
+  const { Home, Blog, Contact, Jake, Projects, Interests } = nodes;
   const { page } = usePageContext();
-
-  const geometryMap = {
-    "/": new BoxGeometry(10, 10, 10),
-    "/blog": Blog.geometry,
-    "/contact": Contact.geometry,
-    "/jake": Jake.geometry,
-    "/projects": Projects.geometry,
-    "/interests": Whale.geometry,
-  };
-
   useFrame((_, delta) => {
     ref.current &&
       ref.current.rotation.set(0, ref.current.rotation.y + delta / 2, 0);
   });
 
-  console.log(geometryMap[page]);
+  const geometryMap = {
+    "/": Home.geometry,
+    "/blog": Blog.geometry,
+    "/contact": Contact.geometry,
+    "/jake": Jake.geometry,
+    "/projects": Projects.geometry,
+    "/interests": Interests.geometry,
+  };
+
+  if (!page || !pageNames.includes(page)) return null;
+  const geometry = geometryMap[page];
 
   return (
     <group ref={ref} position={[-2.05, -1.9, 0]} scale={0.04}>
-      <mesh geometry={geometryMap[page]}>
+      <mesh geometry={geometry}>
         <HolographicMaterial fresnelOpacity={0.35} />
       </mesh>
     </group>
