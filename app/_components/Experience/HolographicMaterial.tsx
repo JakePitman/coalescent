@@ -13,6 +13,7 @@ import {
   DoubleSide,
   AdditiveBlending,
   NormalBlending,
+  ShaderMaterial,
 } from "three";
 
 /**
@@ -204,9 +205,10 @@ export default function HolographicMaterial({
     ref.current.time += delta;
   });
 
-  const ref = useRef();
+  const ref = useRef<any>(null);
 
   return (
+    //@ts-ignore: This gets extended
     <holographicMaterial
       key={HolographicMaterial.key}
       side={
