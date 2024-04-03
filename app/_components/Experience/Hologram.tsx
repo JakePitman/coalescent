@@ -33,7 +33,7 @@ export const Hologram = () => {
   return (
     <group ref={ref} position={[-2.05, -1.9, 0]} scale={0.04}>
       <mesh geometry={geometry}>
-        <HolographicMaterial fresnelOpacity={0.35} />
+        <HolographicMaterial scanlineSize={0.1} fresnelOpacity={0.35} />
       </mesh>
     </group>
   );
