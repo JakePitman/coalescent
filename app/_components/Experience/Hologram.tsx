@@ -4,6 +4,7 @@ import { Group } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
+import { damp3 } from "maath/easing";
 
 import HolographicMaterial from "./HolographicMaterial";
 
@@ -13,17 +14,22 @@ export const Hologram = () => {
   const { nodes } = useGLTF("/hologram.glb");
   const { Home, Blog, Contact, Jake, Projects, Interests } = nodes;
   const { page } = usePageContext();
-  useFrame((_, delta) => {
-    ref.current &&
-      ref.current.rotation.set(0, ref.current.rotation.y + delta / 2, 0);
-  });
-
   // This state is used to check if the value of 'page' has changed
   const [previousPage, setPreviousPage] = useState<string>(page || "/");
   const [isOpening, setIsOpening] = useState<boolean>(true);
   const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
+  const scale = isOpening ? 0.04 : 0;
+
+  useFrame((_, delta) => {
+    if (ref.current) {
+      ref.current.rotation.set(0, ref.current.rotation.y + delta / 2, 0);
+
+      damp3(ref.current.scale, [scale, scale, scale], 0.1, delta);
+    }
+  });
+
   useEffect(() => {
     // Only run on page change
     if (page !== previousPage) {
@@ -32,7 +38,6 @@ export const Hologram = () => {
 
       // Clear the previous timeout if it exists
       if (currentTimeout) {
-        console.log("clearing timeout");
         clearTimeout(currentTimeout);
       }
       setCurrentTimeout(
@@ -43,8 +48,6 @@ export const Hologram = () => {
       );
     }
   }, [page, previousPage, isOpening]);
-
-  currentTimeout && console.log(currentTimeout);
 
   const geometryMap = {
     "/": Home.geometry,
@@ -58,10 +61,8 @@ export const Hologram = () => {
   if (!page || !pageNames.includes(page)) return null;
   const geometry = geometryMap[page];
 
-  const scale = isOpening ? 0.04 : 0;
-
   return (
-    <group ref={ref} position={[-2.05, -1.9, 0]} scale={scale}>
+    <group ref={ref} position={[-2.05, -1.9, 0]}>
       <mesh geometry={geometry}>
         <HolographicMaterial scanlineSize={0.1} fresnelOpacity={0.35} />
       </mesh>
