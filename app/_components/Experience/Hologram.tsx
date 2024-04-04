@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, BufferGeometry } from "three";
+import { Group, BufferGeometry, Vector3 } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
@@ -8,6 +8,7 @@ import { damp3 } from "maath/easing";
 
 import HolographicMaterial from "./HolographicMaterial";
 
+type Scale = [x: number, y: number, z: number];
 export const Hologram = () => {
   const ref = useRef<Group>(null);
   // @ts-ignore
@@ -35,13 +36,13 @@ export const Hologram = () => {
     return null;
   });
 
-  const scale = isOpening ? 0.04 : 0;
+  const scale: Scale = isOpening ? [0.04, 0.04, 0.04] : [0, 0.04, 0];
 
   useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.set(0, ref.current.rotation.y + delta / 2, 0);
 
-      damp3(ref.current.scale, [scale, scale, scale], 0.1, delta);
+      damp3(ref.current.scale, scale, 0.1, delta);
     }
   });
 
