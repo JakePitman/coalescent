@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group } from "three";
+import { Group, BufferGeometry } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
@@ -20,6 +20,21 @@ export const Hologram = () => {
   const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
+  const geometryMap = {
+    "/": Home.geometry,
+    "/blog": Blog.geometry,
+    "/contact": Contact.geometry,
+    "/jake": Jake.geometry,
+    "/projects": Projects.geometry,
+    "/interests": Interests.geometry,
+  };
+  const [geometry, setGeometry] = useState<BufferGeometry | null>(() => {
+    if (page && pageNames.includes(page)) {
+      return geometryMap[page];
+    }
+    return null;
+  });
+
   const scale = isOpening ? 0.04 : 0;
 
   useFrame((_, delta) => {
@@ -42,6 +57,9 @@ export const Hologram = () => {
       }
       setCurrentTimeout(
         setTimeout(() => {
+          if (page && pageNames.includes(page)) {
+            setGeometry(geometryMap[page]);
+          }
           setIsOpening(true);
           setCurrentTimeout(null);
         }, 2000)
@@ -49,17 +67,7 @@ export const Hologram = () => {
     }
   }, [page, previousPage, isOpening]);
 
-  const geometryMap = {
-    "/": Home.geometry,
-    "/blog": Blog.geometry,
-    "/contact": Contact.geometry,
-    "/jake": Jake.geometry,
-    "/projects": Projects.geometry,
-    "/interests": Interests.geometry,
-  };
-
-  if (!page || !pageNames.includes(page)) return null;
-  const geometry = geometryMap[page];
+  if (!geometry) return null;
 
   return (
     <group ref={ref} position={[-2.05, -1.9, 0]}>
