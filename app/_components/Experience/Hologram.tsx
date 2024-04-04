@@ -21,18 +21,30 @@ export const Hologram = () => {
   // This state is used to check if the value of 'page' has changed
   const [previousPage, setPreviousPage] = useState<string>(page || "/");
   const [isOpening, setIsOpening] = useState<boolean>(true);
+  const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
   useEffect(() => {
+    // Only run on page change
     if (page !== previousPage) {
-      console.table({ page, previousPage });
       page && setPreviousPage(page);
       setIsOpening(false);
 
-      const timoutId = setTimeout(() => {
-        console.log("setting is opening to true");
-        setIsOpening(true);
-      }, 2000);
+      // Clear the previous timeout if it exists
+      if (currentTimeout) {
+        console.log("clearing timeout");
+        clearTimeout(currentTimeout);
+      }
+      setCurrentTimeout(
+        setTimeout(() => {
+          setIsOpening(true);
+          setCurrentTimeout(null);
+        }, 2000)
+      );
     }
   }, [page, previousPage, isOpening]);
+
+  currentTimeout && console.log(currentTimeout);
 
   const geometryMap = {
     "/": Home.geometry,
