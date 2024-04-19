@@ -6,10 +6,9 @@ Command: npx gltfjsx@6.2.16 public/robot.glb -o app/Robot.jsx
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useAnimationContext } from "@contexts/AnimationContext";
-import HolographicMaterial from "./HolographicMaterial";
 import { MeshStandardMaterial, Vector3, Group, Material } from "three";
+import { holographicMaterial } from "@/app/_materials/holographicMaterial";
 
-const holographicMaterial = new HolographicMaterial() as Material;
 const eyesMaterial = new MeshStandardMaterial({ color: "white" });
 
 type Props = {

@@ -6,9 +6,7 @@ import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
 import { damp3 } from "maath/easing";
 
-import HolographicMaterial from "./HolographicMaterial";
-
-const holographicMaterial = new HolographicMaterial() as Material;
+import { holographicMaterial } from "@/app/_materials/holographicMaterial";
 
 type Scale = [x: number, y: number, z: number];
 

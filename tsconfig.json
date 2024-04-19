@@ -24,10 +24,11 @@
       "@hooks/*": ["./app/_utilities/hooks/*"],
       "@customTypes/*": ["./app/_utilities/customTypes/*"],
       "@contexts/*": ["./app/_contexts/*"],
+      "@materials/*": ["./app/_materials/*"],
       "@sharedData/*": ["./app/_utilities/sharedData/*"],
       "@functions/*": ["./app/_utilities/functions/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_components/Experience/HolographicMaterial.js", "app/_components/Experience/HolographicMaterial.js"],
   "exclude": ["node_modules"]
 }
