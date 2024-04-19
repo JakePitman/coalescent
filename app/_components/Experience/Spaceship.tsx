@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
-import { Group, Vector3 } from "three";
+import { Group } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
