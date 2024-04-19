@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, BufferGeometry, Vector3 } from "three";
+import { Group, BufferGeometry, Material } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
 import { damp3 } from "maath/easing";
 
 import HolographicMaterial from "./HolographicMaterial";
+
+const holographicMaterial = new HolographicMaterial() as Material;
 
 type Scale = [x: number, y: number, z: number];
 export const Hologram = () => {
@@ -72,9 +74,7 @@ export const Hologram = () => {
 
   return (
     <group ref={ref} position={[-2.05, -1.9, 0]}>
-      <mesh geometry={geometry}>
-        <HolographicMaterial scanlineSize={0.1} fresnelOpacity={0.35} />
-      </mesh>
+      <mesh geometry={geometry} material={holographicMaterial}></mesh>
     </group>
   );
 };

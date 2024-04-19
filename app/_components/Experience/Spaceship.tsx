@@ -9,6 +9,7 @@ import { useFlightContext } from "@contexts/flightContext";
 import { Model } from "./SpaceshipModel";
 import { Dashboard } from "./Dashboard";
 import { Hologram } from "./Hologram";
+import { Robot } from "./Robot";
 
 export const Spaceship = () => {
   const spaceshipRef = useRef<Group>(null);
@@ -35,6 +36,7 @@ export const Spaceship = () => {
     <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
       {!isMobile && <Hologram />}
+      {!isMobile && <Robot />}
       <Model />
     </group>
   );
