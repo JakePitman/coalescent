@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
-import { Group } from "three";
+import { Group, Vector3 } from "three";
 import { initialCameraPosition } from "@sharedData/index";
 import { dampE } from "@functions/damp";
 import { useFlightContext } from "@contexts/flightContext";
@@ -35,8 +35,15 @@ export const Spaceship = () => {
   return (
     <group position={[x, y - 0.2, z - 4]} ref={spaceshipRef}>
       <Dashboard />
+      {/* TODO: Make scale and position controlled by props here too */}
       {!isMobile && <Hologram />}
-      {!isMobile && <Robot />}
+      {!isMobile && (
+        <Robot
+          scale={0.05}
+          position={[2.05, -2.1, 0]}
+          rotation={[0, -0.6, 0]}
+        />
+      )}
       <Model />
     </group>
   );

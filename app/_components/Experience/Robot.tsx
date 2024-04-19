@@ -13,14 +13,16 @@ const holographicMaterial = new HolographicMaterial() as Material;
 const eyesMaterial = new MeshStandardMaterial({ color: "white" });
 
 type Props = {
-  scale?: Vector3;
-  position?: Vector3;
+  scale?: number | [x: number, y: number, z: number];
+  position?: [x: number, y: number, z: number];
+  rotation?: [x: number, y: number, z: number];
 };
 
 // control scale and position of the robot
 export const Robot = ({
-  scale = new Vector3(1, 1, 1),
-  position = new Vector3(0, 0, 0),
+  scale = 1,
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
 }: Props) => {
   const group = useRef<Group>(null);
   // @ts-ignore
@@ -36,7 +38,13 @@ export const Robot = ({
   }, [actions, names, animationName]);
 
   return (
-    <group ref={group} dispose={null} scale={scale} position={position}>
+    <group
+      ref={group}
+      dispose={null}
+      scale={scale}
+      position={position}
+      rotation={rotation}
+    >
       <group name="Scene">
         <group name="Armature">
           <primitive object={nodes.DEF_Torso001} />
