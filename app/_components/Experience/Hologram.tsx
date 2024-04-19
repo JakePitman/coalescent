@@ -1,16 +1,22 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, BufferGeometry, Vector3 } from "three";
+import { Mesh, BufferGeometry, Material } from "three";
 import { useGLTF } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
 import { damp3 } from "maath/easing";
 
-import HolographicMaterial from "./HolographicMaterial";
+import { holographicMaterial } from "@/app/_materials/holographicMaterial";
 
 type Scale = [x: number, y: number, z: number];
-export const Hologram = () => {
-  const ref = useRef<Group>(null);
+
+type Props = {
+  scale?: number | [x: number, y: number, z: number];
+  position?: [x: number, y: number, z: number];
+  rotation?: [x: number, y: number, z: number];
+};
+export const Hologram = ({ scale = 1, position = [0, 0, 0] }: Props) => {
+  const ref = useRef<Mesh>(null);
   // @ts-ignore
   const { nodes } = useGLTF("/hologram.glb");
   const { Home, Blog, Contact, Jake, Projects, Interests } = nodes;
@@ -21,14 +27,25 @@ export const Hologram = () => {
   const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
-  const geometryMap = {
-    "/": Home.geometry,
-    "/blog": Blog.geometry,
-    "/contact": Contact.geometry,
-    "/jake": Jake.geometry,
-    "/projects": Projects.geometry,
-    "/interests": Interests.geometry,
-  };
+  const geometryMap = useMemo(
+    () => ({
+      "/": Home.geometry,
+      "/blog": Blog.geometry,
+      "/contact": Contact.geometry,
+      "/jake": Jake.geometry,
+      "/projects": Projects.geometry,
+      "/interests": Interests.geometry,
+    }),
+    [
+      Home.geometry,
+      Blog.geometry,
+      Contact.geometry,
+      Jake.geometry,
+      Projects.geometry,
+      Interests.geometry,
+    ]
+  );
+
   const [geometry, setGeometry] = useState<BufferGeometry | null>(() => {
     if (page && pageNames.includes(page)) {
       return geometryMap[page];
@@ -36,13 +53,13 @@ export const Hologram = () => {
     return null;
   });
 
-  const scale: Scale = isOpening ? [0.04, 0.04, 0.04] : [0, 0.04, 0];
+  const hologramScale: Scale = isOpening ? [0.04, 0.04, 0.04] : [0, 0.04, 0];
 
   useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.set(0, ref.current.rotation.y + delta / 2, 0);
 
-      damp3(ref.current.scale, scale, 0.1, delta);
+      damp3(ref.current.scale, hologramScale, 0.1, delta);
     }
   });
 
@@ -66,15 +83,13 @@ export const Hologram = () => {
         }, 2000)
       );
     }
-  }, [page, previousPage, isOpening]);
+  }, [page, previousPage, isOpening, currentTimeout, geometryMap]);
 
   if (!geometry) return null;
 
   return (
-    <group ref={ref} position={[-2.05, -1.9, 0]}>
-      <mesh geometry={geometry}>
-        <HolographicMaterial scanlineSize={0.1} fresnelOpacity={0.35} />
-      </mesh>
+    <group scale={scale} position={position}>
+      <mesh ref={ref} geometry={geometry} material={holographicMaterial}></mesh>
     </group>
   );
 };
