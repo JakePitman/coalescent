@@ -31,8 +31,12 @@ export const Dashboard = () => {
   const router = useRouter();
   const { page, setPage } = usePageContext();
 
+  // This method of changing animations is temporary, to test in prod.
+  // Replace random animation switching on page change, with switching
+  // according to dialogue. Each dialogue entry will have an animation
+  // attached to it.
   const animationNames = [
-    "Happy",
+    "Sleeping",
     "Idle",
     "Typing",
     "Explaining",
@@ -46,11 +50,13 @@ export const Dashboard = () => {
     "PonderingScreen",
     "ShockedScreen",
   ] as const;
-  type AnimationName = (typeof animationNames)[number];
+  type AnimationName = (typeof animationNames)[number]; // Remove
   const handleClick = (path: PageNames) => {
+    // Remove
     const randomAnimation: AnimationName =
       animationNames[Math.floor(Math.random() * animationNames.length)];
     setAnimationName(randomAnimation);
+
     setPage(path);
     router.push(path);
   };
