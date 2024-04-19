@@ -4,6 +4,7 @@ import { Html } from "@react-three/drei";
 import { usePageContext } from "@contexts/pageContext";
 import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
+import { useAnimationContext } from "@contexts/AnimationContext";
 
 type NavItemProps = {
   label: string;
@@ -26,12 +27,34 @@ const NavItem = ({ label, handleClick, isActive }: NavItemProps) => {
 };
 
 export const Dashboard = () => {
+  const { setAnimationName } = useAnimationContext();
   const router = useRouter();
   const { page, setPage } = usePageContext();
+
+  const animationNames = [
+    "Happy",
+    "Idle",
+    "Typing",
+    "Explaining",
+    "Asserting",
+    "Happy",
+    "Laughing",
+    "IdleOutside",
+    "LookingOutside",
+    "ShockedOutside",
+    "ReadingScreen",
+    "PonderingScreen",
+    "ShockedScreen",
+  ] as const;
+  type AnimationName = (typeof animationNames)[number];
   const handleClick = (path: PageNames) => {
+    const randomAnimation: AnimationName =
+      animationNames[Math.floor(Math.random() * animationNames.length)];
+    setAnimationName(randomAnimation);
     setPage(path);
     router.push(path);
   };
+
   return (
     <Html
       transform
