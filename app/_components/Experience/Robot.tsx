@@ -13,8 +13,8 @@ const holographicMaterial = new HolographicMaterial() as Material;
 const eyesMaterial = new MeshStandardMaterial({ color: "white" });
 
 type Props = {
-  scale: Vector3;
-  position: Vector3;
+  scale?: Vector3;
+  position?: Vector3;
 };
 
 // control scale and position of the robot
