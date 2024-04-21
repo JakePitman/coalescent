@@ -23,3 +23,9 @@ export const Basic: Story = {
     text: "Basic dialogue box example",
   },
 };
+
+export const LongText: Story = {
+  args: {
+    text: "One thing, I don't know why, it doesn't even matter how hard you try. Keep that in mind I designed this rhyme to explain in due time - all - I - know - Time is a valuable thing. Watch it fly by as the pendulum swings.",
+  },
+};
