@@ -1,3 +1,23 @@
 .gradient {
   background: linear-gradient(0deg, #02008a 0%, #0602e3 100%);
 }
+
+.triangle {
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  
+  border-top: 6px solid #fff;
+
+  animation: Float 1s infinite;
+}
+
+@keyframes Float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
