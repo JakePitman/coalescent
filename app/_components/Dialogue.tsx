@@ -6,6 +6,12 @@ type Props = {
    */
   text: string;
 };
+import { Space_Mono } from "next/font/google";
+
+const spaceMono = Space_Mono({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const Dialogue = ({ text }: Props) => {
   return (
@@ -16,7 +22,7 @@ export const Dialogue = ({ text }: Props) => {
         "bg-blue-800 border-white border-2 p-4 rounded relative"
       }
     >
-      <p className="text-white">{text}</p>
+      <p className={spaceMono.className + " " + "text-white"}>{text}</p>
       <div className={styles.triangle + " " + "absolute bottom-1 right-1"} />
     </div>
   );
