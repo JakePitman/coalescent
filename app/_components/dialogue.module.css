@@ -1,5 +1,19 @@
-.gradient {
+.container {
   background: linear-gradient(0deg, #000640 0%, #000b75 100%);
+
+  display: block;
+  transform: scaleY(100%);
+
+  transition: transform 0.5s;
+}
+
+.containerClosed {
+  transform: scaleY(0%);
+}
+
+.text:empty:before {
+  content: "";
+  display: inline-block;
 }
 
 .triangle {

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { Dialogue } from "../app/_components/Dialogue";
 
 const meta = {
@@ -10,7 +9,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    text: { control: "text" },
+    text: { options: ["Hello world", null] },
   },
   args: { text: "Hello world" },
 } satisfies Meta<typeof Dialogue>;
@@ -20,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    text: "Basic dialogue box example",
+    text: "Hello world",
   },
 };
 
