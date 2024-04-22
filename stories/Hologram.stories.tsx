@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { Hologram } from "../app/_components/Experience/Hologram";
 import { Canvas } from "@react-three/fiber";
 import { PageContextProvider, usePageContext } from "@contexts/pageContext";

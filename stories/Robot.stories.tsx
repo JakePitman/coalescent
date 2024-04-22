@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { Robot } from "../app/_components/Experience/Robot";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -7,35 +6,24 @@ import {
   useAnimationContext,
   animationNames,
 } from "@contexts/AnimationContext";
+import { useControls } from "leva";
 
-const AnimationControls = () => {
-  const { animationName, setAnimationName } = useAnimationContext();
-
-  const activeStyles = "border-b-white";
-  const inactiveStyles = "border-b-transparent";
-
-  return (
-    <div className="relative z-10">
-      <div
-        className="absolute flex flex-col"
-        style={{ right: "10px", top: "10px" }}
-      >
-        {animationNames.map((animationLabel) => (
-          <button
-            onClick={() => setAnimationName(animationLabel)}
-            key={animationLabel}
-            className={
-              "border-b-2" +
-              " " +
-              (animationName === animationLabel ? activeStyles : inactiveStyles)
-            }
-          >
-            {animationLabel}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+const RobotWithControls = () => {
+  const { setAnimationName } = useAnimationContext();
+  const { scale, position, rotation } = useControls("Props", {
+    scale: 0.2,
+    position: [0, -3, -2.5],
+    rotation: [0.4, 0.14, 0],
+  });
+  useControls({
+    page: {
+      options: animationNames,
+      onChange: (pageName) => {
+        setAnimationName(pageName);
+      },
+    },
+  });
+  return <Robot scale={scale} position={position} rotation={rotation} />;
 };
 
 const meta = {
@@ -43,28 +31,27 @@ const meta = {
   component: Robot,
   parameters: {
     layout: "centered",
+    controls: {
+      disable: true,
+      expanded: false,
+    },
   },
-  tags: ["autodocs"],
-  argTypes: {
-    scale: { control: "number" },
-    position: { control: "array" },
-    rotation: { control: "array" },
+  render: (args) => {
+    return (
+      <AnimationContextProvider>
+        <Canvas
+          style={{ border: "1px solid white", width: "80vw", height: "85vh" }}
+        >
+          <RobotWithControls />
+        </Canvas>
+      </AnimationContextProvider>
+    );
   },
-  render: (args) => (
-    <AnimationContextProvider>
-      <AnimationControls />
-      <Canvas
-        style={{ border: "1px solid white", width: "80vw", height: "85vh" }}
-      >
-        <Robot {...args} />
-      </Canvas>
-    </AnimationContextProvider>
-  ),
 } satisfies Meta<typeof Robot>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: { scale: 0.2, position: [0, -3, -2.5], rotation: [0.4, -0.2, 0] },
+  args: {},
 };
