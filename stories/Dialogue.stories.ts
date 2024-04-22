@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dialogue } from "../app/_components/Dialogue";
 
+const shortText = "Hello world";
+const midText = "Hang on, that's strange - I'm getting a transmission!";
+const longText = `"Oooooooooohhh look at me, I must be reeeaaaally smart, because I use three monitors. Only smart people use three monitors"`;
+
 const meta = {
   title: "Components/Dialogue",
   component: Dialogue,
@@ -9,22 +13,28 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    text: { options: ["Hello world", "Goodbye world", null] },
+    text: { options: [shortText, midText, longText, null] },
   },
-  args: { text: "Hello world" },
+  args: { text: shortText },
 } satisfies Meta<typeof Dialogue>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const ShortText: Story = {
   args: {
-    text: "Hello world",
+    text: shortText,
+  },
+};
+
+export const MidText: Story = {
+  args: {
+    text: midText,
   },
 };
 
 export const LongText: Story = {
   args: {
-    text: "One thing, I don't know why, it doesn't even matter how hard you try. Keep that in mind I designed this rhyme to explain in due time - all - I - know - Time is a valuable thing. Watch it fly by as the pendulum swings.",
+    text: longText,
   },
 };
