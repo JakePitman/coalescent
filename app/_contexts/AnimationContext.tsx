@@ -2,20 +2,23 @@
 import { useState } from "react";
 import { createContext, useContext } from "react";
 
-type AnimationName =
-  | "Sleeping"
-  | "Idle"
-  | "Typing"
-  | "Explaining"
-  | "Asserting"
-  | "Happy"
-  | "Laughing"
-  | "IdleOutside"
-  | "LookingOutside"
-  | "ShockedOutside"
-  | "ReadingScreen"
-  | "PonderingScreen"
-  | "ShockedScreen";
+export const animationNames = [
+  "Sleeping",
+  "Idle",
+  "Typing",
+  "Explaining",
+  "Asserting",
+  "Happy",
+  "Laughing",
+  "IdleOutside",
+  "LookingOutside",
+  "ShockedOutside",
+  "ReadingScreen",
+  "PonderingScreen",
+  "ShockedScreen",
+] as const;
+export type AnimationName = (typeof animationNames)[number];
+
 type AnimationContext = {
   animationName: AnimationName;
   setAnimationName: React.Dispatch<React.SetStateAction<AnimationName>>;
