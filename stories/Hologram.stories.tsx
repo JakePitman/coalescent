@@ -7,12 +7,12 @@ import { useControls } from "leva";
 
 const HologramWithControls = () => {
   const { setPage } = usePageContext();
-  const { scale, position, rotation } = useControls("HologramProps", {
+  const { scale, position, rotation } = useControls("Props (Hologram)", {
     scale: 3,
     position: [0, -1, 0],
     rotation: [0, 0, 0],
   });
-  useControls("HologramContext", {
+  useControls("App Context (Hologram)", {
     page: {
       options: pageNames,
       onChange: (pageName) => {

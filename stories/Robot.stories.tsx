@@ -10,12 +10,12 @@ import { useControls } from "leva";
 
 const RobotWithControls = () => {
   const { setAnimationName } = useAnimationContext();
-  const { scale, position, rotation } = useControls("RobotProps", {
+  const { scale, position, rotation } = useControls("Props (Robot)", {
     scale: 0.2,
     position: [0, -2.5, -2.5],
     rotation: [0.4, 0.14, 0],
   });
-  useControls("RobotContext", {
+  useControls("App Context (Robot)", {
     animation: {
       options: animationNames,
       onChange: (pageName) => {
