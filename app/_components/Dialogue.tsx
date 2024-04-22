@@ -30,7 +30,12 @@ export const Dialogue = ({ text }: Props) => {
         }
       )}
     >
-      <p className={classnames(spaceMono.className, styles.text, "text-white")}>
+      <p
+        className={classnames(
+          spaceMono.className,
+          "text-white empty:before:content-[''] empty:before:inline-block"
+        )}
+      >
         {text}
       </p>
       <div
