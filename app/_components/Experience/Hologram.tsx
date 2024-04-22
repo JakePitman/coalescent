@@ -15,7 +15,11 @@ type Props = {
   position?: [x: number, y: number, z: number];
   rotation?: [x: number, y: number, z: number];
 };
-export const Hologram = ({ scale = 1, position = [0, 0, 0] }: Props) => {
+export const Hologram = ({
+  scale = 1,
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+}: Props) => {
   const ref = useRef<Mesh>(null);
   // @ts-ignore
   const { nodes } = useGLTF("/hologram.glb");
@@ -88,7 +92,7 @@ export const Hologram = ({ scale = 1, position = [0, 0, 0] }: Props) => {
   if (!geometry) return null;
 
   return (
-    <group scale={scale} position={position}>
+    <group scale={scale} position={position} rotation={rotation}>
       <mesh ref={ref} geometry={geometry} material={holographicMaterial}></mesh>
     </group>
   );

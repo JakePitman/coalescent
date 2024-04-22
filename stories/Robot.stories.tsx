@@ -54,7 +54,7 @@ const meta = {
     <AnimationContextProvider>
       <AnimationControls />
       <Canvas
-        style={{ border: "1px solid white", width: "95vw", height: "90vh" }}
+        style={{ border: "1px solid white", width: "80vw", height: "85vh" }}
       >
         <Robot {...args} />
       </Canvas>
@@ -66,5 +66,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: { scale: 0.2, position: [0, -3, -2], rotation: [0.4, -0.2, 0] },
+  args: { scale: 0.2, position: [0, -3, -2.5], rotation: [0.4, -0.2, 0] },
 };

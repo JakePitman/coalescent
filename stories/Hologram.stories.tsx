@@ -4,35 +4,24 @@ import { Hologram } from "../app/_components/Experience/Hologram";
 import { Canvas } from "@react-three/fiber";
 import { PageContextProvider, usePageContext } from "@contexts/pageContext";
 import { pageNames } from "@customTypes/pageNames";
+import { useControls } from "leva";
 
-const AnimationControls = () => {
-  const { page, setPage } = usePageContext();
-
-  const activeStyles = "border-b-white";
-  const inactiveStyles = "border-b-transparent";
-
-  return (
-    <div className="relative z-10">
-      <div
-        className="absolute flex flex-col"
-        style={{ right: "10px", top: "10px" }}
-      >
-        {pageNames.map((pageName) => (
-          <button
-            onClick={() => setPage(pageName)}
-            key={pageName}
-            className={
-              "border-b-2" +
-              " " +
-              (page === pageName ? activeStyles : inactiveStyles)
-            }
-          >
-            {pageName}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+const HologramWithControls = () => {
+  const { setPage } = usePageContext();
+  const { scale, position, rotation } = useControls("Props", {
+    scale: 3,
+    position: [0, -1, 0],
+    rotation: [0, 0, 0],
+  });
+  useControls({
+    page: {
+      options: pageNames,
+      onChange: (pageName) => {
+        setPage(pageName);
+      },
+    },
+  });
+  return <Hologram scale={scale} position={position} rotation={rotation} />;
 };
 
 const meta = {
@@ -40,27 +29,27 @@ const meta = {
   component: Hologram,
   parameters: {
     layout: "centered",
+    controls: {
+      disable: true,
+      expanded: false,
+    },
   },
-  tags: ["autodocs"],
-  argTypes: {
-    scale: { control: "number" },
-    position: { control: "array" },
+  render: (args) => {
+    return (
+      <PageContextProvider>
+        <Canvas
+          style={{ border: "1px solid white", width: "80vw", height: "85vh" }}
+        >
+          <HologramWithControls />
+        </Canvas>
+      </PageContextProvider>
+    );
   },
-  render: (args) => (
-    <PageContextProvider>
-      <AnimationControls />
-      <Canvas
-        style={{ border: "1px solid white", width: "95vw", height: "90vh" }}
-      >
-        <Hologram {...args} />
-      </Canvas>
-    </PageContextProvider>
-  ),
 } satisfies Meta<typeof Hologram>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: { scale: 4, position: [0, -1.5, 0] },
+  args: {},
 };
