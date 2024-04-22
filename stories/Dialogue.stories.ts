@@ -9,7 +9,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    text: { options: ["Hello world", null] },
+    text: { options: ["Hello world", "Goodbye world", null] },
   },
   args: { text: "Hello world" },
 } satisfies Meta<typeof Dialogue>;
