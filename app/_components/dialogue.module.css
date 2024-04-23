@@ -2,13 +2,16 @@
   background: linear-gradient(0deg, #000640 0%, #000b75 100%);
 
   display: block;
-  transform: scaleY(100%);
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: scaleY(100%) translateX(-50%);
 
   transition: transform 0.2s;
 }
 
 .containerClosed {
-  transform: scaleY(0%);
+  transform: scaleY(0%) translateX(-50%);
 }
 
 .triangle {
