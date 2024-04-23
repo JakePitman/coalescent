@@ -45,7 +45,10 @@ export const DialogueContextProvider = ({ children }: Props) => {
   const dialogue = dialogueSet.dialogues[dialogueNumber];
 
   const incrementDialogue = () => {
-    setDialogueNumber((prev) => prev + 1);
+    const incrementLimit = dialogueSet.dialogues.length - 1;
+    if (dialogueNumber < incrementLimit) {
+      setDialogueNumber((prev) => prev + 1);
+    }
   };
 
   return (
