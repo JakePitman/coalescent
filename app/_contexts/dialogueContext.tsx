@@ -1,8 +1,17 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useEffect, useContext, useState } from "react";
 import { PageNames } from "@customTypes/pageNames";
-import { jakeDialogue } from "./dialogueSets";
+import { jakeDialogue, interestsDialogue } from "./dialogueSets";
+
+const pageToDialogueSetMap = {
+  "/": jakeDialogue,
+  "/jake": jakeDialogue,
+  "/interests": interestsDialogue,
+  "/projects": jakeDialogue,
+  "/blog": jakeDialogue,
+  "/contact": jakeDialogue,
+} as const;
 
 export const animationNames = [
   "Sleeping",
@@ -29,7 +38,7 @@ type DialogueContext = {
   dialogue: Dialogue;
   incrementDialogue: () => void;
   dialogueSet: DialogueSet;
-  setDialogueSet: React.Dispatch<React.SetStateAction<DialogueSet>>;
+  setDialogueSet: (page: PageNames) => void;
 };
 
 const DialogueContext = createContext<DialogueContext | null>(null);
@@ -40,7 +49,12 @@ type Props = {
 
 export const DialogueContextProvider = ({ children }: Props) => {
   const [dialogueNumber, setDialogueNumber] = useState<number>(0);
-  const [dialogueSet, setDialogueSet] = useState<DialogueSet>(jakeDialogue);
+  const [dialogueSet, setDialogueSetInState] =
+    useState<DialogueSet>(jakeDialogue);
+
+  useEffect(() => {
+    setDialogueNumber(0);
+  }, [dialogueSet]);
 
   const dialogue = dialogueSet.dialogues[dialogueNumber];
 
@@ -49,6 +63,11 @@ export const DialogueContextProvider = ({ children }: Props) => {
     if (dialogueNumber < incrementLimit) {
       setDialogueNumber((prev) => prev + 1);
     }
+  };
+
+  const setDialogueSet = (page: PageNames) => {
+    const newDialogueSet = pageToDialogueSetMap[page];
+    setDialogueSetInState(newDialogueSet);
   };
 
   return (
