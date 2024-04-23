@@ -39,10 +39,6 @@ export const LongText: Story = {
 };
 
 export const OnPage: Story = {
-  // argTypes: {
-  //   text: { options: [shortText, midText, longText, null] },
-  // },
-  // args: { text: shortText },
   render: (args) => {
     return (
       <div
