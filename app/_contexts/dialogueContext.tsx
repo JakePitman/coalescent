@@ -2,15 +2,22 @@
 
 import { createContext, useEffect, useContext, useState } from "react";
 import { PageNames } from "@customTypes/pageNames";
-import { jakeDialogue, interestsDialogue } from "./dialogueSets";
+import {
+  homeDialogue,
+  jakeDialogue,
+  interestsDialogue,
+  projectsDialogue,
+  blogDialogue,
+  contactDialogue,
+} from "./dialogueSets";
 
 const pageToDialogueSetMap = {
-  "/": jakeDialogue,
+  "/": homeDialogue,
   "/jake": jakeDialogue,
   "/interests": interestsDialogue,
-  "/projects": jakeDialogue,
-  "/blog": jakeDialogue,
-  "/contact": jakeDialogue,
+  "/projects": projectsDialogue,
+  "/blog": blogDialogue,
+  "/contact": contactDialogue,
 } as const;
 
 export const animationNames = [
