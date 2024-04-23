@@ -6,6 +6,7 @@ import { Experience } from "@components/Experience";
 import { AnimationContextProvider } from "@contexts/AnimationContext";
 import { PageContextProvider } from "@contexts/pageContext";
 import { FlightContextProvider } from "@contexts/flightContext";
+import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
 import { Dialogue } from "@components/Dialogue";
 
@@ -26,14 +27,16 @@ export default function RootLayout({
       <body className={inter.className}>
         <PageContextProvider>
           <FlightContextProvider>
-            <AnimationContextProvider>
-              <RouteChangeListener />
-              {/* <div className="flex absolute z-10 justify-center items-center w-full h-full">
+            <DialogueContextProvider>
+              <AnimationContextProvider>
+                <RouteChangeListener />
+                {/* <div className="flex absolute z-10 justify-center items-center w-full h-full">
               {children}
             </div> */}
-              <Dialogue text="Hello world" />
-              <Experience style={{ position: "absolute", zIndex: "0" }} />
-            </AnimationContextProvider>{" "}
+                <Dialogue />
+                <Experience style={{ position: "absolute", zIndex: "0" }} />
+              </AnimationContextProvider>{" "}
+            </DialogueContextProvider>
           </FlightContextProvider>
         </PageContextProvider>
       </body>

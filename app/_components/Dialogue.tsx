@@ -2,14 +2,9 @@
 import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
+import { useDialogueContext } from "@contexts/dialogueContext";
 import styles from "./dialogue.module.css";
 
-type Props = {
-  /*
-   * The text that will be displayed in the dialogue box
-   */
-  text: string | null;
-};
 import { Space_Mono } from "next/font/google";
 
 const spaceMono = Space_Mono({
@@ -17,9 +12,12 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-export const Dialogue = ({ text }: Props) => {
+export const Dialogue = () => {
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
+  const { dialogue, incrementDialogue, dialogueSet, setDialogueSet } =
+    useDialogueContext();
+  const { text } = dialogue;
 
   return (
     <div
@@ -32,6 +30,7 @@ export const Dialogue = ({ text }: Props) => {
           "w-[90vw]": isMobile,
         }
       )}
+      onClick={incrementDialogue}
     >
       <p
         className={classnames(

@@ -27,7 +27,7 @@ export type Dialogue = {
 export type DialogueSet = { page: PageNames; dialogues: Dialogue[] };
 type DialogueContext = {
   dialogue: Dialogue;
-  incrementDialogue: React.Dispatch<React.SetStateAction<number>>;
+  incrementDialogue: () => void;
   dialogueSet: DialogueSet;
   setDialogueSet: React.Dispatch<React.SetStateAction<DialogueSet>>;
 };
@@ -44,7 +44,9 @@ export const DialogueContextProvider = ({ children }: Props) => {
 
   const dialogue = dialogueSet.dialogues[dialogueNumber];
 
-  const incrementDialogue = () => setDialogueNumber((prev) => prev + 1);
+  const incrementDialogue = () => {
+    setDialogueNumber((prev) => prev + 1);
+  };
 
   return (
     <DialogueContext.Provider
