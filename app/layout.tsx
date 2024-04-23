@@ -7,6 +7,7 @@ import { AnimationContextProvider } from "@contexts/AnimationContext";
 import { PageContextProvider } from "@contexts/pageContext";
 import { FlightContextProvider } from "@contexts/flightContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
+import { Dialogue } from "@components/Dialogue";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
               {/* <div className="flex absolute z-10 justify-center items-center w-full h-full">
               {children}
             </div> */}
+              <Dialogue text="Hello world" />
               <Experience style={{ position: "absolute", zIndex: "0" }} />
             </AnimationContextProvider>{" "}
           </FlightContextProvider>

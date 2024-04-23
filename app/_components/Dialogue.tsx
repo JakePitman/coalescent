@@ -1,3 +1,4 @@
+"use client";
 import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
@@ -24,7 +25,7 @@ export const Dialogue = ({ text }: Props) => {
     <div
       className={classnames(
         styles.container,
-        "bg-blue-800 border-white border-2 p-4 rounded w-[60vw]",
+        "bg-blue-800 border-white border-2 p-4 rounded w-[60vw] z-10",
         {
           [styles.containerClosed]: !text,
           "w-[60vw]": !isMobile,
