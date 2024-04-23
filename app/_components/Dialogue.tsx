@@ -17,6 +17,11 @@ export const Dialogue = () => {
   const isMobile = width <= mobileBreakPoint;
   const { dialogue, incrementDialogue, dialogueSet, setDialogueSet } =
     useDialogueContext();
+
+  if (!dialogue) {
+    return null;
+  }
+
   const { text } = dialogue;
 
   return (
