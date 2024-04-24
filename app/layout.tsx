@@ -5,7 +5,9 @@ import { Inter } from "next/font/google";
 import { PageContextProvider } from "@contexts/pageContext";
 import { FlightContextProvider } from "@contexts/flightContext";
 import { DialogueContextProvider } from "@contexts/dialogueContext";
-import { AppComponents } from "./AppComponents";
+import { RouteChangeListener } from "@components/RouteChangeListener";
+import { Dialogue } from "@components/Dialogue";
+import { Experience } from "@components/Experience";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +40,9 @@ export default function RootLayout({
           <div className="flex absolute z-10 justify-center items-center w-full h-full">
               {children}
           </div> */}
-          <AppComponents />
+          <RouteChangeListener />
+          <Dialogue />
+          <Experience style={{ position: "absolute", zIndex: "0" }} />
         </WithProviders>
       </body>
     </html>

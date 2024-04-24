@@ -2,19 +2,11 @@ import { useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dialogue } from "../app/_components/Dialogue";
 import { PageContextProvider, usePageContext } from "@contexts/pageContext";
-import {
-  DialogueContextProvider,
-  useDialogueContext,
-} from "@contexts/dialogueContext";
+import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { useControls } from "leva";
 
 const DialogueWithControls = () => {
-  const { page, setPage } = usePageContext();
-  const { setDialogueSet } = useDialogueContext();
-
-  useEffect(() => {
-    page && setDialogueSet(page);
-  }, [page, setDialogueSet]);
+  const { setPage } = usePageContext();
 
   useControls("App Context (Dialogue)", {
     page: {
