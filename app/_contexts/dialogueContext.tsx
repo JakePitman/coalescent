@@ -81,9 +81,16 @@ export const DialogueContextProvider = ({ children }: Props) => {
   };
 
   const setDialogueSet = useCallback(
-    (page: PageNames) => {
-      const newDialogueSet = pageToDialogueSetMap[page];
-      setDialogueSetInState(newDialogueSet);
+    (dialogueSet: PageNames | DialogueSet) => {
+      if (typeof dialogueSet === "string") {
+        // Use page name as index
+        const newDialogueSet = pageToDialogueSetMap[dialogueSet];
+        setDialogueSetInState(newDialogueSet);
+      }
+      if (typeof dialogueSet === "object") {
+        // Use DialogueSet type
+        setDialogueSetInState(dialogueSet);
+      }
     },
     [setDialogueSetInState]
   );

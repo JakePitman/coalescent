@@ -28,7 +28,7 @@ export const Robot = ({
 }: Props) => {
   const group = useRef<Group>(null);
   // @ts-ignore
-  const { nodes, materials, animations } = useGLTF("/robot.glb");
+  const { nodes, animations } = useGLTF("/robot.glb");
   const { actions, names } = useAnimations(animations, group);
   const { dialogue } = useDialogueContext();
   const { animationName } = dialogue;
