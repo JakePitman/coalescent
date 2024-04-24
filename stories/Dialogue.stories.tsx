@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dialogue } from "../app/_components/Dialogue";
 import { PageContextProvider, usePageContext } from "@contexts/pageContext";
