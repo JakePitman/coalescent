@@ -40,7 +40,8 @@ export const Dialogue = () => {
       <p
         className={classnames(
           spaceMono.className,
-          "text-white empty:before:content-[''] empty:before:inline-block"
+          // empty rules stop the dialogue from collapsing suddenly when empty
+          "text-white empty:before:content-[''] empty:before:inline-block cursor-default"
         )}
       >
         {text}
