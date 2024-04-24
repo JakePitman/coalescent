@@ -1,9 +1,39 @@
+import { useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dialogue } from "../app/_components/Dialogue";
+import { PageContextProvider, usePageContext } from "@contexts/pageContext";
+import {
+  DialogueContextProvider,
+  useDialogueContext,
+} from "@contexts/dialogueContext";
+import { useControls } from "leva";
 
-const shortText = "Hello world";
-const midText = "Hang on, that's strange - I'm getting a transmission!";
-const longText = `"Oooooooooohhh look at me, I must be reeeaaaally smart, because I use three monitors. Only smart people use three monitors"`;
+const DialogueWithControls = () => {
+  const { page, setPage } = usePageContext();
+  const { setDialogueSet } = useDialogueContext();
+
+  useEffect(() => {
+    page && setDialogueSet(page);
+  }, [page, setDialogueSet]);
+
+  useControls("App Context (Dialogue)", {
+    page: {
+      options: {
+        "/jake": "/jake",
+        "/": "/",
+        "/interests": "/interests",
+        "/projects": "/projects",
+        "/blog": "/blog",
+        "/contact": "/contact",
+      },
+      onChange: (pageName) => {
+        setPage(pageName);
+      },
+    },
+  });
+
+  return <Dialogue />;
+};
 
 const meta = {
   title: "Components/Dialogue",
@@ -11,30 +41,27 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {
-    text: { options: [shortText, midText, longText, null] },
-  },
-  args: { text: shortText },
+  argTypes: {},
+  args: {},
+  decorators: [
+    (Story) => {
+      return (
+        <PageContextProvider>
+          <DialogueContextProvider>
+            <Story />
+          </DialogueContextProvider>
+        </PageContextProvider>
+      );
+    },
+  ],
 } satisfies Meta<typeof Dialogue>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ShortText: Story = {
-  args: {
-    text: shortText,
-  },
-};
-
-export const MidText: Story = {
-  args: {
-    text: midText,
-  },
-};
-
-export const LongText: Story = {
-  args: {
-    text: longText,
+export const Basic: Story = {
+  render: (args) => {
+    return <DialogueWithControls {...args} />;
   },
 };
 
@@ -45,7 +72,7 @@ export const OnPage: Story = {
         className="bg-blue-50 w-[100vw] h-[90vh] overflow-scroll relative"
         style={{ scrollbarWidth: "none" }}
       >
-        <Dialogue {...args} />
+        <DialogueWithControls {...args} />
 
         <div className="text-black p-4">
           <h1 className=" text-5xl">Tutant Meenage Neetle Teetles</h1>
