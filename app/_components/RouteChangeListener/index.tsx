@@ -10,7 +10,7 @@ export function RouteChangeListener() {
 
   useEffect(() => {
     setPage(pathname);
-  }, [pathname]);
+  }, [pathname, setPage]);
 
   return <></>;
 }
