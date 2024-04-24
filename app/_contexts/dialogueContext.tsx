@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useEffect, useContext, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useContext,
+  useState,
+  useCallback,
+} from "react";
+import { usePageContext } from "@contexts/pageContext";
 import { PageNames } from "@customTypes/pageNames";
 import {
   homeDialogue,
@@ -55,6 +62,7 @@ type Props = {
 };
 
 export const DialogueContextProvider = ({ children }: Props) => {
+  const { page } = usePageContext();
   const [dialogueNumber, setDialogueNumber] = useState<number>(0);
   const [dialogueSet, setDialogueSetInState] =
     useState<DialogueSet>(jakeDialogue);
@@ -72,10 +80,18 @@ export const DialogueContextProvider = ({ children }: Props) => {
     }
   };
 
-  const setDialogueSet = (page: PageNames) => {
-    const newDialogueSet = pageToDialogueSetMap[page];
-    setDialogueSetInState(newDialogueSet);
-  };
+  const setDialogueSet = useCallback(
+    (page: PageNames) => {
+      const newDialogueSet = pageToDialogueSetMap[page];
+      setDialogueSetInState(newDialogueSet);
+    },
+    [setDialogueSetInState]
+  );
+
+  useEffect(() => {
+    // Change dialogue set when page changes
+    page && setDialogueSet(page);
+  }, [page, setDialogueSet]);
 
   return (
     <DialogueContext.Provider
