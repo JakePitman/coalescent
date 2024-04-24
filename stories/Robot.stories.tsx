@@ -38,7 +38,6 @@ const RobotWithControls = () => {
       options: animationNames,
       onChange: (animationName) => {
         const newDialogueSet = dummyDialogueSetsMap[animationName];
-        // TODO: Find out why this is still based off the old setDialogueSet
         setDialogueSet(newDialogueSet);
       },
     },

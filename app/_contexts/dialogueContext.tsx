@@ -52,7 +52,7 @@ type DialogueContext = {
   dialogue: Dialogue;
   incrementDialogue: () => void;
   dialogueSet: DialogueSet;
-  setDialogueSet: (page: PageNames) => void;
+  setDialogueSet: (dialogueSet: PageNames | DialogueSet) => void;
 };
 
 const DialogueContext = createContext<DialogueContext | null>(null);
