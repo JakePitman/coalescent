@@ -4,20 +4,28 @@ export const projectsDialogue: DialogueSet = {
   page: "/projects",
   dialogues: [
     {
-      text: "Message 0 from /projects. Animation: ShockedScreen",
-      animationName: "ShockedScreen",
-    },
-    {
-      text: "Message 1 from /projects. Animation: Laughing",
-      animationName: "Laughing",
-    },
-    {
-      text: "Message 2 from /projects. Animation: Explaining",
+      text: "Do you think the prophecy is true?",
       animationName: "Explaining",
     },
     {
+      text: "That the target's engineering skills will bring victory to the Resistance?",
+      animationName: "Asserting",
+    },
+    {
+      text: "Let's take a look at some of the things he's built...",
+      animationName: "Typing",
+    },
+    {
+      text: "Woah! This is impressive!",
+      animationName: "PonderingScreen",
+    },
+    {
+      text: "Here, check it out.",
+      animationName: "Typing",
+    },
+    {
       text: null,
-      animationName: "Sleeping",
+      animationName: "Idle",
     },
   ],
 };

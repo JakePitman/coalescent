@@ -4,20 +4,20 @@ export const interestsDialogue: DialogueSet = {
   page: "/interests",
   dialogues: [
     {
-      text: "Message 0 from /interests. Animation: Asserting",
-      animationName: "Asserting",
+      text: "That looks like a 'whale shark' - a large aquatic species found only on Earth.",
+      animationName: "IdleOutside",
     },
     {
-      text: "Message 1 from /interests. Animation: PonderingScreen",
-      animationName: "PonderingScreen",
+      text: "If this is what he does in his spare time, we might need a snorkel to find this guy.",
+      animationName: "Laughing",
     },
     {
-      text: "Message 2 from /interests. Animation: Typing",
+      text: "Sending through information on the target's habits and interests.",
       animationName: "Typing",
     },
     {
       text: null,
-      animationName: "Sleeping",
+      animationName: "Idle",
     },
   ],
 };

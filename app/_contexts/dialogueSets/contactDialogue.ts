@@ -4,20 +4,24 @@ export const contactDialogue: DialogueSet = {
   page: "/contact",
   dialogues: [
     {
-      text: "Message 0 from /contact. Animation: Laughing",
-      animationName: "Laughing",
+      text: "That's cute.",
+      animationName: "IdleOutside",
     },
     {
-      text: "Message 1 from /contact. Animation: ReadingScreen",
+      text: "If only he were that easy to find...",
+      animationName: "PonderingScreen",
+    },
+    {
+      text: "Wait! I think I've found some contact information!",
       animationName: "ReadingScreen",
     },
     {
-      text: "Message 2 from /contact. Animation: Typing",
-      animationName: "Typing",
+      text: "Now's our chance!",
+      animationName: "Asserting",
     },
     {
       text: null,
-      animationName: "Sleeping",
+      animationName: "Idle",
     },
   ],
 };

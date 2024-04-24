@@ -4,20 +4,32 @@ export const blogDialogue: DialogueSet = {
   page: "/blog",
   dialogues: [
     {
-      text: "Message 0 from /blog. Animation: ShockedOutside",
-      animationName: "ShockedOutside",
+      text: "Hmm what else can we find out about this guy..?",
+      animationName: "PonderingScreen",
     },
     {
-      text: "Message 1 from /blog. Animation: LookingOutside",
-      animationName: "LookingOutside",
+      text: "Let me see if I can dig up some more info...",
+      animationName: "Typing",
     },
     {
-      text: "Message 2 from /blog. Animation: ReadingScreen",
+      text: "...",
       animationName: "ReadingScreen",
     },
     {
+      text: "Wait, this is..!",
+      animationName: "ShockedScreen",
+    },
+    {
+      text: "I've hacked into his diary.",
+      animationName: "Laughing",
+    },
+    {
+      text: "You can thank me later ~",
+      animationName: "Happy",
+    },
+    {
       text: null,
-      animationName: "Sleeping",
+      animationName: "Idle",
     },
   ],
 };
