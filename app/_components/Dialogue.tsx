@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
@@ -17,6 +18,13 @@ export const Dialogue = () => {
   const isMobile = width <= mobileBreakPoint;
   const { dialogue, incrementDialogue, dialogueSet, setDialogueSet } =
     useDialogueContext();
+  const [hasRendered, setHasRendered] = useState(false);
+
+  useEffect(() => {
+    if (!hasRendered) {
+      setHasRendered(true);
+    }
+  }, [hasRendered, setHasRendered]);
 
   if (!dialogue) {
     return null;
@@ -28,7 +36,7 @@ export const Dialogue = () => {
     <div
       className={classnames(
         styles.container,
-        "bg-blue-800 border-white border-2 p-4 rounded w-[60vw] z-10",
+        "bg-blue-800 border-white border-2 p-4 rounded w-[60vw] z-10 block absolute top-8 left-1/2 transition-all duration-200 bg-gradient-to-b from-[#000b75] to-[#000640]",
         {
           [styles.containerClosed]: !text,
           "w-[60vw]": !isMobile,
