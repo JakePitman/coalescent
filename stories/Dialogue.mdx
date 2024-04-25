@@ -1,0 +1,50 @@
+import { Canvas, Meta } from "@storybook/blocks";
+
+import * as DialogueStories from "./Dialogue.stories";
+
+<Meta of={DialogueStories} />
+
+# Dialogue
+
+The `<Dialogue/>` component is entirely context based, it receives no props. The following context is needed for this component to work:
+
+`<Dialogue/>` does not need to be conditionally rendered. It can simply stay on the page, and will close itself visually whenever the current `dialogue`'s `text` property is `null`.
+
+### The `<DialogueContextProvider/>`
+   This provider contains the following information:
+
+- `dialogue`: `{text: string | null, animationName: string}`
+  - `text`: The text to be displayed in the dialogue box. If this is `null`, the dialogue box will animate to a close.
+  - `animationName`: The animation that should be played when this dialogue is being displayed (handled by `<Robot />`)
+- `dialogueSet`: `Array<{text: string, animationName: string}>`
+  - The current set of dialogues. A dialogueSet represents a linear collection of dialogues to have their messages played in order
+- `incrementDialogue`: `() => void`
+  - This function increments the dialogueSet index, which in turn updates the `dialogue` object. In other words, it sets the dialogue to the next one in the dialogueSet. The `<Dialogue/>` component currently calls this function `onClick`
+- `setDialogueSet`: `(page: PageNames) => void`
+  - Changes the current dialogue set by passing in a page name (eg. `"/", "/interests"`). Each page name has a corresponding set of dialogues. The mapping from page name to dialogue is handled within the `DialogueContextProvider`. This function is called whenever the `page` from `usePageContext` is updated.
+
+
+### The `PageContextProvider`
+  Contains the following:
+
+- `page`: `PageNames`
+  - The current page name. The `DialogueContextProvider` is listening for changes to this value, and will update it's `dialogueSet` accordingly. 
+- `setPage`: `(page: PageNames) => void`
+  - Changes the current page name.
+
+```tsx
+  import { PageContextProvider } from "@contexts/pageContext";
+  import { DialogueContextProvider } from "@contexts/dialogueContext";
+  import { Dialogue } from "@components/Dialogue"
+
+  const MyApp = () => {
+    return (
+      <PageContextProvider>
+        <DialogueContextProvider>
+          <Dialogue />
+        </DialogueContextProvider>
+      </PageContextProvider>
+    )
+  }
+
+```

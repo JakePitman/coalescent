@@ -1,0 +1,27 @@
+.container {
+  transform: scaleY(100%) translateX(-50%);
+}
+
+.containerClosed {
+  transform: scaleY(0%) translateX(-50%);
+}
+
+.triangle {
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  
+  border-top: 6px solid #fff;
+
+  animation: Float 1s infinite;
+}
+
+@keyframes Float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}

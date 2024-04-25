@@ -28,6 +28,7 @@ export const Experience = ({ style }: Props) => {
             resolution={256}
           />
           <ambientLight />
+
           <Spaceship />
           <Coalescent />
           {/* This forms a backdrop that is necessary for the glass material's transmission property to work.

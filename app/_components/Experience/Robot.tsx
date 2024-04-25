@@ -5,11 +5,14 @@ Command: npx gltfjsx@6.2.16 public/robot.glb -o app/Robot.jsx
 
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useAnimationContext } from "@contexts/AnimationContext";
-import { MeshStandardMaterial, Vector3, Group, Material } from "three";
+import { MeshBasicMaterial, Group } from "three";
 import { holographicMaterial } from "@/app/_materials/holographicMaterial";
+import { useDialogueContext } from "@contexts/dialogueContext";
 
-const eyesMaterial = new MeshStandardMaterial({ color: "white" });
+const eyesMaterial = new MeshBasicMaterial({
+  color: "white",
+  opacity: 1,
+});
 
 type Props = {
   scale?: number | [x: number, y: number, z: number];
@@ -25,9 +28,10 @@ export const Robot = ({
 }: Props) => {
   const group = useRef<Group>(null);
   // @ts-ignore
-  const { nodes, materials, animations } = useGLTF("/robot.glb");
+  const { nodes, animations } = useGLTF("/robot.glb");
   const { actions, names } = useAnimations(animations, group);
-  const { animationName } = useAnimationContext();
+  const { dialogue } = useDialogueContext();
+  const { animationName } = dialogue;
 
   useEffect(() => {
     actions[animationName]?.reset().fadeIn(0.5).play();
