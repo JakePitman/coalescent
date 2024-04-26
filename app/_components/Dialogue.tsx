@@ -16,8 +16,7 @@ const spaceMono = Space_Mono({
 export const Dialogue = () => {
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
-  const { dialogue, incrementDialogue, dialogueSet, setDialogueSet } =
-    useDialogueContext();
+  const { dialogue, incrementDialogue } = useDialogueContext();
   const [hasRendered, setHasRendered] = useState(false);
 
   useEffect(() => {
