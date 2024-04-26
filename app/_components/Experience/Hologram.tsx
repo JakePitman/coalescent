@@ -27,7 +27,7 @@ export const Hologram = ({
   const { page } = usePageContext();
   // This state is used to check if the value of 'page' has changed
   const [previousPage, setPreviousPage] = useState<string>(page || "/");
-  const [isOpening, setIsOpening] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
@@ -57,7 +57,7 @@ export const Hologram = ({
     return null;
   });
 
-  const hologramScale: Scale = isOpening ? [0.04, 0.04, 0.04] : [0, 0.04, 0];
+  const hologramScale: Scale = isOpen ? [0.04, 0.04, 0.04] : [0, 0.04, 0];
 
   useFrame((_, delta) => {
     if (ref.current) {
@@ -71,7 +71,7 @@ export const Hologram = ({
     // Only run on page change
     if (page !== previousPage) {
       page && setPreviousPage(page);
-      setIsOpening(false);
+      setIsOpen(false);
 
       // Clear the previous timeout if it exists
       if (currentTimeout) {
@@ -82,12 +82,12 @@ export const Hologram = ({
           if (page && pageNames.includes(page)) {
             setGeometry(geometryMap[page]);
           }
-          setIsOpening(true);
+          setIsOpen(true);
           setCurrentTimeout(null);
         }, 2000)
       );
     }
-  }, [page, previousPage, isOpening, currentTimeout, geometryMap]);
+  }, [page, previousPage, isOpen, currentTimeout, geometryMap]);
 
   if (!geometry) return null;
 
