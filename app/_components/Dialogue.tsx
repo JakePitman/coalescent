@@ -17,13 +17,6 @@ export const Dialogue = () => {
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
   const { dialogue, incrementDialogue } = useDialogueContext();
-  const [hasRendered, setHasRendered] = useState(false);
-
-  useEffect(() => {
-    if (!hasRendered) {
-      setHasRendered(true);
-    }
-  }, [hasRendered, setHasRendered]);
 
   if (!dialogue) {
     return null;
