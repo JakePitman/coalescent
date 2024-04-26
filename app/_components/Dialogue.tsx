@@ -5,6 +5,7 @@ import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { usePageContext } from "@contexts/pageContext";
+import { pageTransitionAnimationDelay } from "@sharedData/index";
 import styles from "./dialogue.module.css";
 
 import { Space_Mono } from "next/font/google";
@@ -41,7 +42,7 @@ export const Dialogue = () => {
         setTimeout(() => {
           setIsOpen(true);
           setCurrentTimeout(null);
-        }, 2000)
+        }, pageTransitionAnimationDelay)
       );
     }
   }, [page, previousPage, currentTimeout]);

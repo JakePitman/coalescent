@@ -7,6 +7,7 @@ import { pageNames } from "@customTypes/pageNames";
 import { damp3 } from "maath/easing";
 
 import { holographicMaterial } from "@/app/_materials/holographicMaterial";
+import { pageTransitionAnimationDelay } from "@sharedData/index";
 
 type Scale = [x: number, y: number, z: number];
 
@@ -84,7 +85,7 @@ export const Hologram = ({
           }
           setIsOpen(true);
           setCurrentTimeout(null);
-        }, 2000)
+        }, pageTransitionAnimationDelay)
       );
     }
   }, [page, previousPage, isOpen, currentTimeout, geometryMap]);
