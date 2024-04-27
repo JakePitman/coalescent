@@ -50,7 +50,7 @@ export type Dialogue = {
 export type DialogueSet = { page: PageNames; dialogues: Dialogue[] };
 type DialogueContext = {
   dialogue: Dialogue;
-  incrementDialogue: () => void;
+  incrementDialogue: (currentDialogueSet: DialogueSet) => void;
   dialogueSet: DialogueSet;
   setDialogueSet: (dialogueSet: PageNames | DialogueSet) => void;
 };
@@ -73,11 +73,11 @@ export const DialogueContextProvider = ({ children }: Props) => {
 
   const dialogue = dialogueSet.dialogues[dialogueNumber];
 
-  const incrementDialogue = () => {
-    const incrementLimit = dialogueSet.dialogues.length - 1;
-    if (dialogueNumber < incrementLimit) {
-      setDialogueNumber((prev) => prev + 1);
-    }
+  const incrementDialogue = (currentDialogueSet: DialogueSet) => {
+    setDialogueNumber((prev) => {
+      const canIncrement = prev + 1 < currentDialogueSet.dialogues.length;
+      return canIncrement ? prev + 1 : prev;
+    });
   };
 
   const setDialogueSet = useCallback(

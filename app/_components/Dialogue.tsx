@@ -64,7 +64,6 @@ export const Dialogue = () => {
           "w-[90vw]": isMobile,
         }
       )}
-      onClick={incrementDialogue}
     >
       <p
         className={classnames(
