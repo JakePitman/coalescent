@@ -24,8 +24,6 @@ animationNames.forEach((animationName) => {
   };
 });
 
-console.log({ dummyDialogueSetsMap });
-
 const RobotWithControls = () => {
   const { setDialogueSet } = useDialogueContext();
   const { scale, position, rotation } = useControls("Props (Robot)", {

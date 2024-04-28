@@ -18,7 +18,10 @@ const NavItem = ({ label, handleClick, isActive }: NavItemProps) => {
         "border-b-2 border-b-transparent text-white" +
         ` ${isActive ? activeStyles : ""}`
       }
-      onClick={handleClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
     >
       {label}
     </button>
