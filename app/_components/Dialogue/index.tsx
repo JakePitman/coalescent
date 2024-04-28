@@ -37,7 +37,7 @@ export const Dialogue = () => {
   }, [page, previousPage, currentTimeout, dialogueIsOpen]);
   // Close dialogue at the end of a dialogueSet
   useEffect(() => {
-    if (!dialogue || dialogue.text === null) {
+    if (!dialogue?.text) {
       setDialogueIsOpen(false);
     }
   }, [dialogue]);
