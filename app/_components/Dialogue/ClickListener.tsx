@@ -2,11 +2,17 @@
 import { useEffect } from "react";
 import { useDialogueContext } from "@contexts/dialogueContext";
 
-export const ClickListener = () => {
+type Props = {
+  dialogueIsOpen: boolean;
+};
+export const ClickListener = ({ dialogueIsOpen }: Props) => {
   const { incrementDialogue, dialogueSet } = useDialogueContext();
+
   useEffect(() => {
     const handleClick = () => {
-      incrementDialogue(dialogueSet);
+      if (dialogueIsOpen) {
+        incrementDialogue(dialogueSet);
+      }
     };
 
     window.addEventListener("click", handleClick);
@@ -15,7 +21,7 @@ export const ClickListener = () => {
     return () => {
       window.removeEventListener("click", handleClick);
     };
-  }, [incrementDialogue, dialogueSet]); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+  }, [incrementDialogue, dialogueSet, dialogueIsOpen]);
 
   return <></>;
 };

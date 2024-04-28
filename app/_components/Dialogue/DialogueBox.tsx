@@ -1,11 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
 import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
-import { useDialogueContext } from "@contexts/dialogueContext";
-import { usePageContext } from "@contexts/pageContext";
-import { pageTransitionAnimationDelay } from "@sharedData/index";
 import styles from "./dialogueBox.module.css";
 
 import { Space_Mono } from "next/font/google";
@@ -15,43 +11,13 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-export const DialogueBox = () => {
-  const { page } = usePageContext();
+type Props = {
+  dialogueIsOpen: boolean;
+  text: string | null | undefined;
+};
+export const DialogueBox = ({ dialogueIsOpen, text }: Props) => {
   const { width } = useWindowDimensions();
-  const { dialogue, incrementDialogue } = useDialogueContext();
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout | null>(
-    null
-  );
-  const [previousPage, setPreviousPage] = useState<string>(page || "/");
   const isMobile = width <= mobileBreakPoint;
-
-  // Adds a delay to the visual re-opening of the dialogue
-  // on page change.
-  // Does not interfere with how the dialogue object is changed
-  useEffect(() => {
-    if (page !== previousPage) {
-      page && setPreviousPage(page);
-      setIsOpen(false);
-
-      // Clear the previous timeout if it exists
-      if (currentTimeout) {
-        clearTimeout(currentTimeout);
-      }
-      setCurrentTimeout(
-        setTimeout(() => {
-          setIsOpen(true);
-          setCurrentTimeout(null);
-        }, pageTransitionAnimationDelay)
-      );
-    }
-  }, [page, previousPage, currentTimeout]);
-
-  if (!dialogue) {
-    return null;
-  }
-
-  const { text } = dialogue;
 
   return (
     <div
@@ -59,7 +25,7 @@ export const DialogueBox = () => {
         styles.container,
         "bg-blue-800 border-white border-2 p-4 rounded w-[60vw] z-10 block absolute top-8 left-1/2 transition-all duration-200 bg-gradient-to-b from-[#000b75] to-[#000640]",
         {
-          [styles.containerClosed]: !text || !isOpen,
+          [styles.containerClosed]: !text || !dialogueIsOpen,
           "w-[60vw]": !isMobile,
           "w-[90vw]": isMobile,
         }
@@ -76,7 +42,7 @@ export const DialogueBox = () => {
          dialogue.text will change before dialogue closes 
          this check will immediately clear the text while closing
         */}
-        {isOpen ? text : null}
+        {dialogueIsOpen ? text : null}
       </p>
       <div
         className={classnames(styles.triangle, "absolute bottom-1 right-1")}
