@@ -6,7 +6,6 @@ import { PageContextProvider } from "@contexts/pageContext";
 import { FlightContextProvider } from "@contexts/flightContext";
 import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
-import { ClickListener } from "@components/ClickListener";
 import { Dialogue } from "@components/Dialogue";
 import { Experience } from "@components/Experience";
 
@@ -42,7 +41,6 @@ export default function RootLayout({
               {children}
           </div> */}
           <RouteChangeListener />
-          <ClickListener />
           <Dialogue />
           <Experience style={{ position: "absolute", zIndex: "0" }} />
         </WithProviders>

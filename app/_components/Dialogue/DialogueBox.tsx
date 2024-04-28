@@ -6,7 +6,7 @@ import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions"
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { usePageContext } from "@contexts/pageContext";
 import { pageTransitionAnimationDelay } from "@sharedData/index";
-import styles from "./dialogue.module.css";
+import styles from "./dialogueBox.module.css";
 
 import { Space_Mono } from "next/font/google";
 
@@ -15,7 +15,7 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-export const Dialogue = () => {
+export const DialogueBox = () => {
   const { page } = usePageContext();
   const { width } = useWindowDimensions();
   const { dialogue, incrementDialogue } = useDialogueContext();
