@@ -9,6 +9,17 @@ const liVariants = {
     },
   },
 };
+const iconVariants = {
+  hidden: { right: "-70px", bottom: "-70px" },
+  show: {
+    right: "-28px",
+    bottom: "-28px",
+    transition: {
+      delay: 0.4,
+      duration: 0.7,
+    },
+  },
+};
 
 type SkillProps = {
   name: string;
@@ -20,6 +31,8 @@ export const Skill = ({ name, Icon }: SkillProps) => (
     className="relative bg-sky-300 my-1 w-[48.8%] text-sky-950 p-2 overflow-hidden"
   >
     {name}
-    <Icon className="absolute right-[-28px] bottom-[-28px] text-7xl text-[#5eb6e6]" />
+    <motion.div className="absolute" variants={iconVariants}>
+      <Icon className=" text-7xl text-[#5eb6e6]" />
+    </motion.div>
   </motion.li>
 );
