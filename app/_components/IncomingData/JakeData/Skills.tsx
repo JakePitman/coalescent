@@ -8,14 +8,21 @@ import { SiBlender } from "react-icons/si";
 import { Skill } from "./Skill";
 import styles from "../Data.module.css";
 
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { delay: 0.2 },
+  },
+};
 const hasChildrenVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      delay: 0.8,
+      delay: 0.3,
       duration: 0.2,
-      staggerChildren: 0.3,
+      staggerChildren: 0.07,
     },
   },
 };
@@ -26,11 +33,16 @@ const SKILLS: { name: string; Icon: React.ComponentType }[] = [
   { name: "ThreeJS", Icon: TbBrandThreejs },
   { name: "R3F", Icon: IoCubeOutline },
   { name: "Blender", Icon: SiBlender },
+  { name: "React", Icon: FaReact },
+  { name: "Typescript", Icon: TbBrandTypescript },
+  { name: "ThreeJS", Icon: TbBrandThreejs },
+  { name: "R3F", Icon: IoCubeOutline },
+  { name: "Blender", Icon: SiBlender },
 ];
 export const Skills = () => (
   <motion.div className={styles.section}>
     <motion.h3
-      variants={hasChildrenVariants}
+      variants={variants}
       initial="hidden"
       animate="show"
       className="w-full text-center"

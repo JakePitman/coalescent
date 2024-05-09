@@ -8,7 +8,7 @@ type Props = {
 export const TextBlock = ({ children }: Props) => (
   <Typist
     stdTypingDelay={0}
-    avgTypingDelay={15}
+    avgTypingDelay={5}
     cursor={{ show: false }}
     className={styles.container}
   >

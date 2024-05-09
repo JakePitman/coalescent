@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, stagger } from "framer-motion";
 
 const liVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      duration: 0.2,
+      duration: 1,
     },
   },
 };
