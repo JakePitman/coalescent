@@ -13,20 +13,21 @@ import { VscTerminalBash } from "react-icons/vsc";
 import { Skill } from "./Skill";
 import styles from "../Data.module.css";
 
+const childrenStaggerTime = 0.15;
+const delayTime = 0.9;
 const variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { delay: 0.2 },
+    transition: { delay: delayTime },
   },
 };
-const childrenStaggerTime = 0.07;
 const hasChildrenVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      delay: 0.3,
+      delay: delayTime + 0.1,
       duration: 0.25,
       staggerChildren: childrenStaggerTime,
     },
