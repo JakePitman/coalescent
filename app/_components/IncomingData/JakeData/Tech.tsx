@@ -1,4 +1,4 @@
-import { motion, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 
 const liVariants = {
   hidden: { opacity: 0 },
@@ -22,12 +22,12 @@ const iconVariants = (delay: number) => ({
   },
 });
 
-type SkillProps = {
+type Props = {
   name: string;
   Icon: React.ComponentType<{ className?: string }>;
   iconDelay: number;
 };
-export const Skill = ({ name, Icon, iconDelay }: SkillProps) => (
+export const Tech = ({ name, Icon, iconDelay }: Props) => (
   <motion.li
     variants={liVariants}
     className="relative bg-sky-300 my-1 w-[48.8%] text-sky-950 p-2 overflow-hidden"

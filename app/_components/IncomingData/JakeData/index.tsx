@@ -1,6 +1,6 @@
 import { TextBlock } from "../TextBlock";
 import styles from "../Data.module.css";
-import { Skills } from "./Skills";
+import { TechStack } from "./TechStack";
 
 export const JakeData = () => {
   return (
@@ -34,7 +34,7 @@ export const JakeData = () => {
         </div>
       </TextBlock>
 
-      <Skills />
+      <TechStack />
     </div>
   );
 };
