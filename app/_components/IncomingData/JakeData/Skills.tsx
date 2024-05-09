@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
-import { FaReact } from "react-icons/fa";
+import { FaNode, FaReact } from "react-icons/fa";
 import { TbBrandTypescript } from "react-icons/tb";
 import { TbBrandThreejs } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import { SiBlender } from "react-icons/si";
+import { RiNextjsLine } from "react-icons/ri";
+import { FaNodeJs } from "react-icons/fa";
+import { TbBrandStorybook } from "react-icons/tb";
+import { TbBrandFramerMotion } from "react-icons/tb";
+import { VscTerminalBash } from "react-icons/vsc";
 
 import { Skill } from "./Skill";
 import styles from "../Data.module.css";
@@ -30,14 +35,14 @@ const hasChildrenVariants = {
 
 const SKILLS: { name: string; Icon: React.ComponentType }[] = [
   { name: "React", Icon: FaReact },
+  { name: "NextJS", Icon: RiNextjsLine },
+  { name: "NodeJS", Icon: FaNodeJs },
   { name: "Typescript", Icon: TbBrandTypescript },
+  { name: "Bash", Icon: VscTerminalBash },
+  { name: "Storybook", Icon: TbBrandStorybook },
   { name: "ThreeJS", Icon: TbBrandThreejs },
   { name: "R3F", Icon: IoCubeOutline },
-  { name: "Blender", Icon: SiBlender },
-  { name: "React", Icon: FaReact },
-  { name: "Typescript", Icon: TbBrandTypescript },
-  { name: "ThreeJS", Icon: TbBrandThreejs },
-  { name: "R3F", Icon: IoCubeOutline },
+  { name: "Framer Motion", Icon: TbBrandFramerMotion },
   { name: "Blender", Icon: SiBlender },
 ];
 export const Skills = () => (
