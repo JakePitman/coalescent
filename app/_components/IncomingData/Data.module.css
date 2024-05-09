@@ -5,6 +5,7 @@
 .key {
   display: inline;
   font-weight: bold;
+  color: theme(colors.sky.500)
 }
 
 .value {

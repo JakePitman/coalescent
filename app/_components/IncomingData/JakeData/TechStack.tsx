@@ -52,7 +52,7 @@ export const TechStack = () => (
       variants={variants}
       initial="hidden"
       animate="show"
-      className="w-full text-center font-bold"
+      className="w-full text-center font-bold text-sky-500"
     >
       Tech Stack
     </motion.h3>
