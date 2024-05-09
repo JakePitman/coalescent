@@ -4,6 +4,8 @@ import { TbBrandTypescript } from "react-icons/tb";
 import { TbBrandThreejs } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import { SiBlender } from "react-icons/si";
+
+import { Skill } from "./Skill";
 import styles from "../Data.module.css";
 
 const hasChildrenVariants = {
@@ -17,30 +19,6 @@ const hasChildrenVariants = {
     },
   },
 };
-
-const liVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-    },
-  },
-};
-
-type SkillProps = {
-  name: string;
-  Icon: React.ComponentType<{ className?: string }>;
-};
-const Skill = ({ name, Icon }: SkillProps) => (
-  <motion.li
-    variants={liVariants}
-    className="relative bg-sky-300 my-1 w-[48.8%] text-sky-950 p-2 overflow-hidden"
-  >
-    {name}
-    <Icon className="absolute right-[-28px] bottom-[-28px] text-7xl text-[#5eb6e6]" />
-  </motion.li>
-);
 
 const SKILLS: { name: string; Icon: React.ComponentType }[] = [
   { name: "React", Icon: FaReact },
