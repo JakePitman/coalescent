@@ -1,0 +1,12 @@
+.section:not(:last-child) {
+  margin-bottom: 1.25rem 
+}
+
+.key {
+  display: inline;
+  font-weight: bold;
+}
+
+.value {
+  display: inline;
+}

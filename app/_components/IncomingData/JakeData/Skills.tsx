@@ -1,11 +1,10 @@
-import { TextBlock } from "./TextBlock";
-import styles from "./Data.module.css";
 import { motion } from "framer-motion";
 import { FaReact } from "react-icons/fa";
 import { TbBrandTypescript } from "react-icons/tb";
 import { TbBrandThreejs } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import { SiBlender } from "react-icons/si";
+import styles from "../Data.module.css";
 
 const hasChildrenVariants = {
   hidden: { opacity: 0 },
@@ -18,6 +17,7 @@ const hasChildrenVariants = {
     },
   },
 };
+
 const liVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -49,7 +49,7 @@ const SKILLS: { name: string; Icon: React.ComponentType }[] = [
   { name: "R3F", Icon: IoCubeOutline },
   { name: "Blender", Icon: SiBlender },
 ];
-const Skills = () => (
+export const Skills = () => (
   <motion.div className={styles.section}>
     <motion.h3
       variants={hasChildrenVariants}
@@ -71,32 +71,3 @@ const Skills = () => (
     </motion.ul>
   </motion.div>
 );
-
-export const JakeData = () => {
-  return (
-    <div>
-      {/* 
-      NOTE: Typist has a strange bug that prevents components extracted
-      into variables from working. Defaulting to css extractions instead
-    */}
-      <TextBlock>
-        <div className={styles.section}>
-          <div>
-            <h3 className={styles.key}>Name: </h3>
-            <p className={styles.value}>Jake Pitman</p>
-          </div>
-          <div>
-            <h3 className={styles.key}>Age: </h3>
-            <p className={styles.value}>Unknown</p>
-          </div>
-          <div>
-            <h3 className={styles.key}>Location: </h3>
-            <p className={styles.value}>Earth</p>
-          </div>
-        </div>
-      </TextBlock>
-
-      <Skills />
-    </div>
-  );
-};
