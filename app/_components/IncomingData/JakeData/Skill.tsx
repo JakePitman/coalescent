@@ -32,7 +32,7 @@ export const Skill = ({ name, Icon, iconDelay }: SkillProps) => (
     variants={liVariants}
     className="relative bg-sky-300 my-1 w-[48.8%] text-sky-950 p-2 overflow-hidden"
   >
-    <p>{name}</p>
+    <p className="relative z-10">{name}</p>
 
     <motion.div
       className="absolute right-[-28px] bottom-[-28px]"
