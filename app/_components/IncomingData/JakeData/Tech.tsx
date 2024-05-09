@@ -17,7 +17,7 @@ const iconVariants = (delay: number) => ({
     scale: 1,
     transition: {
       delay: delay,
-      duration: 2,
+      duration: 2.5,
     },
   },
 });
