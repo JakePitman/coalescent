@@ -1,0 +1,13 @@
+.section:not(:last-child) {
+  margin-bottom: 1.25rem 
+}
+
+.key {
+  display: inline;
+  font-weight: bold;
+  color: theme(colors.sky.500)
+}
+
+.value {
+  display: inline;
+}

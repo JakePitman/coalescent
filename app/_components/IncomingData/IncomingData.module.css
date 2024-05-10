@@ -1,0 +1,24 @@
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 14vh;
+
+  transform: scaleY(100%);
+  transition: transform 0.3s;
+}
+
+.containerClosed {
+  transform: scaleY(0%);
+}
