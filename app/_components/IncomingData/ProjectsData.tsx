@@ -1,1 +1,1 @@
-export const ProjectsData = () => <div>{"Hi I'm the Projects data"}</div>;
+export const ProjectsData = () => <div>{"Projects coming soon..."}</div>;
