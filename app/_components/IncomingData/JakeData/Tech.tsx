@@ -9,18 +9,6 @@ const liVariants = {
     },
   },
 };
-const iconVariants = (delay: number) => ({
-  hidden: { opacity: 0, rotate: "20deg", scale: 0.8 },
-  show: {
-    rotate: "0deg",
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delay: delay,
-      duration: 2.5,
-    },
-  },
-});
 
 type Props = {
   name: string;
@@ -34,11 +22,6 @@ export const Tech = ({ name, Icon, iconDelay }: Props) => (
   >
     <p className="relative z-10">{name}</p>
 
-    <motion.div
-      className="absolute right-[-28px] bottom-[-28px]"
-      variants={iconVariants(iconDelay)}
-    >
-      <Icon className=" text-7xl text-[#5eb6e6]" />
-    </motion.div>
+    <Icon className="absolute right-[-28px] bottom-[-28px] text-7xl text-[#5eb6e6]" />
   </motion.li>
 );
