@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
@@ -29,19 +28,13 @@ const pageToDataMap = {
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
 
-export const IncomingData = () => {
+export type Props = {
+  isForcedOpen?: boolean; // For development purposes
+};
+export const IncomingData = ({ isForcedOpen }: Props) => {
   const { page } = usePageContext();
   const { dialogue } = useDialogueContext();
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (!dialogue?.text) {
-      setIsOpen(true);
-    }
-    if (!!dialogue?.text || page === "/") {
-      setIsOpen(false);
-    }
-  }, [dialogue?.text, page]);
+  const isOpen = (isForcedOpen || !dialogue?.text) && page !== "/";
 
   if (!page) return null;
 

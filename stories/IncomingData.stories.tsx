@@ -4,8 +4,9 @@ import { PageContextProvider, usePageContext } from "@contexts/pageContext";
 import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { Dialogue } from "@components/Dialogue";
 import { useControls } from "leva";
+import { Props as IncomingDataProps } from "@components/IncomingData";
 
-const IncomingDataWithControls = () => {
+const IncomingDataWithControls = (props: IncomingDataProps) => {
   const { setPage } = usePageContext();
 
   useControls("App Context (IncomingData)", {
@@ -24,7 +25,7 @@ const IncomingDataWithControls = () => {
     },
   });
 
-  return <IncomingData />;
+  return <IncomingData {...props} />;
 };
 
 const meta = {
@@ -38,11 +39,10 @@ const meta = {
     },
   },
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <PageContextProvider>
         <DialogueContextProvider>
-          <Dialogue />
-          <Story />
+          <Story {...args} />
         </DialogueContextProvider>
       </PageContextProvider>
     ),
@@ -52,6 +52,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const ForcedOpen: Story = {
+  args: { isForcedOpen: true },
+};
+export const WithDialogue: Story = {
   args: {},
+  render: () => (
+    <>
+      <Dialogue />
+      <IncomingDataWithControls />
+    </>
+  ),
 };
