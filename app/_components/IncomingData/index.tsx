@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
@@ -34,7 +35,11 @@ export type Props = {
 export const IncomingData = ({ isForcedOpen }: Props) => {
   const { page } = usePageContext();
   const { dialogue } = useDialogueContext();
-  const isOpen = (isForcedOpen || !dialogue?.text) && page !== "/";
+  const isOpen = useMemo(() => {
+    if (isForcedOpen) return true; // Always open when isForcedOpen
+    if (dialogue?.text || page === "/") return false;
+    if (!dialogue?.text) return true; // Otherwise open if neg conditions have passed
+  }, [isForcedOpen, dialogue?.text, page]);
 
   if (!page) return null;
 
