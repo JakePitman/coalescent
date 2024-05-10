@@ -36,12 +36,14 @@ export const IncomingData = () => {
     if (!dialogue?.text) {
       setIsOpen(true);
     }
-    if (!!dialogue?.text) {
+    if (!!dialogue?.text || page === "/") {
       setIsOpen(false);
     }
-  }, [dialogue?.text]);
+  }, [dialogue?.text, page]);
 
   if (!page) return null;
+
+  const data = getDataFromPage(page);
 
   return (
     <div
@@ -52,7 +54,7 @@ export const IncomingData = () => {
         { [styles.containerClosed]: !isOpen }
       )}
     >
-      {getDataFromPage(page)}
+      {isOpen ? data : null}
     </div>
   );
 };
