@@ -2,8 +2,15 @@
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .container {
+  /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  transform: scaleY(100%);
+
+  transition: transform 2s;
+}
+
+.containerClosed {
+  transform: scaleY(0%);
 }

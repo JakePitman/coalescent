@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { IncomingData } from "@components/IncomingData";
 import { PageContextProvider, usePageContext } from "@contexts/pageContext";
+import { DialogueContextProvider } from "@contexts/dialogueContext";
+import { Dialogue } from "@components/Dialogue";
 import { useControls } from "leva";
 
 const IncomingDataWithControls = () => {
@@ -38,7 +40,10 @@ const meta = {
   decorators: [
     (Story) => (
       <PageContextProvider>
-        <Story />
+        <DialogueContextProvider>
+          <Dialogue />
+          <Story />
+        </DialogueContextProvider>
       </PageContextProvider>
     ),
   ],
