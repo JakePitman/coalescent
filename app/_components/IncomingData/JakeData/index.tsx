@@ -23,8 +23,8 @@ export const JakeData = () => {
             <p className={styles.value}>Unknown</p>
           </div>
           <div>
-            <h3 className={styles.key}>Location: </h3>
-            <p className={styles.value}>Earth</p>
+            <h3 className={styles.key}>Last known location: </h3>
+            <p className={styles.value}>Earth, New Zealand</p>
           </div>
           <div>
             <h3 className={styles.key}>Roles performed: </h3>
