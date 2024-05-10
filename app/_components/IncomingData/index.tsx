@@ -50,7 +50,7 @@ export const IncomingData = () => {
   return (
     <div
       className={classnames(
-        "p-5 bg-sky-800/30 shadow-[0_0_15px_2px_#7Cbdbd_inset] border-2 border-sky-400 rounded-md text-sky-300 sm:w-[40vw] w-[90vw] h-[60vh] overflow-scroll",
+        "p-5 bg-blue-950/90 shadow-[0_0_15px_2px_#7Cbdbd_inset] border-2 border-sky-400 rounded-md text-sky-300 sm:w-[40vw] w-[90vw] h-[60vh] overflow-scroll",
         spaceMono.className,
         styles.container,
         { [styles.containerClosed]: !isOpen }
