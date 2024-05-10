@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";

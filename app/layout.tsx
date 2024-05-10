@@ -7,6 +7,7 @@ import { FlightContextProvider } from "@contexts/flightContext";
 import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { RouteChangeListener } from "@components/RouteChangeListener";
 import { Dialogue } from "@components/Dialogue";
+import { IncomingData } from "@components/IncomingData";
 import { Experience } from "@components/Experience";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,6 +43,7 @@ export default function RootLayout({
           </div> */}
           <RouteChangeListener />
           <Dialogue />
+          <IncomingData />
           <Experience style={{ position: "absolute", zIndex: "0" }} />
         </WithProviders>
       </body>
