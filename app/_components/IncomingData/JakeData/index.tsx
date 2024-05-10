@@ -1,15 +1,18 @@
+import { useState } from "react";
 import { TextBlock } from "../TextBlock";
 import styles from "../Data.module.css";
 import { TechStack } from "./TechStack";
 
 export const JakeData = () => {
+  const [textIsFinished, setTextIsFinished] = useState(false);
+
   return (
     <div>
       {/* 
       NOTE: Typist has a strange bug that prevents components extracted
       into variables from working. Defaulting to css extractions instead
     */}
-      <TextBlock>
+      <TextBlock onTypingDone={() => setTextIsFinished(true)}>
         <div className={styles.section}>
           <div>
             <h3 className={styles.key}>Name: </h3>
@@ -34,7 +37,7 @@ export const JakeData = () => {
         </div>
       </TextBlock>
 
-      <TechStack />
+      <TechStack readyToRender={textIsFinished} />
     </div>
   );
 };

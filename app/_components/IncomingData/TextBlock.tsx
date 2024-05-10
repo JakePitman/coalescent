@@ -3,14 +3,16 @@ import styles from "./TextBlock.module.css";
 
 type Props = {
   children: React.ReactNode;
+  onTypingDone?: () => void;
 };
 
-export const TextBlock = ({ children }: Props) => (
+export const TextBlock = ({ children, onTypingDone }: Props) => (
   <Typist
     stdTypingDelay={0}
     avgTypingDelay={5}
     cursor={{ show: false }}
     className={styles.container}
+    onTypingDone={onTypingDone}
   >
     {children}
   </Typist>
