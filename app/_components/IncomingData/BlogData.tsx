@@ -1,1 +1,1 @@
-export const BlogData = () => <div>{"Hi I'm the Blog data"}</div>;
+export const BlogData = () => <div>{"Blog coming soon..."}</div>;
