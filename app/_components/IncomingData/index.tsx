@@ -31,7 +31,7 @@ const pageToDataMap = {
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
 
-const DismissButton = () => (
+const ControlBar = () => (
   <div className="w-full flex mb-3">
     <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
       <p className="text-xs">Jerome: 03:23</p>
@@ -69,7 +69,7 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     >
       {isOpen ? (
         <>
-          <DismissButton />
+          <ControlBar />
           {data}
         </>
       ) : null}
