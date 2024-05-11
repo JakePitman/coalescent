@@ -31,16 +31,24 @@ const pageToDataMap = {
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
 
-const ControlBar = () => (
-  <div className="w-full flex mb-3">
-    <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
-      <p className="text-xs">Jerome: 03:23</p>
+const ControlBar = () => {
+  const currentTime = new Date().toLocaleString("en-US", {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  return (
+    <div className="w-full flex mb-3">
+      <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
+        <p className="text-xs">Jerome: {currentTime}</p>
+      </div>
+      <button>
+        <CgCloseR className="text-xl" />
+      </button>
     </div>
-    <button>
-      <CgCloseR className="text-xl" />
-    </button>
-  </div>
-);
+  );
+};
 
 export type Props = {
   isForcedOpen?: boolean; // For development purposes
