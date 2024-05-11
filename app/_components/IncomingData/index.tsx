@@ -83,6 +83,10 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
 
   const data = getDataFromPage(page);
 
+  const handleDismiss = () => {
+    if (!isForcedOpen) setIsOpen(false);
+  };
+
   return (
     <div
       className={classnames(
@@ -94,7 +98,7 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     >
       {isOpen ? (
         <>
-          <ControlBar handleDismiss={() => undefined} />
+          <ControlBar handleDismiss={handleDismiss} />
           {data}
         </>
       ) : null}
