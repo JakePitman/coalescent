@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
@@ -31,7 +31,10 @@ const pageToDataMap = {
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
 
-const ControlBar = () => {
+type ControlBarProps = {
+  handleDismiss: () => void;
+};
+const ControlBar = ({ handleDismiss }: ControlBarProps) => {
   const currentTime = new Date().toLocaleString("en-US", {
     hour12: false,
     hour: "numeric",
@@ -43,7 +46,7 @@ const ControlBar = () => {
       <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
         <p className="text-xs">Jerome: {currentTime}</p>
       </div>
-      <button>
+      <button onClick={handleDismiss}>
         <CgCloseR className="text-xl" />
       </button>
     </div>
@@ -56,10 +59,24 @@ export type Props = {
 export const IncomingData = ({ isForcedOpen }: Props) => {
   const { page } = usePageContext();
   const { dialogue } = useDialogueContext();
-  const isOpen = useMemo(() => {
-    if (isForcedOpen) return true; // Always open when isForcedOpen
-    if (dialogue?.text || page === "/") return false;
-    if (!dialogue?.text) return true; // Otherwise open if neg conditions have passed
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Always open in this case
+    if (isForcedOpen) {
+      setIsOpen(true);
+      return;
+    }
+    // Close when there's text
+    if (dialogue?.text || page === "/") {
+      setIsOpen(false);
+      return;
+    }
+    // Open when text is finished
+    if (!dialogue?.text) {
+      setIsOpen(true);
+      return;
+    }
   }, [isForcedOpen, dialogue?.text, page]);
 
   if (!page) return null;
@@ -77,7 +94,7 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     >
       {isOpen ? (
         <>
-          <ControlBar />
+          <ControlBar handleDismiss={() => undefined} />
           {data}
         </>
       ) : null}
