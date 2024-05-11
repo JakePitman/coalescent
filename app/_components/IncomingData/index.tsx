@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
 import classnames from "classnames";
+import { CgCloseR } from "react-icons/cg";
+
 import {
   JakeData,
   InterestsData,
@@ -29,23 +31,61 @@ const pageToDataMap = {
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
 
-export const IncomingData = () => {
+type ControlBarProps = {
+  handleDismiss: () => void;
+};
+const ControlBar = ({ handleDismiss }: ControlBarProps) => {
+  const currentTime = new Date().toLocaleString("en-US", {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  return (
+    <div className="w-full flex mb-3">
+      <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
+        <p className="text-xs">Jerome: {currentTime}</p>
+      </div>
+      <button onClick={handleDismiss}>
+        <CgCloseR className="text-xl" />
+      </button>
+    </div>
+  );
+};
+
+export type Props = {
+  isForcedOpen?: boolean; // For development purposes
+};
+export const IncomingData = ({ isForcedOpen }: Props) => {
   const { page } = usePageContext();
   const { dialogue } = useDialogueContext();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Always open in this case
+    if (isForcedOpen) {
+      setIsOpen(true);
+      return;
+    }
+    // Close when there's text
+    if (dialogue?.text || page === "/") {
+      setIsOpen(false);
+      return;
+    }
+    // Open when text is finished
     if (!dialogue?.text) {
       setIsOpen(true);
+      return;
     }
-    if (!!dialogue?.text || page === "/") {
-      setIsOpen(false);
-    }
-  }, [dialogue?.text, page]);
+  }, [isForcedOpen, dialogue?.text, page]);
 
   if (!page) return null;
 
   const data = getDataFromPage(page);
+
+  const handleDismiss = () => {
+    if (!isForcedOpen) setIsOpen(false);
+  };
 
   return (
     <div
@@ -56,7 +96,12 @@ export const IncomingData = () => {
         { [styles.containerClosed]: !isOpen }
       )}
     >
-      {isOpen ? data : null}
+      {isOpen ? (
+        <>
+          <ControlBar handleDismiss={handleDismiss} />
+          {data}
+        </>
+      ) : null}
     </div>
   );
 };
