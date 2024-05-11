@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaNode, FaReact } from "react-icons/fa";
+import { FaReact } from "react-icons/fa";
 import { TbBrandTypescript } from "react-icons/tb";
 import { TbBrandThreejs } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";

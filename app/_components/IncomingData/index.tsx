@@ -5,6 +5,8 @@ import { usePageContext } from "@contexts/pageContext";
 import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
 import classnames from "classnames";
+import { CgCloseR } from "react-icons/cg";
+
 import {
   JakeData,
   InterestsData,
@@ -28,6 +30,17 @@ const pageToDataMap = {
 };
 const getDataFromPage = (page: keyof typeof pageToDataMap) =>
   pageToDataMap[page];
+
+const DismissButton = () => (
+  <div className="w-full flex mb-3">
+    <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
+      <p className="text-xs">Jerome: 03:23</p>
+    </div>
+    <button>
+      <CgCloseR className="text-xl" />
+    </button>
+  </div>
+);
 
 export type Props = {
   isForcedOpen?: boolean; // For development purposes
@@ -54,7 +67,12 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
         { [styles.containerClosed]: !isOpen }
       )}
     >
-      {isOpen ? data : null}
+      {isOpen ? (
+        <>
+          <DismissButton />
+          {data}
+        </>
+      ) : null}
     </div>
   );
 };
