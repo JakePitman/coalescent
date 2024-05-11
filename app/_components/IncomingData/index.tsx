@@ -44,7 +44,7 @@ const ControlBar = ({ handleDismiss }: ControlBarProps) => {
   return (
     <div className="w-full flex mb-3">
       <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
-        <p className="text-xs">Jerome: {currentTime}</p>
+        <p className="text-xs">Jerome-VI: {currentTime}</p>
       </div>
       <button onClick={handleDismiss}>
         <CgCloseR className="text-xl" />
