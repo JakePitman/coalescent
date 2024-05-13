@@ -9,7 +9,7 @@ type Props = {
 export const TextBlock = ({ children, onTypingDone }: Props) => (
   <Typist
     stdTypingDelay={0}
-    avgTypingDelay={0}
+    avgTypingDelay={2}
     cursor={{ show: false }}
     className={styles.container}
     onTypingDone={onTypingDone}
