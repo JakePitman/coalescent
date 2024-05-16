@@ -42,7 +42,7 @@ export const InterestsGroup = ({
           {text}
         </p>
         <div
-          className={classnames("flex justify-end w-7/12 bg-sky-200/30", {
+          className={classnames("flex justify-end w-7/12", {
             "flex-row-reverse": isRTL,
           })}
         >
