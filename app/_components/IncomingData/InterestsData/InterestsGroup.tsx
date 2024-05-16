@@ -18,7 +18,7 @@ export const InterestsGroup = ({
   isReadyToRender,
 }: Props) => {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-8">
       <h2
         className={classnames(
           "w-full text-xl border-b-2 border-sky-800 mb-2 pb-2  text-sky-500",
