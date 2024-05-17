@@ -23,8 +23,8 @@ export const InterestsData = () => {
         text="Sighted in the oceans of Australia, New Zealand, and Thailand"
         sightingsData={[
           { imageURL: "/images/diving/GBR.jpeg" },
-          { imageURL: "/images/drones/taylors_mistake.jpeg" },
-          { imageURL: "/images/guitar/guitar.jpg" },
+          { imageURL: "/images/diving/whale_shark.jpg" },
+          { imageURL: "/images/diving/thailand.jpeg" },
         ]}
         isReadyToRender={textIsFinished}
       />
