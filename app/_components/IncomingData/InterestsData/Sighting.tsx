@@ -1,9 +1,9 @@
 import classnames from "classnames";
 import Image from "next/image";
 
-export type Props = { image: null; isRTL: boolean };
+export type Props = { imageURL: string; isRTL: boolean };
 
-export const Sighting = ({ isRTL }: Props) => {
+export const Sighting = ({ imageURL, isRTL }: Props) => {
   return (
     <div
       className={classnames(
@@ -13,12 +13,7 @@ export const Sighting = ({ isRTL }: Props) => {
         }
       )}
     >
-      <Image
-        src="/images/diving/GBR.jpeg"
-        alt="diving"
-        fill
-        style={{ objectFit: "cover" }}
-      />
+      <Image src={imageURL} alt="diving" fill style={{ objectFit: "cover" }} />
     </div>
   );
 };
