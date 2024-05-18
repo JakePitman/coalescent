@@ -17,7 +17,7 @@ export const InterestsData = () => {
         <motion.div
           initial="hidden"
           animate="show"
-          transition={{ staggerChildren: 0.2 }}
+          transition={{ staggerChildren: 0.1, staggerDirection: -1 }}
         >
           <InterestsGroup
             title="Software Engineering"
