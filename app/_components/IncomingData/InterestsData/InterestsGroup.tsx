@@ -1,7 +1,14 @@
 import classnames from "classnames";
 import { motion } from "framer-motion";
+import Typist from "react-typist";
 
 import { Sighting, Props as SightingProps } from "./Sighting";
+
+const typistSettings = {
+  stdTypingDelay: 10,
+  avgTypingDelay: 10,
+  cursor: { show: false },
+};
 
 const variants = {
   hidden: { opacity: 0 },
@@ -27,7 +34,7 @@ export const InterestsGroup = ({
   isRTL = false,
 }: Props) => {
   return (
-    <motion.div className="w-full mb-8" variants={variants}>
+    <div className="w-full mb-8">
       <h2
         className={classnames(
           "w-full text-xl border-b-2 border-sky-800 mb-2 pb-2  text-sky-500",
@@ -36,7 +43,7 @@ export const InterestsGroup = ({
           }
         )}
       >
-        {title}
+        <Typist {...typistSettings}>{title}</Typist>
       </h2>
       <div
         className={classnames("flex", {
@@ -48,8 +55,9 @@ export const InterestsGroup = ({
             "text-right pr-0 pl-2": isRTL,
           })}
         >
-          {text}
+          <Typist {...typistSettings}>{text}</Typist>
         </p>
+
         <div
           className={classnames("flex justify-end w-7/12", {
             "flex-row-reverse": isRTL,
@@ -60,6 +68,6 @@ export const InterestsGroup = ({
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
