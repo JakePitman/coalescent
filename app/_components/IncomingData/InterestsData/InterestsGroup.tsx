@@ -1,13 +1,23 @@
 import classnames from "classnames";
+import { motion } from "framer-motion";
 
 import { Sighting, Props as SightingProps } from "./Sighting";
+
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      // duration: 2,
+    },
+  },
+};
 
 type Props = {
   title: string;
   text: string;
   sightingsData: Omit<SightingProps, "isRTL">[];
   isRTL?: boolean;
-  isReadyToRender: boolean;
 };
 
 export const InterestsGroup = ({
@@ -15,10 +25,9 @@ export const InterestsGroup = ({
   text,
   sightingsData,
   isRTL = false,
-  isReadyToRender,
 }: Props) => {
   return (
-    <div className="w-full mb-8">
+    <motion.div className="w-full mb-8" variants={variants}>
       <h2
         className={classnames(
           "w-full text-xl border-b-2 border-sky-800 mb-2 pb-2  text-sky-500",
@@ -51,6 +60,6 @@ export const InterestsGroup = ({
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
