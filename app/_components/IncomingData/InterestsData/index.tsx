@@ -35,13 +35,21 @@ export const InterestsData = () => {
             ]}
           />
           <InterestsGroup
+            title="Drones"
+            text={`He builds, repairs and races them. He also uses them to make videos of beautiful scenery`}
+            sightingsData={[
+              { imageURL: "/images/drones/drone.jpeg" },
+              { imageURL: "/images/drones/taylors_mistake.jpeg" },
+            ]}
+            isRTL
+          />
+          <InterestsGroup
             title="Guitar"
             text={`The Earthlings call it "Rock and Roll Baby"`}
             sightingsData={[
               { imageURL: "/images/guitar/guitar.jpg" },
               { imageURL: "/images/drones/taylors_mistake.jpeg" },
             ]}
-            isRTL
           />
         </motion.div>
       )}
