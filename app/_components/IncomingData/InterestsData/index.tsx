@@ -23,7 +23,6 @@ export const InterestsData = () => {
             title="Software Engineering"
             text="He's always building something..."
             sightingsData={[{ imageURL: "/images/diving/GBR.jpeg" }]}
-            isRTL
           />
           <InterestsGroup
             title="Diving"
@@ -36,12 +35,11 @@ export const InterestsData = () => {
           />
           <InterestsGroup
             title="Drones"
-            text={`He builds, repairs and races them. He also uses them to make videos of beautiful scenery`}
+            text={`He builds, repairs, races, and films with them`}
             sightingsData={[
               { imageURL: "/images/drones/drone.jpeg" },
               { imageURL: "/images/drones/taylors_mistake.jpeg" },
             ]}
-            isRTL
           />
           <InterestsGroup
             title="Guitar"
