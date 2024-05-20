@@ -58,6 +58,8 @@ export const LoadingSpinner = () => {
   const controls = useAnimationControls();
 
   useEffect(() => {
+    // TODO: Figure out how to do this without recursion
+    // (using repeat: Infitinity, most likely)
     const sequence = async () => {
       await controls.start("closed");
       await controls.start("opening");
@@ -66,7 +68,7 @@ export const LoadingSpinner = () => {
       sequence();
     };
 
-    sequence();
+    // sequence();
   }, [controls]);
 
   return (
