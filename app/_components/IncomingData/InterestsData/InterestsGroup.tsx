@@ -58,7 +58,7 @@ export const InterestsGroup = ({
         </p>
 
         <div
-          className={classnames("flex justify-end w-7/12", {
+          className={classnames("flex justify-end w-7/12 h-min", {
             "flex-row-reverse": isRTL,
           })}
         >
