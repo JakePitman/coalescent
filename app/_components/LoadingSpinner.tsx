@@ -40,8 +40,20 @@ const subSquareVariants = ({ x, y }: SubSquareVariantsProps) => ({
   },
 });
 
+// How many percent less than 50.
+// Used to calculate square size and 'opening' xy offset
+const subSquareSizeReducer = 5;
+const subSquareSize = `${50 - subSquareSizeReducer}%`;
+// Ensures that squares always go to border of container
+const offsetSize = `${50 + subSquareSizeReducer * 2}%`;
+
 const baseClassnames =
-  "absolute w-[45%] h-[45%] outline outline-sky-500 top-0 bottom-0 right-0 left-0 m-auto";
+  "absolute outline outline-sky-500 top-0 bottom-0 right-0 left-0 m-auto";
+const sizeStyles = {
+  width: subSquareSize,
+  height: subSquareSize,
+};
+
 export const LoadingSpinner = () => {
   const controls = useAnimationControls();
 
@@ -65,19 +77,26 @@ export const LoadingSpinner = () => {
     >
       <motion.div
         className={classnames(baseClassnames)}
-        variants={subSquareVariants({ x: "-60%", y: "-60%" })}
+        style={sizeStyles}
+        variants={subSquareVariants({
+          x: `-${offsetSize}`,
+          y: `-${offsetSize}`,
+        })}
       />
       <motion.div
         className={classnames(baseClassnames)}
-        variants={subSquareVariants({ x: "-60%", y: "60%" })}
+        style={sizeStyles}
+        variants={subSquareVariants({ x: `-${offsetSize}`, y: offsetSize })}
       />
       <motion.div
         className={classnames(baseClassnames)}
-        variants={subSquareVariants({ x: "60%", y: "60%" })}
+        style={sizeStyles}
+        variants={subSquareVariants({ x: offsetSize, y: offsetSize })}
       />
       <motion.div
         className={classnames(baseClassnames)}
-        variants={subSquareVariants({ x: "60%", y: "-60%" })}
+        style={sizeStyles}
+        variants={subSquareVariants({ x: offsetSize, y: `-${offsetSize}` })}
       />
     </motion.div>
   );
