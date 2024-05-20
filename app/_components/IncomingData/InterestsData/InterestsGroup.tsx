@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import { motion } from "framer-motion";
 import Typist from "react-typist";
 
 import { Sighting, Props as SightingProps } from "./Sighting";
