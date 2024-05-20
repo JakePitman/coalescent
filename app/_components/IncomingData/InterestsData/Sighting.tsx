@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { LoadingSpinner } from "@components/LoadingSpinner";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -25,7 +26,12 @@ export const Sighting = ({ imageURL, isRTL }: Props) => {
         }
       )}
     >
-      <Image src={imageURL} alt="diving" fill style={{ objectFit: "cover" }} />
+      {/* <Image src={imageURL} alt="diving" fill style={{ objectFit: "cover" }} /> */}
+      <div className="h-full border-solid border-green-300 border-2 relative">
+        <div className="absolute w-4/5 h-4/5 left-0 right-0 top-0 bottom-0 m-auto">
+          <LoadingSpinner />
+        </div>
+      </div>
     </motion.div>
   );
 };
