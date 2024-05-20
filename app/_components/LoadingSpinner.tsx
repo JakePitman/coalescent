@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 import classnames from "classnames";
 
@@ -56,19 +56,25 @@ const sizeStyles = {
 
 export const LoadingSpinner = () => {
   const controls = useAnimationControls();
+  const isMounted = useRef(true);
 
   useEffect(() => {
     // TODO: Figure out how to do this without recursion
     // (using repeat: Infitinity, most likely)
     const sequence = async () => {
-      await controls.start("closed");
-      await controls.start("opening");
-      await controls.start("closing");
-      await controls.set("closed");
+      if (!isMounted.current) return;
+      if (isMounted.current) await controls.start("closed");
+      if (isMounted.current) await controls.start("opening");
+      if (isMounted.current) await controls.start("closing");
+      if (isMounted.current) await controls.set("closed");
       sequence();
     };
 
-    // sequence();
+    sequence();
+
+    return () => {
+      isMounted.current = false;
+    };
   }, [controls]);
 
   return (
