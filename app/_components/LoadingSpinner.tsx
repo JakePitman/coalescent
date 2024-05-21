@@ -1,42 +1,32 @@
-import { useEffect, useRef } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import classnames from "classnames";
 
-const containerVariants = {
-  closed: {
-    transform: "rotate(0deg)",
-  },
-  opening: {
-    transform: "rotate(0deg)",
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-  closing: {
-    transform: "rotate(90deg)",
-    transition: {
-      delay: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
+const openingTime = 1;
 type SubSquareVariantsProps = {
   x: number | string;
   y: number | string;
 };
-const subSquareVariants = ({ x, y }: SubSquareVariantsProps) => ({
-  closed: {
-    x: 0,
-    y: 0,
-  },
+const subSquareVariants = ({
+  x,
+  y,
+}: SubSquareVariantsProps): { opening: {}; closing: {} } => ({
   opening: {
     x,
     y,
+    transition: {
+      repeat: Infinity,
+      repeatType: "mirror",
+      duration: openingTime,
+    },
   },
   closing: {
     x: 0,
     y: 0,
+    transition: {
+      repeat: Infinity,
+      repeatType: "mirror",
+      repeatDelay: 0.3,
+    },
   },
 });
 
@@ -48,40 +38,23 @@ const subSquareSize = `${50 - subSquareSizeReducer}%`;
 const offsetSize = `${50 + subSquareSizeReducer * 2}%`;
 
 const baseClassnames =
-  "absolute outline outline-sky-500 top-0 bottom-0 right-0 left-0 m-auto";
+  "absolute border-solid border-[1px] border-sky-500 top-0 bottom-0 right-0 left-0 m-auto";
 const sizeStyles = {
   width: subSquareSize,
   height: subSquareSize,
 };
 
 export const LoadingSpinner = () => {
-  const controls = useAnimationControls();
-  const isMounted = useRef(true);
-
-  useEffect(() => {
-    // TODO: Figure out how to do this without recursion
-    // (using repeat: Infitinity, most likely)
-    const sequence = async () => {
-      if (!isMounted.current) return;
-      if (isMounted.current) await controls.start("closed");
-      if (isMounted.current) await controls.start("opening");
-      if (isMounted.current) await controls.start("closing");
-      if (isMounted.current) await controls.set("closed");
-      sequence();
-    };
-
-    sequence();
-
-    return () => {
-      isMounted.current = false;
-    };
-  }, [controls]);
-
   return (
     <motion.div
       className="absolute w-full h-full"
-      variants={containerVariants}
-      animate={controls}
+      initial="opening"
+      animate="closing"
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+        staggerChildren: 0.1,
+      }}
     >
       <motion.div
         className={classnames(baseClassnames)}
