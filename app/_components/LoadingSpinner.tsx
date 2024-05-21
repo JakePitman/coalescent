@@ -38,7 +38,7 @@ const subSquareSize = `${50 - subSquareSizeReducer}%`;
 const offsetSize = `${50 + subSquareSizeReducer * 2}%`;
 
 const baseClassnames =
-  "absolute border-solid border-[1px] border-sky-500 top-0 bottom-0 right-0 left-0 m-auto";
+  "absolute border-solid border-[1px] border-sky-500/80 top-0 bottom-0 right-0 left-0 m-auto";
 const sizeStyles = {
   width: subSquareSize,
   height: subSquareSize,
