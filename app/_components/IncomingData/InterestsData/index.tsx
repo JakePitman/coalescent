@@ -10,7 +10,9 @@ export const InterestsData = () => {
   return (
     <div>
       <TextBlock onTypingDone={() => setTextIsFinished(true)}>
-        Target has been sighted engaging in a range of pursuits:
+        {
+          "Target's primary motivation is software engineering. However, he keeps himself healthy by engaging in a range of other pursuits in his down-time:"
+        }
       </TextBlock>
 
       {textIsFinished && (
@@ -20,9 +22,13 @@ export const InterestsData = () => {
           transition={{ staggerChildren: 0.1, staggerDirection: -1 }}
         >
           <InterestsGroup
-            title="Software Engineering"
-            text="He's always building something..."
-            sightingsData={[{ imageURL: "/images/diving/GBR.jpeg" }]}
+            title="Exploring"
+            text="Target has a curious mind and itchy feet"
+            sightingsData={[
+              { imageURL: "/images/exploring/mountain.jpg" },
+              { imageURL: "/images/exploring/taylors_mistake.jpeg" },
+              { imageURL: "/images/exploring/brewster.jpeg" },
+            ]}
           />
           <InterestsGroup
             title="Diving"
@@ -37,16 +43,17 @@ export const InterestsData = () => {
             title="Drones"
             text={`He builds, repairs, races, and films with them`}
             sightingsData={[
+              { imageURL: "/images/drones/drone_repair.jpeg" },
               { imageURL: "/images/drones/drone.jpeg" },
-              { imageURL: "/images/drones/taylors_mistake.jpeg" },
+              { imageURL: "/images/drones/fpv.jpeg" },
             ]}
           />
           <InterestsGroup
             title="Guitar"
             text={`The Earthlings call it "Rock and Roll Baby"`}
             sightingsData={[
+              { imageURL: "/images/guitar/ibanez.png" },
               { imageURL: "/images/guitar/guitar.jpg" },
-              { imageURL: "/images/drones/taylors_mistake.jpeg" },
             ]}
           />
         </motion.div>
