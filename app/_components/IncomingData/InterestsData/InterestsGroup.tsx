@@ -51,7 +51,7 @@ export const InterestsGroup = ({
       >
         <p
           // Text hidden on mobile
-          className={classnames("w-5/12 pr-2 text-sm hidden sm:block", {
+          className={classnames("w-4/12 pr-2 text-xs hidden sm:block", {
             "text-right pr-0 pl-2": isRTL,
           })}
         >
@@ -61,7 +61,7 @@ export const InterestsGroup = ({
         <div
           // Images full width on mobile
           className={classnames(
-            "flex sm:justify-end sm:w-7/12 w-full justify-start h-min",
+            "flex sm:justify-end sm:w-8/12 w-full justify-start h-min",
             {
               "flex-row-reverse": isRTL,
             }
