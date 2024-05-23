@@ -45,12 +45,13 @@ export const InterestsGroup = ({
         <Typist {...typistSettings}>{title}</Typist>
       </h2>
       <div
-        className={classnames("flex", {
+        className={classnames("flex ", {
           "flex-row-reverse": isRTL,
         })}
       >
         <p
-          className={classnames("w-5/12 pr-2 text-sm", {
+          // Text hidden on mobile
+          className={classnames("w-5/12 pr-2 text-sm hidden sm:block", {
             "text-right pr-0 pl-2": isRTL,
           })}
         >
@@ -58,9 +59,13 @@ export const InterestsGroup = ({
         </p>
 
         <div
-          className={classnames("flex justify-end w-7/12 h-min", {
-            "flex-row-reverse": isRTL,
-          })}
+          // Images full width on mobile
+          className={classnames(
+            "flex sm:justify-end sm:w-7/12 w-full justify-start h-min",
+            {
+              "flex-row-reverse": isRTL,
+            }
+          )}
         >
           {sightingsData.map((sightingProps, i) => (
             <Sighting {...sightingProps} isRTL={isRTL} key={i} />
