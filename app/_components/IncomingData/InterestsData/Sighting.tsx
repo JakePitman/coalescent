@@ -25,7 +25,7 @@ export const Sighting = ({ imageURL, isRTL }: Props) => {
     <motion.div
       variants={variants}
       className={classnames(
-        "relative w-[30%] h-auto aspect-square ml-[3%] overflow-hidden",
+        "relative w-[30%] h-auto aspect-square ml-[3%] overflow-hidden cursor-pointer",
         {
           "ml-0 mr-[3%]": isRTL,
         }
