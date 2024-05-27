@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LoadingSpinner } from "@components/LoadingSpinner";
-import styles from "./sighting.module.css";
+import { useCarouselContext } from "./carouselContext";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -19,6 +19,7 @@ export type Props = { imageURL: string; isRTL: boolean };
 
 export const Sighting = ({ imageURL, isRTL }: Props) => {
   const [imageHasLoaded, setImageHasLoaded] = useState(false);
+  const { setCurrentImage } = useCarouselContext();
 
   return (
     <motion.div
@@ -40,6 +41,7 @@ export const Sighting = ({ imageURL, isRTL }: Props) => {
           opacity: imageHasLoaded ? 1 : 0,
         }}
         onLoad={() => setImageHasLoaded(true)}
+        onClick={() => setCurrentImage(imageURL)}
       />
       {!imageHasLoaded && (
         <div className="h-full relative">
