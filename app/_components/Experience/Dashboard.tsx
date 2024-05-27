@@ -28,10 +28,6 @@ const NavItem = ({ label, handleClick, isActive }: NavItemProps) => {
   );
 };
 
-const positions = {
-  lowDPR: [0, -2.29, -0.86] as const,
-  highDPR: [0, -1.91, -0.86] as const,
-};
 export const Dashboard = () => {
   const router = useRouter();
   const { page, setPage } = usePageContext();
@@ -44,9 +40,7 @@ export const Dashboard = () => {
   return (
     <Html
       transform
-      position={
-        window?.devicePixelRatio >= 3 ? positions.highDPR : positions.lowDPR
-      }
+      position={[0, -2.29, -0.86]}
       rotation={[-0.6, 0, 0]}
       as="div"
       className="flex w-72 justify-around"
