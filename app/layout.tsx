@@ -9,7 +9,6 @@ import { RouteChangeListener } from "@components/RouteChangeListener";
 import { Dialogue } from "@components/Dialogue";
 import { IncomingData } from "@components/IncomingData";
 import { Experience } from "@components/Experience";
-import { DevicePixelRatio } from "./_components/DevicePixelRatio";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <DevicePixelRatio /> {/* Delete after testing */}
         <WithProviders>
           {/*  page-specific content can be re-added here
           <div className="flex absolute z-10 justify-center items-center w-full h-full">
