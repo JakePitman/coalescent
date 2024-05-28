@@ -34,7 +34,7 @@ export const CarouselFormat = () => {
           <button onClick={() => setCurrentImage(null)}>x</button>
           <Carousel
             responsive={responsive}
-            swipeable={false}
+            swipeable={true}
             draggable={false}
             showDots={true}
             infinite={true}
