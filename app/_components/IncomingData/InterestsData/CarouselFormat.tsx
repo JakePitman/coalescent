@@ -30,8 +30,13 @@ export const CarouselFormat = () => {
   return (
     <>
       {createPortal(
-        <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/60 z-[inherit] flex justify-center items-center">
-          <button onClick={() => setCurrentImage(null)}>x</button>
+        <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/80 z-[inherit] flex justify-center items-center">
+          <button
+            onClick={() => setCurrentImage(null)}
+            className="absolute top-6 right-6"
+          >
+            x
+          </button>
           <Carousel
             responsive={responsive}
             swipeable={true}
@@ -42,7 +47,7 @@ export const CarouselFormat = () => {
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
-            containerClass="carousel-container w-[80vw]  bg-red-300"
+            containerClass="carousel-container w-[80vw] "
             removeArrowOnDeviceType={["tablet", "mobile"]}
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
@@ -58,6 +63,14 @@ export const CarouselFormat = () => {
             <div className="relative h-[80vh] w-full border-solid border-white">
               <Image
                 src="/images/drones/drone_repair.jpeg"
+                fill
+                style={{ objectFit: "contain" }}
+                alt="drone"
+              />
+            </div>
+            <div className="relative h-[80vh] w-full border-solid border-white">
+              <Image
+                src="/images/drones/fpv.jpeg"
                 fill
                 style={{ objectFit: "contain" }}
                 alt="drone"
