@@ -2,10 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import {
-  ExploringImages,
-  DivingImages,
-  DronesImages,
-  GuitarImages,
+  EXPLORING_IMAGES,
+  DIVING_IMAGES,
+  DRONES_IMAGES,
+  GUITAR_IMAGES,
 } from "./imageData";
 import { TextBlock } from "../TextBlock";
 import { InterestsGroup } from "./InterestsGroup";
@@ -29,22 +29,22 @@ export const Collage = () => {
           <InterestsGroup
             title="Exploring"
             text="Target has a curious mind and itchy feet"
-            imageData={ExploringImages}
+            imageData={EXPLORING_IMAGES}
           />
           <InterestsGroup
             title="Diving"
             text="Sighted in the oceans of Australia, New Zealand, and Thailand"
-            imageData={DivingImages}
+            imageData={DIVING_IMAGES}
           />
           <InterestsGroup
             title="Drones"
             text={`He builds, repairs, races, and films with them`}
-            imageData={DronesImages}
+            imageData={DRONES_IMAGES}
           />
           <InterestsGroup
             title="Guitar"
             text={`The Earthlings call it "Rock and Roll Baby"`}
-            imageData={GuitarImages}
+            imageData={GUITAR_IMAGES}
           />
         </motion.div>
       )}

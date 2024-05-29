@@ -6,7 +6,7 @@ export type ImageData = {
   alt: string;
 };
 
-export const ExploringImages: ImageData[] = [
+export const EXPLORING_IMAGES: ImageData[] = [
   {
     group: "EXPLORING",
     imageURL: "/images/exploring/mountain.jpg",
@@ -24,7 +24,7 @@ export const ExploringImages: ImageData[] = [
   },
 ];
 
-export const DivingImages: ImageData[] = [
+export const DIVING_IMAGES: ImageData[] = [
   {
     group: "DIVING",
     imageURL: "/images/diving/GBR.jpeg",
@@ -42,7 +42,7 @@ export const DivingImages: ImageData[] = [
   },
 ];
 
-export const DronesImages: ImageData[] = [
+export const DRONES_IMAGES: ImageData[] = [
   {
     group: "DRONES",
     imageURL: "/images/drones/drone_repair.jpeg",
@@ -52,7 +52,7 @@ export const DronesImages: ImageData[] = [
   { group: "DRONES", imageURL: "/images/drones/fpv.jpeg", alt: "fpv" },
 ];
 
-export const GuitarImages: ImageData[] = [
+export const GUITAR_IMAGES: ImageData[] = [
   {
     group: "GUITAR",
     imageURL: "/images/guitar/ibanez.png",
@@ -61,9 +61,9 @@ export const GuitarImages: ImageData[] = [
   { group: "GUITAR", imageURL: "/images/guitar/guitar.jpg", alt: "Guitar" },
 ];
 
-export const images: ImageData[] = [
-  ...ExploringImages,
-  ...DivingImages,
-  ...DronesImages,
-  ...GuitarImages,
+export const IMAGES: ImageData[] = [
+  ...EXPLORING_IMAGES,
+  ...DIVING_IMAGES,
+  ...DRONES_IMAGES,
+  ...GUITAR_IMAGES,
 ];

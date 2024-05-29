@@ -4,6 +4,7 @@ import MultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { useCarouselContext } from "./carouselContext";
+import { IMAGES } from "./imageData";
 
 const responsive = {
   desktop: {
