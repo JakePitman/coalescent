@@ -26,7 +26,20 @@ const responsive = {
 
 export const Carousel = () => {
   const { currentImage, setCurrentImage } = useCarouselContext();
+
   if (!currentImage) return null;
+
+  // Reorder images so that the carousel opens to the current image
+  // i.e, the one that was clicked.
+  // goToSlide exhibits strange indexing of images that doesn't reflect
+  // the order they're given to the Carousel component, and required a
+  // setTimeout to work anyway.
+  const currentImageIndex = IMAGES.findIndex(
+    (image) => image.imageURL === currentImage
+  );
+  const firstHalf = IMAGES.slice(0, currentImageIndex);
+  const secondHalf = IMAGES.slice(currentImageIndex);
+  const REORDERED_IMAGES = [...secondHalf, ...firstHalf];
 
   return (
     <>
@@ -44,7 +57,6 @@ export const Carousel = () => {
             draggable={false}
             showDots={true}
             infinite={true}
-            autoPlaySpeed={1000}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
@@ -53,7 +65,7 @@ export const Carousel = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {IMAGES.map(({ imageURL, alt }) => (
+            {REORDERED_IMAGES.map(({ imageURL, alt }) => (
               <div
                 className="relative h-[80vh] w-full border-solid border-white"
                 key="imageURL"
