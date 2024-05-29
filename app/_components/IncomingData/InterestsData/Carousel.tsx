@@ -53,30 +53,19 @@ export const Carousel = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            <div className="relative h-[80vh] w-full border-solid border-white">
-              <Image
-                src="/images/drones/drone.jpeg"
-                fill
-                style={{ objectFit: "contain" }}
-                alt="drone"
-              />
-            </div>
-            <div className="relative h-[80vh] w-full border-solid border-white">
-              <Image
-                src="/images/drones/drone_repair.jpeg"
-                fill
-                style={{ objectFit: "contain" }}
-                alt="drone"
-              />
-            </div>
-            <div className="relative h-[80vh] w-full border-solid border-white">
-              <Image
-                src="/images/drones/fpv.jpeg"
-                fill
-                style={{ objectFit: "contain" }}
-                alt="drone"
-              />
-            </div>
+            {IMAGES.map(({ imageURL, alt }) => (
+              <div
+                className="relative h-[80vh] w-full border-solid border-white"
+                key="imageURL"
+              >
+                <Image
+                  src={imageURL}
+                  fill
+                  style={{ objectFit: "contain" }}
+                  alt={alt}
+                />
+              </div>
+            ))}
           </MultiCarousel>
         </div>,
         document.getElementById("portal") as HTMLElement
