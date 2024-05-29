@@ -1,12 +1,12 @@
-import { CarouselContextProvider, useCarouselContext } from "./carouselContext";
-import { CollageFormat } from "./CollageFormat";
-import { CarouselFormat } from "./CarouselFormat";
+import { CarouselContextProvider } from "./carouselContext";
+import { Collage } from "./Collage";
+import { Carousel } from "./Carousel";
 
 export const InterestsData = () => {
   return (
     <CarouselContextProvider>
-      <CollageFormat />
-      <CarouselFormat />
+      <Collage />
+      <Carousel />
     </CarouselContextProvider>
   );
 };

@@ -10,7 +10,7 @@ import {
 import { TextBlock } from "../TextBlock";
 import { InterestsGroup } from "./InterestsGroup";
 
-export const CollageFormat = () => {
+export const Collage = () => {
   const [textIsFinished, setTextIsFinished] = useState(false);
 
   return (

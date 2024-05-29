@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import Carousel from "react-multi-carousel";
+import MultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { useCarouselContext } from "./carouselContext";
@@ -23,7 +23,7 @@ const responsive = {
   },
 };
 
-export const CarouselFormat = () => {
+export const Carousel = () => {
   const { currentImage, setCurrentImage } = useCarouselContext();
   if (!currentImage) return null;
 
@@ -37,7 +37,7 @@ export const CarouselFormat = () => {
           >
             x
           </button>
-          <Carousel
+          <MultiCarousel
             responsive={responsive}
             swipeable={true}
             draggable={false}
@@ -76,7 +76,7 @@ export const CarouselFormat = () => {
                 alt="drone"
               />
             </div>
-          </Carousel>
+          </MultiCarousel>
         </div>,
         document.getElementById("portal") as HTMLElement
       )}

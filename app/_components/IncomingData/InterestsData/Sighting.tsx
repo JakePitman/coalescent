@@ -15,9 +15,9 @@ const variants = {
   },
 };
 
-export type Props = { imageURL: string; isRTL: boolean };
+export type Props = { imageURL: string; alt: string; isRTL: boolean };
 
-export const Sighting = ({ imageURL, isRTL }: Props) => {
+export const Sighting = ({ imageURL, alt, isRTL }: Props) => {
   const [imageHasLoaded, setImageHasLoaded] = useState(false);
   const { setCurrentImage } = useCarouselContext();
 
@@ -33,7 +33,7 @@ export const Sighting = ({ imageURL, isRTL }: Props) => {
     >
       <Image
         src={imageURL}
-        alt="diving"
+        alt={alt}
         fill
         style={{
           objectFit: "cover",

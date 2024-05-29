@@ -68,8 +68,8 @@ export const InterestsGroup = ({
             }
           )}
         >
-          {imageData.map(({ imageURL }, i) => (
-            <Sighting imageURL={imageURL} isRTL={isRTL} key={i} />
+          {imageData.map(({ imageURL, alt }, i) => (
+            <Sighting imageURL={imageURL} alt={alt} isRTL={isRTL} key={i} />
           ))}
         </div>
       </div>
