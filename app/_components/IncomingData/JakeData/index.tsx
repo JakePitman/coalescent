@@ -24,7 +24,7 @@ export const JakeData = () => {
           </div>
           <div>
             <h3 className={styles.key}>Last sighted: </h3>
-            <p className={styles.value}>Earth, New Zealand</p>
+            <p className={styles.value}>Japan, Earth</p>
           </div>
           <div>
             <h3 className={styles.key}>Roles performed: </h3>
