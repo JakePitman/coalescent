@@ -45,6 +45,7 @@ export default function RootLayout({
           <Dialogue />
           <IncomingData />
           <Experience style={{ position: "absolute", zIndex: "0" }} />
+          <div id="portal" className="z-50" />
         </WithProviders>
       </body>
     </html>

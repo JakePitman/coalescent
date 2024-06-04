@@ -1,7 +1,8 @@
 import classnames from "classnames";
 import Typist from "react-typist";
 
-import { Sighting, Props as SightingProps } from "./Sighting";
+import { Sighting } from "./Sighting";
+import { ImageData } from "./imageData";
 
 const typistSettings = {
   stdTypingDelay: 10,
@@ -22,14 +23,14 @@ const variants = {
 type Props = {
   title: string;
   text: string;
-  sightingsData: Omit<SightingProps, "isRTL">[];
+  imageData: ImageData[];
   isRTL?: boolean;
 };
 
 export const InterestsGroup = ({
   title,
   text,
-  sightingsData,
+  imageData,
   isRTL = false,
 }: Props) => {
   return (
@@ -67,8 +68,8 @@ export const InterestsGroup = ({
             }
           )}
         >
-          {sightingsData.map((sightingProps, i) => (
-            <Sighting {...sightingProps} isRTL={isRTL} key={i} />
+          {imageData.map(({ imageURL, alt }, i) => (
+            <Sighting imageURL={imageURL} alt={alt} isRTL={isRTL} key={i} />
           ))}
         </div>
       </div>
