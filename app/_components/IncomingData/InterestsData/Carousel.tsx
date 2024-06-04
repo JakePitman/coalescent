@@ -2,6 +2,7 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import MultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { IoCloseSharp } from "react-icons/io5";
 
 import { useCarouselContext } from "./carouselContext";
 import { IMAGES } from "./imageData";
@@ -47,9 +48,9 @@ export const Carousel = () => {
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/80 z-[inherit] flex justify-center items-center">
           <button
             onClick={() => setCurrentImage(null)}
-            className="absolute top-6 right-6"
+            className="absolute top-6 right-8"
           >
-            x
+            <IoCloseSharp color="white" fontSize={30} />
           </button>
           <MultiCarousel
             responsive={responsive}
