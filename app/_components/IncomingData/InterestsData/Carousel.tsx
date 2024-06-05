@@ -61,22 +61,25 @@ export const Carousel = () => {
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
-            containerClass="carousel-container w-[80vw] "
+            containerClass="carousel-container w-[95vw] "
             removeArrowOnDeviceType={["tablet", "mobile"]}
             itemClass="carousel-item-padding-40-px"
           >
             {REORDERED_IMAGES.map(({ imageURL, alt }) => (
               <div
-                className="relative h-[80vh] w-full border-solid border-white"
+                className="relative h-[95vh] w-full flex justify-center"
                 key="imageURL"
               >
-                <Image
-                  src={imageURL}
-                  fill
-                  sizes="100vw"
-                  style={{ objectFit: "contain" }}
-                  alt={alt}
-                />
+                {/* Fixes a mobile error where edge of next image shows */}
+                <div className="m-2 w-full h-full relative flex justify-center">
+                  <Image
+                    src={imageURL}
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: "contain" }}
+                    alt={alt}
+                  />
+                </div>
               </div>
             ))}
           </MultiCarousel>
