@@ -34,6 +34,7 @@ export const Sighting = ({ imageURL, alt, isRTL }: Props) => {
       <Image
         src={imageURL}
         alt={alt}
+        sizes="20vw"
         fill
         style={{
           objectFit: "cover",

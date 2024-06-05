@@ -73,6 +73,7 @@ export const Carousel = () => {
                 <Image
                   src={imageURL}
                   fill
+                  sizes="100vw"
                   style={{ objectFit: "contain" }}
                   alt={alt}
                 />
