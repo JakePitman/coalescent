@@ -48,7 +48,7 @@ export const Carousel = () => {
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/80 z-[inherit] flex justify-center items-center">
           <button
             onClick={() => setCurrentImage(null)}
-            className="absolute top-6 right-8"
+            className="absolute top-6 right-8 z-50 bg-black/50 rounded"
           >
             <IoCloseSharp color="white" fontSize={30} />
           </button>
@@ -56,27 +56,29 @@ export const Carousel = () => {
             responsive={responsive}
             swipeable={true}
             draggable={false}
-            showDots={true}
+            showDots={false}
             infinite={true}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
-            containerClass="carousel-container w-[80vw] "
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            dotListClass="custom-dot-list-style"
+            containerClass="carousel-container w-[95vw] "
             itemClass="carousel-item-padding-40-px"
           >
             {REORDERED_IMAGES.map(({ imageURL, alt }) => (
               <div
-                className="relative h-[80vh] w-full border-solid border-white"
+                className="relative h-[95vh] w-full flex justify-center"
                 key="imageURL"
               >
-                <Image
-                  src={imageURL}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  alt={alt}
-                />
+                {/* Fixes a mobile error where edge of next image shows */}
+                <div className="m-2 w-full h-full relative flex justify-center">
+                  <Image
+                    src={imageURL}
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: "contain" }}
+                    alt={alt}
+                  />
+                </div>
               </div>
             ))}
           </MultiCarousel>

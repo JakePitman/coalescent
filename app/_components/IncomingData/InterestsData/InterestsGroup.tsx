@@ -50,14 +50,14 @@ export const InterestsGroup = ({
           "flex-row-reverse": isRTL,
         })}
       >
-        <p
+        <div
           // Text hidden on mobile
           className={classnames("w-4/12 pr-2 text-xs hidden sm:block", {
             "text-right pr-0 pl-2": isRTL,
           })}
         >
           <Typist {...typistSettings}>{text}</Typist>
-        </p>
+        </div>
 
         <div
           // Images full width on mobile
