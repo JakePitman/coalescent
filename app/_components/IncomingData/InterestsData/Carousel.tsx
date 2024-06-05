@@ -56,14 +56,13 @@ export const Carousel = () => {
             responsive={responsive}
             swipeable={true}
             draggable={false}
-            showDots={true}
+            showDots={false}
             infinite={true}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
             containerClass="carousel-container w-[80vw] "
             removeArrowOnDeviceType={["tablet", "mobile"]}
-            dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
             {REORDERED_IMAGES.map(({ imageURL, alt }) => (
