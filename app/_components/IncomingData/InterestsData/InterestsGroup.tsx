@@ -43,7 +43,7 @@ export const InterestsGroup = ({
           }
         )}
       >
-        {/* <Typist {...typistSettings}>{title}</Typist> */}
+        <Typist {...typistSettings}>{title}</Typist>
       </h2>
       <div
         className={classnames("flex ", {
