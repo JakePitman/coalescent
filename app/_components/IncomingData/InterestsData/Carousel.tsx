@@ -62,7 +62,6 @@ export const Carousel = () => {
             customTransition="all .5"
             transitionDuration={500}
             containerClass="carousel-container w-[95vw] "
-            removeArrowOnDeviceType={["tablet", "mobile"]}
             itemClass="carousel-item-padding-40-px"
           >
             {REORDERED_IMAGES.map(({ imageURL, alt }) => (
