@@ -38,12 +38,12 @@ export const Collage = () => {
           />
           <InterestsGroup
             title="Drones"
-            text={`He builds, repairs, races, and films with them`}
+            text="He builds, repairs, races, and films with them"
             imageData={DRONES_IMAGES}
           />
           <InterestsGroup
             title="Guitar"
-            text={`The Earthlings call it "Rock and Roll Baby"`}
+            text="The Earthlings call it 'Rock and Roll Baby'"
             imageData={GUITAR_IMAGES}
           />
         </motion.div>
