@@ -48,7 +48,7 @@ export const Carousel = () => {
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/80 z-[inherit] flex justify-center items-center">
           <button
             onClick={() => setCurrentImage(null)}
-            className="absolute top-6 right-8"
+            className="absolute top-6 right-8 z-50 bg-black/50 rounded"
           >
             <IoCloseSharp color="white" fontSize={30} />
           </button>
