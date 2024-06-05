@@ -24,7 +24,7 @@ export const Collage = () => {
         <motion.div
           initial="hidden"
           animate="show"
-          transition={{ staggerChildren: 0.1, staggerDirection: -1 }}
+          transition={{ staggerChildren: 0.1, staggerDirection: 1 }}
         >
           <InterestsGroup
             title="Exploring"
