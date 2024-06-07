@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,11 @@ type NavItemProps = {
   isActive: boolean;
 };
 const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  useEffect(() => {
+    document.body.style.cursor = isHovered ? "pointer" : "auto";
+  }, [isHovered]);
+
   const content = isActive ? `· ${label} ·` : label;
   return (
     <Text
@@ -26,6 +32,8 @@ const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
         e.stopPropagation();
         handleClick();
       }}
+      onPointerOver={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
     >
       {content}
     </Text>
