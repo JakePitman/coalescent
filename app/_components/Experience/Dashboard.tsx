@@ -12,12 +12,20 @@ import { Text } from "@react-three/drei";
 type NavItemProps = {
   label: string;
   position: [number, number, number];
-  // handleClick: () => void;
+  handleClick: () => void;
   // isActive: boolean;
 };
-const NavItem = ({ label, position }: NavItemProps) => {
+const NavItem = ({ label, position, handleClick }: NavItemProps) => {
   return (
-    <Text position={position} anchorX={"center"} anchorY={"middle"}>
+    <Text
+      position={position}
+      anchorX={"center"}
+      anchorY={"middle"}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
+    >
       {label}
     </Text>
   );
@@ -34,12 +42,36 @@ export const Dashboard = () => {
 
   return (
     <group rotation={[-0.7, 0, 0]} position={[0, -2.06, -1]} scale={0.23}>
-      <NavItem label="Home" position={[-3.35, 0, 0]} />
-      <NavItem label="Jake" position={[-3.35, -1.2, 0]} />
-      <NavItem label="Interests" position={[-3.35, -2.4, 0]} />
-      <NavItem label="Projects" position={[3.35, 0, 0]} />
-      <NavItem label="Blog" position={[3.35, -1.2, 0]} />
-      <NavItem label="Contact" position={[3.35, -2.4, 0]} />
+      <NavItem
+        label="Home"
+        handleClick={() => handleClick("/")}
+        position={[-3.35, 0, 0]}
+      />
+      <NavItem
+        label="Jake"
+        handleClick={() => handleClick("/jake")}
+        position={[-3.35, -1.2, 0]}
+      />
+      <NavItem
+        label="Interests"
+        handleClick={() => handleClick("/interests")}
+        position={[-3.35, -2.4, 0]}
+      />
+      <NavItem
+        label="Projects"
+        handleClick={() => handleClick("/projects")}
+        position={[3.35, 0, 0]}
+      />
+      <NavItem
+        label="Blog"
+        handleClick={() => handleClick("/blog")}
+        position={[3.35, -1.2, 0]}
+      />
+      <NavItem
+        label="Contact"
+        handleClick={() => handleClick("/contact")}
+        position={[3.35, -2.4, 0]}
+      />
     </group>
   );
 };
