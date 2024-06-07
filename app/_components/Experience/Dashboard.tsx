@@ -5,11 +5,6 @@ import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
 import { Text } from "@react-three/drei";
 
-// onClick={(e) => {
-//   e.stopPropagation();
-//   handleClick();
-// }}
-
 type NavItemProps = {
   label: string;
   position: [number, number, number];
