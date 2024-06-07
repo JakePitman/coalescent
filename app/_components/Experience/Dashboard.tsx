@@ -5,6 +5,9 @@ import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
 import { Text } from "@react-three/drei";
 
+import { mobileBreakPoint } from "@sharedData/index";
+import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
+
 type NavItemProps = {
   label: string;
   position: [number, number, number];
@@ -36,11 +39,14 @@ const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
   );
 };
 
-const xOffset = 3.35;
-const yOffset = 1.2;
 export const Dashboard = () => {
   const router = useRouter();
   const { page, setPage } = usePageContext();
+  const { width } = useWindowDimensions();
+  const isMobile = width <= mobileBreakPoint;
+
+  const xOffset = isMobile ? 3 : 3.35;
+  const yOffset = 1.2;
 
   const handleClick = (path: PageNames) => {
     setPage(path);
