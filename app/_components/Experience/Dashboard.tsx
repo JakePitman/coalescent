@@ -1,36 +1,52 @@
 "use client";
-import Link from "next/link";
-import { Html } from "@react-three/drei";
+import { useState, useEffect } from "react";
 import { usePageContext } from "@contexts/pageContext";
 import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
+import { Text } from "@react-three/drei";
+
+import { mobileBreakPoint } from "@sharedData/index";
+import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 
 type NavItemProps = {
   label: string;
+  position: [number, number, number];
   handleClick: () => void;
   isActive: boolean;
 };
-const NavItem = ({ label, handleClick, isActive }: NavItemProps) => {
-  const activeStyles = "border-b-white";
+const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  useEffect(() => {
+    document.body.style.cursor = isHovered ? "pointer" : "auto";
+  }, [isHovered]);
+
+  const content = isActive ? `· ${label} ·` : label;
   return (
-    <button
-      className={
-        "border-b-2 border-b-transparent text-white" +
-        ` ${isActive ? activeStyles : ""}`
-      }
+    <Text
+      color={isActive ? "white" : "#969696"}
+      position={position}
+      anchorX={"center"}
+      anchorY={"middle"}
       onClick={(e) => {
         e.stopPropagation();
         handleClick();
       }}
+      onPointerOver={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
     >
-      {label}
-    </button>
+      {content}
+    </Text>
   );
 };
 
 export const Dashboard = () => {
   const router = useRouter();
   const { page, setPage } = usePageContext();
+  const { width } = useWindowDimensions();
+  const isMobile = width <= mobileBreakPoint;
+
+  const xOffset = isMobile ? 3 : 3.35;
+  const yOffset = 1.2;
 
   const handleClick = (path: PageNames) => {
     setPage(path);
@@ -38,48 +54,43 @@ export const Dashboard = () => {
   };
 
   return (
-    <Html
-      transform
-      position={[0, -2.29, -0.86]}
-      rotation={[-0.6, 0, 0]}
-      as="div"
-      className="flex w-72 justify-around"
-      distanceFactor={4}
-    >
-      <div className="flex flex-col">
-        <NavItem
-          label="Home"
-          handleClick={() => handleClick("/")}
-          isActive={page === "/"}
-        />
-        <NavItem
-          label="Jake"
-          handleClick={() => handleClick("/jake")}
-          isActive={page === "/jake"}
-        />
-        <NavItem
-          label="Interests"
-          handleClick={() => handleClick("/interests")}
-          isActive={page === "/interests"}
-        />
-      </div>
-      <div className="flex flex-col">
-        <NavItem
-          label="Projects"
-          handleClick={() => handleClick("/projects")}
-          isActive={page === "/projects"}
-        />
-        <NavItem
-          label="Blog"
-          handleClick={() => handleClick("/blog")}
-          isActive={page === "/blog"}
-        />
-        <NavItem
-          label="Contact"
-          handleClick={() => handleClick("/contact")}
-          isActive={page === "/contact"}
-        />
-      </div>
-    </Html>
+    <group rotation={[-0.7, 0, 0]} position={[0, -2.06, -1]} scale={0.23}>
+      <NavItem
+        label="Home"
+        handleClick={() => handleClick("/")}
+        position={[-xOffset, 0, 0]}
+        isActive={page === "/"}
+      />
+      <NavItem
+        label="Jake"
+        handleClick={() => handleClick("/jake")}
+        position={[-xOffset, -yOffset, 0]}
+        isActive={page === "/jake"}
+      />
+      <NavItem
+        label="Interests"
+        handleClick={() => handleClick("/interests")}
+        position={[-xOffset, -yOffset * 2, 0]}
+        isActive={page === "/interests"}
+      />
+      <NavItem
+        label="Projects"
+        handleClick={() => handleClick("/projects")}
+        position={[xOffset, 0, 0]}
+        isActive={page === "/projects"}
+      />
+      <NavItem
+        label="Blog"
+        handleClick={() => handleClick("/blog")}
+        position={[xOffset, -yOffset, 0]}
+        isActive={page === "/blog"}
+      />
+      <NavItem
+        label="Contact"
+        handleClick={() => handleClick("/contact")}
+        position={[xOffset, -yOffset * 2, 0]}
+        isActive={page === "/contact"}
+      />
+    </group>
   );
 };
