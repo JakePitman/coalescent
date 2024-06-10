@@ -49,13 +49,17 @@ export const ContactData = () => {
               className="border-sky-700 border-2 rounded bg-sky-950 w-full h-60"
             ></textarea>
           </motion.label>
-          <motion.button
+          <motion.div
+            className="w-full flex justify-center"
             variants={variants}
-            type="submit"
-            className="border-2 rounded border-sky-500 px-3 py-1 hover:bg-sky-500 hover:text-sky-950 transition-all"
           >
-            Send
-          </motion.button>
+            <button
+              type="submit"
+              className="border-2 rounded border-sky-500 px-3 py-1 hover:bg-sky-500 hover:text-sky-950 transition-all"
+            >
+              Send
+            </button>
+          </motion.div>
         </motion.form>
       )}
     </div>
