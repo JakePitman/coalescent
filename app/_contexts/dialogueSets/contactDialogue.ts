@@ -12,12 +12,12 @@ export const contactDialogue: DialogueSet = {
       animationName: "PonderingScreen",
     },
     {
-      text: "Wait! I think I've found some contact information!",
+      text: "Wait! I'm getting a transmission.",
       animationName: "ReadingScreen",
     },
     {
-      text: "Now's our chance!",
-      animationName: "Asserting",
+      text: "It's him..!!",
+      animationName: "ShockedScreen",
     },
     {
       text: null,
