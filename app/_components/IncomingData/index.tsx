@@ -33,8 +33,9 @@ const getDataFromPage = (page: keyof typeof pageToDataMap) =>
 
 type ControlBarProps = {
   handleDismiss: () => void;
+  senderName: string;
 };
-const ControlBar = ({ handleDismiss }: ControlBarProps) => {
+const ControlBar = ({ handleDismiss, senderName }: ControlBarProps) => {
   const currentTime = new Date().toLocaleString("en-US", {
     hour12: false,
     hour: "numeric",
@@ -44,7 +45,9 @@ const ControlBar = ({ handleDismiss }: ControlBarProps) => {
   return (
     <div className="w-full flex mb-3">
       <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
-        <p className="text-xs">Jerome-VI: {currentTime}</p>
+        <p className="text-xs">
+          {senderName}: {currentTime}
+        </p>
       </div>
       <button onClick={handleDismiss}>
         <CgCloseR className="text-xl" />
@@ -87,6 +90,8 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     if (!isForcedOpen) setIsOpen(false);
   };
 
+  const senderName = page === "/contact" ? "Jake Pitman" : "Jerome VI";
+
   return (
     <div
       className={classnames(
@@ -98,7 +103,7 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     >
       {isOpen ? (
         <>
-          <ControlBar handleDismiss={handleDismiss} />
+          <ControlBar handleDismiss={handleDismiss} senderName={senderName} />
           {data}
         </>
       ) : null}
