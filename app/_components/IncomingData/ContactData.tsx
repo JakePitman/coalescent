@@ -55,7 +55,7 @@ export const ContactData = () => {
           >
             <button
               type="submit"
-              className="border-2 rounded border-sky-500 px-3 py-1 hover:bg-sky-500 hover:text-sky-950 transition-all"
+              className="border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
             >
               Send
             </button>
