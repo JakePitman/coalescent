@@ -5,9 +5,16 @@ import { DialogueContextProvider } from "@contexts/dialogueContext";
 import { Dialogue } from "@components/Dialogue";
 import { useControls } from "leva";
 import { Props as IncomingDataProps } from "@components/IncomingData";
+import { PageNames } from "@customTypes/pageNames";
 
-const IncomingDataWithControls = (props: IncomingDataProps) => {
+type IncomingDataWithControlsProps = IncomingDataProps & {
+  page?: PageNames;
+};
+const IncomingDataWithControls = (props: IncomingDataWithControlsProps) => {
   const { setPage } = usePageContext();
+
+  const { page } = props;
+  page && setPage(page);
 
   useControls("App Context (IncomingData)", {
     page: {
@@ -55,6 +62,31 @@ type Story = StoryObj<typeof meta>;
 
 export const ForcedOpen: Story = {
   args: { isForcedOpen: true },
+};
+export const HomePage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/" />;
+  },
+};
+export const JakePage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/jake" />;
+  },
+};
+export const InterestsPage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/interests" />;
+  },
+};
+export const BlogPage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/blog" />;
+  },
+};
+export const ContactPage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/contact" />;
+  },
 };
 export const WithDialogue: Story = {
   args: {},
