@@ -23,7 +23,7 @@ const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
   const content = isActive ? `· ${label} ·` : label;
   return (
     <Text
-      color={isActive ? "white" : "#969696"}
+      color={isActive ? "#09ff00" : "white"}
       position={position}
       anchorX={"center"}
       anchorY={"middle"}
