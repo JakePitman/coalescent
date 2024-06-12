@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import styles from "./dialogueBox.module.css";
+import { FormattedMessage } from "react-intl";
 
 import { Space_Mono } from "next/font/google";
 

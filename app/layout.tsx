@@ -24,7 +24,7 @@ type WithProvidersProps = {
 const WithProviders = ({ children }: WithProvidersProps) => (
   <PageContextProvider>
     <FlightContextProvider>
-      <I18nProvider locale="en-US">
+      <I18nProvider locale="en-us">
         <DialogueContextProvider>{children}</DialogueContextProvider>
       </I18nProvider>
     </FlightContextProvider>

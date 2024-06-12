@@ -1,5 +1,5 @@
 "use client";
-import { ComponentType, Fragment } from "react";
+import { Fragment } from "react";
 import { IntlProvider } from "react-intl";
 
 import { LOCALES } from "./constants";
