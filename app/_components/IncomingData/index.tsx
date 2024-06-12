@@ -71,16 +71,16 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
       return;
     }
     // Close when there's text
-    if (dialogue?.text || page === "/") {
+    if (dialogue?.messageId || page === "/") {
       setIsOpen(false);
       return;
     }
     // Open when text is finished
-    if (!dialogue?.text) {
+    if (!dialogue?.messageId) {
       setIsOpen(true);
       return;
     }
-  }, [isForcedOpen, dialogue?.text, page]);
+  }, [isForcedOpen, dialogue?.messageId, page]);
 
   if (!page) return null;
 

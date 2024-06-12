@@ -24,7 +24,7 @@ type WithProvidersProps = {
 const WithProviders = ({ children }: WithProvidersProps) => (
   <PageContextProvider>
     <FlightContextProvider>
-      <I18nProvider locale="ja-jp">
+      <I18nProvider locale="en-us">
         <DialogueContextProvider>{children}</DialogueContextProvider>
       </I18nProvider>
     </FlightContextProvider>
@@ -46,8 +46,8 @@ export default function RootLayout({
           </div> */}
           <RouteChangeListener />
           <Dialogue />
-          {/* <IncomingData />
-           <Experience style={{ position: "absolute", zIndex: "0" }} />  */}
+          <IncomingData />
+          <Experience style={{ position: "absolute", zIndex: "0" }} />
           <div id="portal" className="z-50" />
         </WithProviders>
       </body>

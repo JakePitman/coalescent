@@ -4,7 +4,7 @@ export const homeDialogue: DialogueSet = {
   page: "/",
   dialogues: [
     {
-      text: null,
+      messageId: null,
       animationName: "Sleeping",
     },
   ],
