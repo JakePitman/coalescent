@@ -9,7 +9,9 @@ type Props = {
   children: any;
   locale: string;
 };
+
 const Provider = ({ children, locale = LOCALES.ENGLISH }: Props) => {
+  console.log("MESSAGES: ", messages, locale);
   return (
     <IntlProvider
       textComponent={Fragment as any}

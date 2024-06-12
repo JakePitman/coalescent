@@ -43,7 +43,8 @@ export const DialogueBox = ({ dialogueIsOpen, text }: Props) => {
          dialogue.text will change before dialogue closes 
          this check will immediately clear the text while closing
         */}
-        {dialogueIsOpen ? text : null}
+        {/* {dialogueIsOpen ? text : null} */}
+        <FormattedMessage id="hello" defaultMessage={"G'day"} />
       </p>
       <div
         className={classnames(styles.triangle, "absolute bottom-1 right-1")}

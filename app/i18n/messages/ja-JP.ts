@@ -1,8 +1,8 @@
 import { LOCALES } from "../constants";
 
 const messages = {
-  [LOCALES.GERMAN]: {
-    hello: "Hallo message",
+  [LOCALES.JAPANESE]: {
+    hello: "今日は message",
   },
 };
 export default messages;
