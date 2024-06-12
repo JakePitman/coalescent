@@ -9,6 +9,7 @@ import { RouteChangeListener } from "@components/RouteChangeListener";
 import { Dialogue } from "@components/Dialogue";
 import { IncomingData } from "@components/IncomingData";
 import { Experience } from "@components/Experience";
+import { I18nProvider } from "./i18n";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ type WithProvidersProps = {
 const WithProviders = ({ children }: WithProvidersProps) => (
   <PageContextProvider>
     <FlightContextProvider>
-      <DialogueContextProvider>{children}</DialogueContextProvider>
+      <I18nProvider locale="en-US">
+        <DialogueContextProvider>{children}</DialogueContextProvider>
+      </I18nProvider>
     </FlightContextProvider>
   </PageContextProvider>
 );
