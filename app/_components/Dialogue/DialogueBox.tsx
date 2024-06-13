@@ -4,6 +4,9 @@ import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import styles from "./dialogueBox.module.css";
 import { FormattedMessage } from "react-intl";
+import messages from "../../i18n/messages/en-US";
+import { LOCALES } from "../../i18n/constants";
+const ENGLISH_MESSAGES = messages[LOCALES.ENGLISH];
 
 import { Space_Mono } from "next/font/google";
 
@@ -19,9 +22,6 @@ type Props = {
 export const DialogueBox = ({ dialogueIsOpen, messageId }: Props) => {
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
-
-  console.log("MESSAGE_ID: ", messageId);
-
   return (
     <div
       className={classnames(
@@ -46,7 +46,12 @@ export const DialogueBox = ({ dialogueIsOpen, messageId }: Props) => {
          this check will immediately clear the text while closing
         */}
         {dialogueIsOpen && messageId ? (
-          <FormattedMessage id={messageId} defaultMessage={"G'day"} />
+          <FormattedMessage
+            id={messageId}
+            defaultMessage={
+              ENGLISH_MESSAGES[messageId as keyof typeof ENGLISH_MESSAGES]
+            }
+          />
         ) : null}
       </p>
       <div
