@@ -32,17 +32,41 @@ const hasChildrenVariants = {
   },
 };
 
-const TECH_STACK: { name: string; Icon: React.ComponentType }[] = [
-  { name: "React", Icon: FaReact },
-  { name: "NextJS", Icon: RiNextjsLine },
-  { name: "NodeJS", Icon: FaNodeJs },
-  { name: "Typescript", Icon: TbBrandTypescript },
-  { name: "Bash", Icon: VscTerminalBash },
-  { name: "Storybook", Icon: TbBrandStorybook },
-  { name: "ThreeJS", Icon: TbBrandThreejs },
-  { name: "R3F", Icon: IoCubeOutline },
-  { name: "Framer Motion", Icon: TbBrandFramerMotion },
-  { name: "Blender", Icon: SiBlender },
+const TECH_STACK: {
+  messageId: string;
+  defaultMessage: string;
+  Icon: React.ComponentType;
+}[] = [
+  { messageId: "techStackReact", defaultMessage: "React", Icon: FaReact },
+  {
+    messageId: "techStackNextJS",
+    defaultMessage: "NextJS",
+    Icon: RiNextjsLine,
+  },
+  { messageId: "techStackNodeJS", defaultMessage: "NodeJS", Icon: FaNodeJs },
+  {
+    messageId: "techStackTypescript",
+    defaultMessage: "Typescript",
+    Icon: TbBrandTypescript,
+  },
+  { messageId: "techStackBash", defaultMessage: "Bash", Icon: VscTerminalBash },
+  {
+    messageId: "techStackStorybook",
+    defaultMessage: "Storybook",
+    Icon: TbBrandStorybook,
+  },
+  {
+    messageId: "techStackThreeJS",
+    defaultMessage: "ThreeJS",
+    Icon: TbBrandThreejs,
+  },
+  { messageId: "techStackR3F", defaultMessage: "R3F", Icon: IoCubeOutline },
+  {
+    messageId: "techStackFramerMotion",
+    defaultMessage: "Framer Motion",
+    Icon: TbBrandFramerMotion,
+  },
+  { messageId: "techStackBlender", defaultMessage: "Blender", Icon: SiBlender },
 ];
 
 type Props = {
@@ -68,8 +92,9 @@ export const TechStack = ({ readyToRender }: Props) => {
       >
         {TECH_STACK.map((tech, i) => (
           <Tech
-            key={tech.name}
-            name={tech.name}
+            key={tech.messageId}
+            messageId={tech.messageId}
+            defaultMessage={tech.defaultMessage}
             Icon={tech.Icon}
             iconDelay={i * childrenStaggerTime}
           />
