@@ -1,4 +1,3 @@
-import { interestsDialogue } from "@/app/_contexts/dialogueSets";
 import { LOCALES } from "../constants";
 
 const dialogue = {
