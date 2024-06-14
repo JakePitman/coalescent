@@ -49,7 +49,8 @@ export const Dashboard = () => {
   const intl = useIntl();
 
   const xOffset = isMobile ? 3 : 3.35;
-  const yOffset = 1.2;
+  const yOffset = isMobile ? 2.0 : 2.06;
+  const ySpacing = 1.2;
 
   const handleClick = (path: PageNames) => {
     setPage(path);
@@ -57,7 +58,7 @@ export const Dashboard = () => {
   };
 
   return (
-    <group rotation={[-0.7, 0, 0]} position={[0, -2.06, -1]} scale={0.23}>
+    <group rotation={[-0.7, 0, 0]} position={[0, -yOffset, -1]} scale={0.23}>
       <NavItem
         label={intl.formatMessage({
           id: "dashboardHome",
@@ -73,7 +74,7 @@ export const Dashboard = () => {
           defaultMessage: "Jake",
         })}
         handleClick={() => handleClick("/jake")}
-        position={[-xOffset, -yOffset, 0]}
+        position={[-xOffset, -ySpacing, 0]}
         isActive={page === "/jake"}
       />
       <NavItem
@@ -82,7 +83,7 @@ export const Dashboard = () => {
           defaultMessage: "Interests",
         })}
         handleClick={() => handleClick("/interests")}
-        position={[-xOffset, -yOffset * 2, 0]}
+        position={[-xOffset, -ySpacing * 2, 0]}
         isActive={page === "/interests"}
       />
       <NavItem
@@ -100,7 +101,7 @@ export const Dashboard = () => {
           defaultMessage: "Blog",
         })}
         handleClick={() => handleClick("/blog")}
-        position={[xOffset, -yOffset, 0]}
+        position={[xOffset, -ySpacing, 0]}
         isActive={page === "/blog"}
       />
       <NavItem
@@ -109,7 +110,7 @@ export const Dashboard = () => {
           defaultMessage: "Contact",
         })}
         handleClick={() => handleClick("/contact")}
-        position={[xOffset, -yOffset * 2, 0]}
+        position={[xOffset, -ySpacing * 2, 0]}
         isActive={page === "/contact"}
       />
     </group>
