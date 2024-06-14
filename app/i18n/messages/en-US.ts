@@ -81,12 +81,22 @@ const contactData = {
   contactDataSend: "Send",
 };
 
+const dashboard = {
+  dashboardHome: "Home",
+  dashboardJake: "Jake",
+  dashboardInterests: "Interests",
+  dashboardProjects: "Projects",
+  dashboardBlog: "Blog",
+  dashboardContact: "Contact",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...dialogue,
     ...jakeData,
     ...interestsData,
     ...contactData,
+    ...dashboard,
   },
 };
 export default messages;

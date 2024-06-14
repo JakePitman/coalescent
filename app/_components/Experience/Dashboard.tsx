@@ -4,6 +4,7 @@ import { usePageContext } from "@contexts/pageContext";
 import { PageNames } from "@customTypes/pageNames";
 import { useRouter } from "next/navigation";
 import { Text } from "@react-three/drei";
+import { useIntl } from "react-intl";
 
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
@@ -44,6 +45,7 @@ export const Dashboard = () => {
   const { page, setPage } = usePageContext();
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
+  const intl = useIntl();
 
   const xOffset = isMobile ? 3 : 3.35;
   const yOffset = 1.2;
@@ -56,37 +58,55 @@ export const Dashboard = () => {
   return (
     <group rotation={[-0.7, 0, 0]} position={[0, -2.06, -1]} scale={0.23}>
       <NavItem
-        label="Home"
+        label={intl.formatMessage({
+          id: "dashboardHome",
+          defaultMessage: "Home :]",
+        })}
         handleClick={() => handleClick("/")}
         position={[-xOffset, 0, 0]}
         isActive={page === "/"}
       />
       <NavItem
-        label="Jake"
+        label={intl.formatMessage({
+          id: "dashboardJake",
+          defaultMessage: "Jake",
+        })}
         handleClick={() => handleClick("/jake")}
         position={[-xOffset, -yOffset, 0]}
         isActive={page === "/jake"}
       />
       <NavItem
-        label="Interests"
+        label={intl.formatMessage({
+          id: "dashboardInterests",
+          defaultMessage: "Interests",
+        })}
         handleClick={() => handleClick("/interests")}
         position={[-xOffset, -yOffset * 2, 0]}
         isActive={page === "/interests"}
       />
       <NavItem
-        label="Projects"
+        label={intl.formatMessage({
+          id: "dashboardProjects",
+          defaultMessage: "Projects",
+        })}
         handleClick={() => handleClick("/projects")}
         position={[xOffset, 0, 0]}
         isActive={page === "/projects"}
       />
       <NavItem
-        label="Blog"
+        label={intl.formatMessage({
+          id: "dashboardBlog",
+          defaultMessage: "Blog",
+        })}
         handleClick={() => handleClick("/blog")}
         position={[xOffset, -yOffset, 0]}
         isActive={page === "/blog"}
       />
       <NavItem
-        label="Contact"
+        label={intl.formatMessage({
+          id: "dashboardContact",
+          defaultMessage: "Contact",
+        })}
         handleClick={() => handleClick("/contact")}
         position={[xOffset, -yOffset * 2, 0]}
         isActive={page === "/contact"}
