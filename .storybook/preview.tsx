@@ -1,7 +1,15 @@
 import type { Preview } from "@storybook/react";
 import "../app/globals.css";
+import { I18nProvider } from "../app/i18n";
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <I18nProvider locale="en-us">
+        <Story />
+      </I18nProvider>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {
