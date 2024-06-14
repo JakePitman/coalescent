@@ -72,12 +72,12 @@ const interestsData = {
 };
 
 const contactData = {
-  contactDataImJake: "Hi there! I'm Jake.",
+  contactDataImJake: "初めまして！私はジェイクです。",
   contactDataMainBody:
-    "I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together.",
-  contactDataYourEmail: "Your email:",
-  contactDataYourMessage: "Your message:",
-  contactDataSend: "Send",
+    "五年間フロントのソフトエンジニアの仕事していて、喜んでお役に立ちます。良ければ、下のフォームで連絡して、話しましょう！",
+  contactDataYourEmail: "あなたのメールアドレス:",
+  contactDataYourMessage: "あなたのメッセージ:",
+  contactDataSend: "送る",
 };
 
 const dashboard = {
