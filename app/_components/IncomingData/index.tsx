@@ -6,6 +6,7 @@ import { useDialogueContext } from "@contexts/dialogueContext";
 import { Space_Mono } from "next/font/google";
 import classnames from "classnames";
 import { CgCloseR } from "react-icons/cg";
+import { FormattedMessage } from "react-intl";
 
 import {
   JakeData,
@@ -33,20 +34,25 @@ const getDataFromPage = (page: keyof typeof pageToDataMap) =>
 
 type ControlBarProps = {
   handleDismiss: () => void;
-  senderName: string;
+  senderNameMessageData: { id: string; defaultMessage: string };
 };
-const ControlBar = ({ handleDismiss, senderName }: ControlBarProps) => {
+const ControlBar = ({
+  handleDismiss,
+  senderNameMessageData,
+}: ControlBarProps) => {
   const currentTime = new Date().toLocaleString("en-US", {
     hour12: false,
     hour: "numeric",
     minute: "numeric",
   });
+  const { id, defaultMessage } = senderNameMessageData;
 
   return (
     <div className="w-full flex mb-3">
       <div className="w-full h-[full] rounded bg-sky-400/30 mr-2 flex items-center justify-center">
         <p className="text-xs">
-          {senderName}: {currentTime}
+          <FormattedMessage id={id} defaultMessage={defaultMessage} />:{" "}
+          {currentTime}
         </p>
       </div>
       <button onClick={handleDismiss}>
@@ -90,7 +96,16 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     if (!isForcedOpen) setIsOpen(false);
   };
 
-  const senderName = page === "/contact" ? "Jake Pitman" : "Jerome VI";
+  const senderNameMessageData =
+    page === "/contact"
+      ? {
+          id: "incomingDataJakePitman",
+          defaultMessage: "Jake Pitman",
+        }
+      : {
+          id: "incomingDataJeromeVI",
+          defaultMessage: "Jerome VI",
+        };
 
   return (
     <div
@@ -103,7 +118,10 @@ export const IncomingData = ({ isForcedOpen }: Props) => {
     >
       {isOpen ? (
         <>
-          <ControlBar handleDismiss={handleDismiss} senderName={senderName} />
+          <ControlBar
+            handleDismiss={handleDismiss}
+            senderNameMessageData={senderNameMessageData}
+          />
           {data}
         </>
       ) : null}

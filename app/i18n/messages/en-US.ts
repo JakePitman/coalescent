@@ -90,6 +90,11 @@ const dashboard = {
   dashboardContact: "Contact",
 };
 
+const IncomingData = {
+  incomingDataJakePitman: "Jake Pitman",
+  incomingDataJeromeVI: "Jerome VI",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...dialogue,
@@ -97,6 +102,7 @@ const messages = {
     ...interestsData,
     ...contactData,
     ...dashboard,
+    ...IncomingData,
   },
 };
 export default messages;
