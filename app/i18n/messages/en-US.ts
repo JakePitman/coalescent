@@ -1,3 +1,4 @@
+import { interestsDialogue } from "@/app/_contexts/dialogueSets";
 import { LOCALES } from "../constants";
 
 const dialogue = {
@@ -57,10 +58,25 @@ const jakeData = {
   techStackBlender: "Blender",
 };
 
+const interestsData = {
+  interestsDataMainBody:
+    "Target's primary motivation is software engineering. However, he keeps himself healthy by engaging in a range of other pursuits in his down-time:",
+  interestsDataExploringTitle: "Exploring",
+  interestsDataExploringText: "Target has a curious mind and itchy feet",
+  interestsDataDivingTitle: "Diving",
+  interestsDataDivingText:
+    "Sighted in the oceans of Australia, New Zealand, and Thailand",
+  interestsDataDronesTitle: "Drones",
+  interestsDataDronesText: "He builds, repairs, races, and films with them",
+  interestsDataGuitarTitle: "Guitar",
+  interestsDataGuitarText: "The Earthlings call it 'Rock and Roll Baby'",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...dialogue,
     ...jakeData,
+    ...interestsData,
   },
 };
 export default messages;
