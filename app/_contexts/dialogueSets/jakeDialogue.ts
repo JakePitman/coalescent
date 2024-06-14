@@ -4,35 +4,35 @@ export const jakeDialogue: DialogueSet = {
   page: "/jake",
   dialogues: [
     {
-      text: "Woah! Did you see that??",
+      messageId: "jakeDialogue1",
       animationName: "ShockedOutside",
     },
     {
-      text: "That... kinda looks like our target, doesn't it?",
+      messageId: "jakeDialogue2",
       animationName: "LookingOutside",
     },
     {
-      text: "We must be getting close!",
+      messageId: "jakeDialogue3",
       animationName: "Happy",
     },
     {
-      text: "Let me do a scan on this place...",
+      messageId: "jakeDialogue4",
       animationName: "Typing",
     },
     {
-      text: "...",
+      messageId: "jakeDialogue5",
       animationName: "Typing",
     },
     {
-      text: "Found something! Looks like some info on the target.",
+      messageId: "jakeDialogue6",
       animationName: "ReadingScreen",
     },
     {
-      text: "Sending it through now.",
+      messageId: "jakeDialogue7",
       animationName: "Typing",
     },
     {
-      text: null,
+      messageId: null,
       animationName: "Idle",
     },
   ],

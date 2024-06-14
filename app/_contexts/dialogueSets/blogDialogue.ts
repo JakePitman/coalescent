@@ -4,31 +4,31 @@ export const blogDialogue: DialogueSet = {
   page: "/blog",
   dialogues: [
     {
-      text: "Hmm what else can we find out about this guy..?",
+      messageId: "blogDialogue1",
       animationName: "PonderingScreen",
     },
     {
-      text: "Let me see if I can dig up some more info...",
+      messageId: "blogDialogue2",
       animationName: "Typing",
     },
     {
-      text: "...",
+      messageId: "blogDialogue3",
       animationName: "ReadingScreen",
     },
     {
-      text: "Wait, this is..!",
+      messageId: "blogDialogue4",
       animationName: "ShockedScreen",
     },
     {
-      text: "I've hacked into his diary.",
+      messageId: "blogDialogue5",
       animationName: "Laughing",
     },
     {
-      text: "You can thank me later ~",
+      messageId: "blogDialogue6",
       animationName: "Happy",
     },
     {
-      text: null,
+      messageId: null,
       animationName: "Idle",
     },
   ],

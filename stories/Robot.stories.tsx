@@ -17,7 +17,7 @@ animationNames.forEach((animationName) => {
     page: "/",
     dialogues: [
       {
-        text: `This dialogue triggers the ${animationName} animation!`,
+        messageId: `This dialogue triggers the ${animationName} animation!`,
         animationName,
       },
     ],

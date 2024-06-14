@@ -4,23 +4,23 @@ export const contactDialogue: DialogueSet = {
   page: "/contact",
   dialogues: [
     {
-      text: "That's cute.",
+      messageId: "contactDialogue1",
       animationName: "IdleOutside",
     },
     {
-      text: "If only he were that easy to find...",
+      messageId: "contactDialogue2",
       animationName: "PonderingScreen",
     },
     {
-      text: "Wait! I'm getting a transmission.",
+      messageId: "contactDialogue3",
       animationName: "ReadingScreen",
     },
     {
-      text: "It's him..!!",
+      messageId: "contactDialogue4",
       animationName: "ShockedScreen",
     },
     {
-      text: null,
+      messageId: null,
       animationName: "Idle",
     },
   ],

@@ -37,7 +37,7 @@ export const Dialogue = () => {
   }, [page, previousPage, currentTimeout, dialogueIsOpen]);
   // Close dialogue at the end of a dialogueSet
   useEffect(() => {
-    if (!dialogue?.text) {
+    if (!dialogue?.messageId) {
       setDialogueIsOpen(false);
     }
   }, [dialogue]);
@@ -45,7 +45,10 @@ export const Dialogue = () => {
   return (
     <>
       <ClickListener dialogueIsOpen={dialogueIsOpen} />
-      <DialogueBox dialogueIsOpen={dialogueIsOpen} text={dialogue?.text} />
+      <DialogueBox
+        dialogueIsOpen={dialogueIsOpen}
+        messageId={dialogue?.messageId}
+      />
     </>
   );
 };

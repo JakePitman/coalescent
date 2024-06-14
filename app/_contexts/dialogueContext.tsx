@@ -44,7 +44,7 @@ export const animationNames = [
 ] as const;
 export type AnimationName = (typeof animationNames)[number];
 export type Dialogue = {
-  text: string | null;
+  messageId: string | null;
   animationName: AnimationName;
 };
 export type DialogueSet = { page: PageNames; dialogues: Dialogue[] };

@@ -4,19 +4,19 @@ export const interestsDialogue: DialogueSet = {
   page: "/interests",
   dialogues: [
     {
-      text: "That looks like a 'whale shark' - a large aquatic species found only on Earth.",
+      messageId: "interestsDialogue1",
       animationName: "IdleOutside",
     },
     {
-      text: "If this is what he does in his spare time, we might need a snorkel to find this guy.",
+      messageId: "interestsDialogue2",
       animationName: "Laughing",
     },
     {
-      text: "Sending through information on the target's habits and interests.",
+      messageId: "interestsDialogue3",
       animationName: "Typing",
     },
     {
-      text: null,
+      messageId: null,
       animationName: "Idle",
     },
   ],

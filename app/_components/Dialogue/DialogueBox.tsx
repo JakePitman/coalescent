@@ -3,6 +3,10 @@ import classnames from "classnames";
 import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import styles from "./dialogueBox.module.css";
+import { FormattedMessage } from "react-intl";
+import messages from "../../i18n/messages/en-US";
+import { LOCALES } from "../../i18n/constants";
+const ENGLISH_MESSAGES = messages[LOCALES.ENGLISH];
 
 import { Space_Mono } from "next/font/google";
 
@@ -13,19 +17,18 @@ const spaceMono = Space_Mono({
 
 type Props = {
   dialogueIsOpen: boolean;
-  text: string | null | undefined;
+  messageId: string | null | undefined;
 };
-export const DialogueBox = ({ dialogueIsOpen, text }: Props) => {
+export const DialogueBox = ({ dialogueIsOpen, messageId }: Props) => {
   const { width } = useWindowDimensions();
   const isMobile = width <= mobileBreakPoint;
-
   return (
     <div
       className={classnames(
         styles.container,
         "bg-blue-800 border-white border-2 p-4 rounded w-[60vw] z-10 block absolute top-8 left-1/2 transition-all duration-200 bg-gradient-to-b from-[#000b75] to-[#000640]",
         {
-          [styles.containerClosed]: !text || !dialogueIsOpen,
+          [styles.containerClosed]: !messageId || !dialogueIsOpen,
           "w-[60vw]": !isMobile,
           "w-[90vw]": isMobile,
         }
@@ -42,7 +45,14 @@ export const DialogueBox = ({ dialogueIsOpen, text }: Props) => {
          dialogue.text will change before dialogue closes 
          this check will immediately clear the text while closing
         */}
-        {dialogueIsOpen ? text : null}
+        {dialogueIsOpen && messageId ? (
+          <FormattedMessage
+            id={messageId}
+            defaultMessage={
+              ENGLISH_MESSAGES[messageId as keyof typeof ENGLISH_MESSAGES]
+            }
+          />
+        ) : null}
       </p>
       <div
         className={classnames(styles.triangle, "absolute bottom-1 right-1")}

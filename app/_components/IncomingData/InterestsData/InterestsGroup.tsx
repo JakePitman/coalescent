@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import Typist from "react-typist";
+import { FormattedMessage } from "react-intl";
 
 import { Sighting } from "./Sighting";
 import { ImageData } from "./imageData";
@@ -21,15 +22,19 @@ const variants = {
 };
 
 type Props = {
-  title: string;
-  text: string;
+  titleId: string;
+  titleDefaultMessage: string;
+  textId: string;
+  textDefaultMessage: string;
   imageData: ImageData[];
   isRTL?: boolean;
 };
 
 export const InterestsGroup = ({
-  title,
-  text,
+  titleId,
+  titleDefaultMessage,
+  textId,
+  textDefaultMessage,
   imageData,
   isRTL = false,
 }: Props) => {
@@ -43,7 +48,7 @@ export const InterestsGroup = ({
           }
         )}
       >
-        <Typist {...typistSettings}>{title}</Typist>
+        <FormattedMessage id={titleId} defaultMessage={titleDefaultMessage} />
       </h2>
       <div
         className={classnames("flex ", {
@@ -56,7 +61,7 @@ export const InterestsGroup = ({
             "text-right pr-0 pl-2": isRTL,
           })}
         >
-          <Typist {...typistSettings}>{text}</Typist>
+          <FormattedMessage id={textId} defaultMessage={textDefaultMessage} />
         </div>
 
         <div
