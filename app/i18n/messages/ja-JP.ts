@@ -12,7 +12,7 @@ const dialogue = {
   blogDialogue4: "ちょっと待って、これは…！！",
   blogDialogue5: "彼の日記を見つけました。",
   blogDialogue6: "偉いでしょう？",
-  contactDialogue1: "可愛いです",
+  contactDialogue1: "可愛いです。",
   contactDialogue2: "そんなに簡単に見つけられるといいのですが。",
   contactDialogue3: "ちょっと待って！通信を受信しています…",
   contactDialogue4: "ターゲットです！！",
