@@ -84,7 +84,7 @@ const dashboard = {
   dashboardHome: "ホーム",
   dashboardJake: "ジェイク",
   dashboardInterests: "習慣",
-  dashboardProjects: "プロジェクト",
+  dashboardProjects: "作品",
   dashboardBlog: "ブログ",
   dashboardContact: "連絡",
 };

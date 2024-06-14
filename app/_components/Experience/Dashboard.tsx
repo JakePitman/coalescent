@@ -24,6 +24,7 @@ const NavItem = ({ label, position, handleClick, isActive }: NavItemProps) => {
   const content = isActive ? `· ${label} ·` : label;
   return (
     <Text
+      font="/fonts/NotoSansJP-VariableFont_wght.ttf"
       color={isActive ? "#09ff00" : "white"}
       position={position}
       anchorX={"center"}
