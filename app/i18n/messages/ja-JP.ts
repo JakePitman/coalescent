@@ -31,18 +31,19 @@ const dialogue = {
 };
 
 const jakeData = {
-  jakeDataNameKey: "Name: ",
-  jakeDataNameValue: "Jake Pitman",
-  jakeDataAgeKey: "Age: ",
-  jakeDataAgeValue: "Unknown",
-  jakeDataLastSightedKey: "Last sighted:",
-  jakeDataLastSightedValue: "Japan, Earth",
-  jakeDataRolesPerformedKey: "Roles performed:",
-  jakeDataRolesPerformedTeacher: "Teacher",
-  jakeDataRolesPerformedToolingEngineer: "Tooling Engineer",
-  jakeDataRolesPerformedFullStackEngineer: "Full Stack Engineer",
-  jakeDataRolesPerformedFrontEndEngineer: "Front End Engineer",
-  jakeDataRolesPerformedDesignSystemsEngineer: "Design Systems Engineer",
+  jakeDataNameKey: "名前: ",
+  jakeDataNameValue: "ピットマン・ジェイク",
+  jakeDataAgeKey: "年齢: ",
+  jakeDataAgeValue: "不明",
+  jakeDataLastSightedKey: "位置: ",
+  jakeDataLastSightedValue: "日本, 地球",
+  jakeDataRolesPerformedKey: "職務経験:",
+  jakeDataRolesPerformedTeacher: "英語の教師",
+  jakeDataRolesPerformedToolingEngineer: "ツールのエンジニア",
+  jakeDataRolesPerformedFullStackEngineer: "フル・スタックのエンジニア",
+  jakeDataRolesPerformedFrontEndEngineer: "フロントのエンジニア",
+  jakeDataRolesPerformedDesignSystemsEngineer:
+    "ディザイン・システムのエンジニア",
   techStackReact: "React",
   techStackNextJS: "NextJS",
   techStackNodeJS: "NodeJS",
@@ -57,16 +58,17 @@ const jakeData = {
 
 const interestsData = {
   interestsDataMainBody:
-    "Target's primary motivation is software engineering. However, he keeps himself healthy by engaging in a range of other pursuits in his down-time:",
-  interestsDataExploringTitle: "Exploring",
-  interestsDataExploringText: "Target has a curious mind and itchy feet",
-  interestsDataDivingTitle: "Diving",
+    "ターゲットの一番目大事なことはプログラミングですけど、暇の時に活動することでエネルギーを増やすそうです。",
+  interestsDataExploringTitle: "自然の散策",
+  interestsDataExploringText: "ターゲットは好奇心旺盛そうです。",
+  interestsDataDivingTitle: "スキューバダイビング",
   interestsDataDivingText:
-    "Sighted in the oceans of Australia, New Zealand, and Thailand",
-  interestsDataDronesTitle: "Drones",
-  interestsDataDronesText: "He builds, repairs, races, and films with them",
-  interestsDataGuitarTitle: "Guitar",
-  interestsDataGuitarText: "The Earthlings call it 'Rock and Roll Baby'",
+    "オーストラリアと、ニュージーランドと、タイの海に見られました。",
+  interestsDataDronesTitle: "ドローン",
+  interestsDataDronesText:
+    "作ったり、修理したり、レースしたり、撮影したりするそうです。",
+  interestsDataGuitarTitle: "ギター",
+  interestsDataGuitarText: "地球で人気な楽器です。",
 };
 
 const contactData = {
