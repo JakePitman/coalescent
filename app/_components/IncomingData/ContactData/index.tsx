@@ -13,19 +13,17 @@ const variants = {
 };
 
 export const ContactData = () => {
-  const [textIsFinished, setTextIsFinished] = useState(false);
+  const [textIsFinished, setTextIsFinished] = useState(true);
 
   return (
     <div>
-      <TextBlock onTypingDone={() => setTextIsFinished(true)}>
-        <p>{"Hi there! I'm Jake."}</p>
-        <p>
-          {
-            "I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together."
-          }
-        </p>
-        <p className="w-full text-center my-5">- ⎔ -</p>
-      </TextBlock>
+      <p>{"Hi there! I'm Jake."}</p>
+      <p>
+        {
+          "I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together."
+        }
+      </p>
+      <p className="w-full text-center my-5">- ⎔ -</p>
       {textIsFinished && (
         <motion.form
           initial="hidden"

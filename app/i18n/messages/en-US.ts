@@ -72,11 +72,14 @@ const interestsData = {
   interestsDataGuitarText: "The Earthlings call it 'Rock and Roll Baby'",
 };
 
+const contactData = {};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...dialogue,
     ...jakeData,
     ...interestsData,
+    ...contactData,
   },
 };
 export default messages;
