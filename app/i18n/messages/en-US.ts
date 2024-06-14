@@ -72,7 +72,14 @@ const interestsData = {
   interestsDataGuitarText: "The Earthlings call it 'Rock and Roll Baby'",
 };
 
-const contactData = {};
+const contactData = {
+  contactDataImJake: "Hi there! I'm Jake.",
+  contactDataMainBody:
+    "I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together.",
+  contactDataYourEmail: "Your email:",
+  contactDataYourMessage: "Your message:",
+  contactDataSend: "Send",
+};
 
 const messages = {
   [LOCALES.ENGLISH]: {

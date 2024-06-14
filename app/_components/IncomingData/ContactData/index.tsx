@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TextBlock } from "@components/IncomingData/TextBlock";
 import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -17,11 +17,17 @@ export const ContactData = () => {
 
   return (
     <div>
-      <p>{"Hi there! I'm Jake."}</p>
       <p>
-        {
-          "I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together."
-        }
+        <FormattedMessage
+          id="contactDataImJake"
+          defaultMessage="Hi there! I'm Jake."
+        />
+      </p>
+      <p>
+        <FormattedMessage
+          id="contactDataMainBody"
+          defaultMessage="I heard you were looking for a front-end engineer, and I'd be happy to help. Please use the form below, and let's work together."
+        />
       </p>
       <p className="w-full text-center my-5">- ⎔ -</p>
       {textIsFinished && (
@@ -33,7 +39,12 @@ export const ContactData = () => {
           method="POST"
         >
           <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">Your email:</p>
+            <p className="mb-1">
+              <FormattedMessage
+                id="contactDataYourEmail"
+                defaultMessage="Your email:"
+              />
+            </p>
             <input
               type="email"
               name="email"
@@ -41,7 +52,12 @@ export const ContactData = () => {
             />
           </motion.label>
           <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">Your message:</p>
+            <p className="mb-1">
+              <FormattedMessage
+                id="contactDataYourMessage"
+                defaultMessage="Your message:"
+              />
+            </p>
             <textarea
               name="message"
               className="border-sky-700 border-2 rounded bg-sky-950 w-full h-60"
@@ -55,7 +71,7 @@ export const ContactData = () => {
               type="submit"
               className="border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
             >
-              Send
+              <FormattedMessage id="contactDataSend" defaultMessage="Send" />
             </button>
           </motion.div>
         </motion.form>
