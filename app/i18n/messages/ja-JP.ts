@@ -81,17 +81,17 @@ const contactData = {
 };
 
 const dashboard = {
-  dashboardHome: "Home",
-  dashboardJake: "Jake",
-  dashboardInterests: "Interests",
-  dashboardProjects: "Projects",
-  dashboardBlog: "Blog",
-  dashboardContact: "Contact",
+  dashboardHome: "ホーム",
+  dashboardJake: "ジェイク",
+  dashboardInterests: "習慣",
+  dashboardProjects: "プロジェクト",
+  dashboardBlog: "ブログ",
+  dashboardContact: "連絡",
 };
 
 const IncomingData = {
-  incomingDataJakePitman: "Jake Pitman",
-  incomingDataJeromeVI: "Jerome VI",
+  incomingDataJakePitman: "ピットマン・ジェイク",
+  incomingDataJeromeVI: "ジェローム・VI",
 };
 
 const messages = {
