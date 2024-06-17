@@ -9,7 +9,7 @@ type LanguageSettingsTriggerProps = {
   onClick: () => void;
 };
 const LanguageSettingsTrigger = ({ onClick }: LanguageSettingsTriggerProps) => (
-  <div className="" onClick={onClick}>
+  <div className="cursor-pointer" onClick={onClick}>
     <CiGlobe fontSize={30} />
     <p className="text-center text-xs">日本</p>
   </div>
@@ -19,7 +19,7 @@ export const SettingsModule = () => {
   const [settingsState, setSettingsState] = useState<SettingsState>(null);
 
   return (
-    <div className="fixed top-5 right-5 cursor-pointer">
+    <div className="fixed top-5 right-5">
       <div className="flex justify-end">
         <LanguageSettingsTrigger
           onClick={() => {

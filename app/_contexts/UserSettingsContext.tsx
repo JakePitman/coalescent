@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-type Locale = "en-us" | "ja-jp";
+export type Locale = "en-us" | "ja-jp";
 export const LOCALES = {
   ENGLISH: "en-us",
   JAPANESE: "ja-jp",

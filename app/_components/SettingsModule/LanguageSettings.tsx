@@ -1,13 +1,30 @@
+import {
+  useUserSettingsContext,
+  LOCALES,
+  Locale,
+} from "@contexts/UserSettingsContext";
+import classnames from "classnames";
+
 type LanguageOptionProps = {
-  id: string;
-  name: string;
-  value: string;
+  label: string;
+  locale: Locale;
 };
-const LanguageOption = ({ id, value }: LanguageOptionProps) => {
+const LanguageOption = ({ label, locale }: LanguageOptionProps) => {
+  const { userSettings, dispatch } = useUserSettingsContext();
+  const { locale: currentLocale } = userSettings;
+
   return (
-    <div>
-      <input type="radio" id={id} name="selected-language" value={value} />
-      <label htmlFor={id}>{value}</label>
+    <div className="flex">
+      <div
+        onClick={() => dispatch({ type: "SET_LOCALE", locale })}
+        className={classnames(
+          "w-5 h-5 border-solid border-white border-2 cursor-pointer",
+          {
+            "bg-white": currentLocale === locale,
+          }
+        )}
+      />
+      <p>{label}</p>
     </div>
   );
 };
@@ -15,8 +32,8 @@ const LanguageOption = ({ id, value }: LanguageOptionProps) => {
 export const LanguageSettings = () => {
   return (
     <div className="flex flex-col">
-      <LanguageOption id="english" name="language" value="english" />
-      <LanguageOption id="japanese" name="language" value="japanese" />
+      <LanguageOption label="English" locale={LOCALES.ENGLISH} />
+      <LanguageOption label="日本語" locale={LOCALES.JAPANESE} />
     </div>
   );
 };
