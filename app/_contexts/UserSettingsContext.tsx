@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 type Locale = "en-us" | "ja-jp";
 export const LOCALES = {
@@ -35,6 +35,17 @@ export const UserSettingsContextProvider = ({ children }: Props) => {
     locale: LOCALES.ENGLISH,
   });
 
+  useEffect(() => {
+    const locale = navigator.language;
+    const baseLocale = locale.split("-")[0];
+
+    if (baseLocale === "en") {
+      dispatch({ type: "SET_LOCALE", locale: LOCALES.ENGLISH });
+    } else if (baseLocale === "ja") {
+      dispatch({ type: "SET_LOCALE", locale: LOCALES.JAPANESE });
+    }
+  }, []);
+
   return (
     <UserSettingsContext.Provider value={{ userSettings, dispatch }}>
       {children}
@@ -46,7 +57,7 @@ export const useUserSettingsContext = () => {
   const context = useContext(UserSettingsContext);
   if (!context) {
     throw new Error(
-      "useUserSettingsContext must be used within a PageContextProvider"
+      "useUserSettingsContext must be used within a UserSettingsContextProvider"
     );
   }
   return context;
