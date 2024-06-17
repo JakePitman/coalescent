@@ -5,7 +5,7 @@ import { I18nProvider } from "../app/i18n";
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <I18nProvider locale="ja-jp">
+      <I18nProvider>
         <Story />
       </I18nProvider>
     ),
