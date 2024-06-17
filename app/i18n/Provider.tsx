@@ -11,23 +11,23 @@ type Props = {
 };
 
 const Provider = ({ children }: Props) => {
-  const [lang, setLang] = useState<string>(LOCALES.JAPANESE);
+  const [locale, setLocale] = useState<string>(LOCALES.JAPANESE);
 
   useEffect(() => {
     const locale = navigator.language;
     const baseLocale = locale.split("-")[0];
     if (baseLocale === "en") {
-      setLang(LOCALES.ENGLISH);
+      setLocale(LOCALES.ENGLISH);
     } else if (baseLocale === "ja") {
-      setLang(LOCALES.JAPANESE);
+      setLocale(LOCALES.JAPANESE);
     }
   }, []);
 
   return (
     <IntlProvider
       textComponent={Fragment as any}
-      locale={lang}
-      messages={messages[lang]}
+      locale={locale}
+      messages={messages[locale]}
     >
       {children}
     </IntlProvider>
