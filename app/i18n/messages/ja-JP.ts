@@ -94,6 +94,10 @@ const IncomingData = {
   incomingDataJeromeVI: "ジェローム・VI",
 };
 
+const Settings = {
+  settingsCurrentLanguage: "日本",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...dialogue,
@@ -102,6 +106,7 @@ const messages = {
     ...contactData,
     ...dashboard,
     ...IncomingData,
+    ...Settings,
   },
 };
 export default messages;

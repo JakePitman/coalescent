@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CiGlobe } from "react-icons/ci";
+import { FormattedMessage } from "react-intl";
 
 import { LanguageSettings } from "./LanguageSettings";
 
@@ -11,7 +12,9 @@ type LanguageSettingsTriggerProps = {
 const LanguageSettingsTrigger = ({ onClick }: LanguageSettingsTriggerProps) => (
   <div className="cursor-pointer" onClick={onClick}>
     <CiGlobe fontSize={30} />
-    <p className="text-center text-xs">日本</p>
+    <p className="text-center text-xs">
+      <FormattedMessage id="settingsCurrentLanguage" defaultMessage="" />
+    </p>
   </div>
 );
 
