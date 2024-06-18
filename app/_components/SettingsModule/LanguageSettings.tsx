@@ -14,11 +14,13 @@ const LanguageOption = ({ label, locale }: LanguageOptionProps) => {
   const { locale: currentLocale } = userSettings;
 
   return (
-    <div className="flex">
+    <div
+      className="flex items-center pb-3 last:pb-0 cursor-pointer"
+      onClick={() => dispatch({ type: "SET_LOCALE", locale })}
+    >
       <div
-        onClick={() => dispatch({ type: "SET_LOCALE", locale })}
         className={classnames(
-          "w-5 h-5 border-solid border-white border-2 cursor-pointer",
+          "mr-2 w-5 h-5 border-solid border-white border-2 rounded",
           {
             "bg-white": currentLocale === locale,
           }
