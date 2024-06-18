@@ -35,7 +35,7 @@ export const SettingsModule = () => {
         />
       </div>
       {!!settingsState && (
-        <div className="border-solid border-white border-2 rounded p-3 mt-3">
+        <div className="rounded mt-3 p-5 bg-gray-500/30 shadow-[0_0_15px_2px_white_inset] border-solid border-[1px] border-white">
           <LanguageSettings />
         </div>
       )}
