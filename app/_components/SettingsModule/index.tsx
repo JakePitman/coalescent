@@ -43,7 +43,7 @@ export const SettingsModule = () => {
       </div>
       {!!settingsState && (
         <div className="rounded sm:mt-3 mt-0 sm:mb-0 mb-3 p-5 bg-black/80  border-solid border-[1px] border-white">
-          <LanguageSettings />
+          <LanguageSettings dismiss={() => setSettingsState(null)} />
         </div>
       )}
     </div>
