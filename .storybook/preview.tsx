@@ -1,13 +1,16 @@
 import type { Preview } from "@storybook/react";
 import "../app/globals.css";
+import { UserSettingsContextProvider } from "../app/_contexts/UserSettingsContext";
 import { I18nProvider } from "../app/i18n";
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <I18nProvider locale="ja-jp">
-        <Story />
-      </I18nProvider>
+      <UserSettingsContextProvider>
+        <I18nProvider>
+          <Story />
+        </I18nProvider>
+      </UserSettingsContextProvider>
     ),
   ],
   parameters: {

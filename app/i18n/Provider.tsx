@@ -1,16 +1,18 @@
 "use client";
 import { Fragment } from "react";
 import { IntlProvider } from "react-intl";
+import { useUserSettingsContext } from "@contexts/UserSettingsContext";
 
-import { LOCALES } from "./constants";
 import messages from "./messages";
 
 type Props = {
   children: any;
-  locale: string;
 };
 
-const Provider = ({ children, locale = LOCALES.ENGLISH }: Props) => {
+const Provider = ({ children }: Props) => {
+  const { userSettings } = useUserSettingsContext();
+  const { locale } = userSettings;
+
   return (
     <IntlProvider
       textComponent={Fragment as any}

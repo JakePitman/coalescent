@@ -7,6 +7,7 @@ import { Dialogue } from "@components/Dialogue";
 import { IncomingData } from "@components/IncomingData";
 import { Experience } from "@components/Experience";
 import { WithProviders } from "./WithProviders";
+import { SettingsModule } from "@components/SettingsModule";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
               {children}
           </div> */}
           <RouteChangeListener />
+          <SettingsModule />
           <Dialogue />
           <IncomingData />
           <Experience style={{ position: "absolute", zIndex: "0" }} />
