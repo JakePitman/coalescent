@@ -12,7 +12,7 @@ type LanguageSettingsTriggerProps = {
 };
 const LanguageSettingsTrigger = ({ onClick }: LanguageSettingsTriggerProps) => (
   <div
-    className="cursor-pointer"
+    className="cursor-pointer px-2 py-1 bg-black/70 border-solid border-white border-[1px] rounded"
     onClick={(e) => {
       e.stopPropagation();
       onClick();
@@ -29,7 +29,7 @@ export const SettingsModule = () => {
   const [settingsState, setSettingsState] = useState<SettingsState>(null);
 
   return (
-    <div className="fixed sm:top-5 sm:right-5 sm:bottom-auto sm:left-auto left-5 bottom-5 z-50 flex sm:flex-col flex-col-reverse sm:items-end items-start">
+    <div className="fixed sm:top-5 sm:right-5 sm:bottom-auto sm:left-auto left-2 bottom-2 z-50 flex sm:flex-col flex-col-reverse sm:items-end items-start">
       <div className="flex justify-end">
         <LanguageSettingsTrigger
           onClick={() => {
@@ -42,7 +42,7 @@ export const SettingsModule = () => {
         />
       </div>
       {!!settingsState && (
-        <div className="rounded sm:mt-3 mt-0 sm:mb-0 mb-3 p-5 bg-gray-500/30 shadow-[0_0_15px_2px_white_inset] border-solid border-[1px] border-white">
+        <div className="rounded sm:mt-3 mt-0 sm:mb-0 mb-3 p-5 bg-black/80  border-solid border-[1px] border-white">
           <LanguageSettings />
         </div>
       )}

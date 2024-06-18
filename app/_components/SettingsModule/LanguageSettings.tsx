@@ -15,7 +15,7 @@ const LanguageOption = ({ label, locale }: LanguageOptionProps) => {
 
   return (
     <div
-      className="flex items-center pb-3 last:pb-0 cursor-pointer"
+      className="flex items-center pb-3 last:pb-0 cursor-pointer sm:text-base text-xl"
       onClick={(e) => {
         e.stopPropagation();
         dispatch({ type: "SET_LOCALE", locale });
