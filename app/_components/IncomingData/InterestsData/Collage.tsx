@@ -15,7 +15,7 @@ export const Collage = () => {
 
   return (
     <>
-      <p className="pb-4">
+      <p className="mb-4">
         <FormattedMessage
           id="interestsDataMainBody"
           defaultMessage="Target's primary motivation is software engineering. However, he keeps himself healthy by engaging in a range of other pursuits in his down-time:"
