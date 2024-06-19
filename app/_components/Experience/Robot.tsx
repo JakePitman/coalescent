@@ -31,14 +31,16 @@ export const Robot = ({
   const { nodes, animations } = useGLTF("/robot.glb");
   const { actions, names } = useAnimations(animations, group);
   const { dialogue } = useDialogueContext();
-  const { animationName } = dialogue;
 
   useEffect(() => {
+    if (!dialogue) return;
+    const { animationName } = dialogue;
+
     actions[animationName]?.reset().fadeIn(0.5).play();
     return () => {
       actions[animationName]?.fadeOut(0.5);
     };
-  }, [actions, names, animationName]);
+  }, [actions, names, dialogue]);
 
   return (
     <group
