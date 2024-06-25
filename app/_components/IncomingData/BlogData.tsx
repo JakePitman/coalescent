@@ -29,8 +29,6 @@ export const BlogData = () => {
     fetchEvents().then((res) => setEvents(res));
   }, []);
 
-  console.log(events);
-
   return (
     <div>
       {events.map((event) => {
