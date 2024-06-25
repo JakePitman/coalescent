@@ -9,6 +9,7 @@ const EVENTS_QUERY = `
 ]{
   _createdAt,
   title,
+  slug,
   description,
   tags,
   titleImage,
