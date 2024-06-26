@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SanityDocument } from "next-sanity";
-import { client } from "../../../sanity/client";
+import { client } from "../../../../sanity/client";
 
 const EVENTS_QUERY = `
 *[
