@@ -40,7 +40,7 @@ const ControlBar = ({
   handleDismiss,
   senderNameMessageData,
 }: ControlBarProps) => {
-  const currentTime = new Date().toLocaleString("en-US", {
+  const currentTime = new Date().toLocaleString("en-UK", {
     hour12: false,
     hour: "numeric",
     minute: "numeric",

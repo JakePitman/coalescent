@@ -1,4 +1,4 @@
-import en from "./en-US";
+import en from "./en-UK";
 import jp from "./ja-JP";
 
 const messages = {
