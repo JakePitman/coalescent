@@ -18,3 +18,14 @@
 .tagContainer::-webkit-scrollbar {
   display: none;
 }
+
+.tagContainerClosed {
+  overflow: scroll
+}
+.tagContainerExpanded {
+  flex-wrap: wrap;
+}
+
+.tag {
+  text-wrap: nowrap;
+}

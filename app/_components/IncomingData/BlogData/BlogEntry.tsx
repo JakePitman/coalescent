@@ -57,28 +57,35 @@ export const BlogEntry = ({
       </div>
 
       {isExpanded && (
-        <p className="border-l-[6px] border-slate-400 pl-3 mb-3 text-slate-400">
+        <p className="border-l-[6px] border-slate-400 pl-3 text-slate-400">
           {description}
         </p>
       )}
 
       <div className="flex justify-between items-center">
         <div
-          className={classnames(
-            "flex flex-grow overflow-scroll",
-            styles.tagContainer
-          )}
+          className={classnames("flex flex-grow", {
+            [styles.tagContainer]: true,
+            [styles.tagContainerClosed]: !isExpanded,
+            [styles.tagContainerExpanded]: isExpanded,
+          })}
         >
           {tags.map(({ value }, i) => (
             <p
-              className="bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2"
+              className={classnames(
+                "bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                styles.tag,
+                {
+                  "mt-3": isExpanded,
+                }
+              )}
               key={value + i}
             >
               {value}
             </p>
           ))}
         </div>
-        <em className="text-slate-400">
+        <em className="text-slate-400 ml-3">
           <FormattedDate value={createdAt} />
         </em>
       </div>
