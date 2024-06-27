@@ -23,7 +23,7 @@ type BlogEntryProps = {
 export const BlogEntry = ({
   createdAt,
   title,
-  slug,
+  slug, // TODO: Use this to link to blog site
   description,
   tags,
 }: BlogEntryProps) => {
