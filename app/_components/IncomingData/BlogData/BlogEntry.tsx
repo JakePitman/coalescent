@@ -62,7 +62,11 @@ export const BlogEntry = ({
         </p>
       )}
 
-      <div className="flex justify-between items-center">
+      <div
+        className={classnames("flex justify-between items-center", {
+          [styles.bottomContainerExpanded]: isExpanded,
+        })}
+      >
         <div
           className={classnames("flex flex-grow", {
             [styles.tagContainer]: true,
@@ -85,7 +89,11 @@ export const BlogEntry = ({
             </p>
           ))}
         </div>
-        <em className="text-slate-400 ml-3">
+        <em
+          className={classnames("text-slate-400 ml-3 text-end", {
+            "w-full mt-3": isExpanded,
+          })}
+        >
           <FormattedDate value={createdAt} />
         </em>
       </div>
