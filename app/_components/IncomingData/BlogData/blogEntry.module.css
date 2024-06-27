@@ -4,6 +4,12 @@
   overflow: hidden;
 }
 
+.titleExpanded {
+  text-wrap: wrap;
+  text-overflow: clip;
+  overflow: visible;
+}
+
 /* Remove scroll styles */
 .tagContainer {
   -ms-overflow-style: none;  /* IE and Edge */

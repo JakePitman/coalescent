@@ -28,22 +28,32 @@ export const BlogEntry = ({
 
   return (
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
-      <div className="w-full flex items-center mb-2">
-        <h3
-          className={classnames("text-3xl", bebasNeue.className, styles.title)}
-        >
-          {title}
-        </h3>
-        <hr className="flex-grow mx-3 border-slate-400" />
-        {isExpanded ? (
-          <button onClick={() => setIsExpanded(false)}>
-            <FaChevronUp />
-          </button>
-        ) : (
-          <button onClick={() => setIsExpanded(true)}>
-            <FaChevronDown />
-          </button>
-        )}
+      <div className="w-full flex items-start mb-2">
+        <div className="flex items-center flex-grow overflow-hidden">
+          <h3
+            className={classnames(
+              "text-3xl",
+              bebasNeue.className,
+              { [styles.title]: !isExpanded },
+              { [styles.titleExpanded]: isExpanded }
+            )}
+          >
+            {title}
+          </h3>
+          <hr className="flex-grow mx-3 border-slate-400" />
+        </div>
+
+        <div className="h-full mt-2">
+          {isExpanded ? (
+            <button onClick={() => setIsExpanded(false)}>
+              <FaChevronUp />
+            </button>
+          ) : (
+            <button onClick={() => setIsExpanded(true)}>
+              <FaChevronDown />
+            </button>
+          )}
+        </div>
       </div>
 
       {isExpanded && (
