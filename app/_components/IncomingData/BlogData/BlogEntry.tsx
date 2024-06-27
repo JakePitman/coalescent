@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { MdOpenInNew } from "react-icons/md";
 import { Bebas_Neue } from "next/font/google";
 import classnames from "classnames";
+
 import styles from "./blogEntry.module.css";
 
 const bebasNeue = Bebas_Neue({
@@ -30,14 +32,17 @@ export const BlogEntry = ({
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
-          <h3
-            className={classnames("text-3xl", bebasNeue.className, {
-              [styles.title]: !isExpanded,
-              [styles.titleExpanded]: isExpanded,
-            })}
-          >
-            {title}
-          </h3>
+          <button className="relative overflow-hidden pr-5 text-left">
+            <h3
+              className={classnames("text-3xl relative", bebasNeue.className, {
+                [styles.title]: !isExpanded,
+                [styles.titleExpanded]: isExpanded,
+              })}
+            >
+              {title}
+            </h3>
+            <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
+          </button>
           <hr className="flex-grow mx-3 border-slate-400" />
         </div>
 
