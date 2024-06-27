@@ -45,10 +45,14 @@ export const BlogEntry = ({
             onClick={() => alert(alertMessage)}
           >
             <h3
-              className={classnames("text-3xl relative", bebasNeue.className, {
-                [styles.title]: !isExpanded,
-                [styles.titleExpanded]: isExpanded,
-              })}
+              className={classnames(
+                "sm:text-3xl text-xl relative",
+                bebasNeue.className,
+                {
+                  [styles.title]: !isExpanded,
+                  [styles.titleExpanded]: isExpanded,
+                }
+              )}
             >
               {title}
             </h3>
@@ -71,7 +75,7 @@ export const BlogEntry = ({
       </div>
 
       {isExpanded && (
-        <p className="my-3 border-l-[6px] border-slate-400 pl-3 text-slate-400">
+        <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 text-slate-400">
           {description}
         </p>
       )}
@@ -90,7 +94,7 @@ export const BlogEntry = ({
           {tags.map(({ value }, i) => (
             <p
               className={classnames(
-                "bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
                 styles.tag,
                 {
                   "mt-3": isExpanded,
@@ -103,9 +107,12 @@ export const BlogEntry = ({
           ))}
         </div>
         <em
-          className={classnames("text-slate-400 ml-3 text-end", {
-            "w-full mt-3": isExpanded,
-          })}
+          className={classnames(
+            "sm:text-sm text-xs text-slate-400 ml-3 text-end",
+            {
+              "w-full mt-3": isExpanded,
+            }
+          )}
         >
           <FormattedDate value={createdAt} />
         </em>
