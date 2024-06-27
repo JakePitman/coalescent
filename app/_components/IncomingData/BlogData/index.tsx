@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SanityDocument } from "next-sanity";
-import { client } from "../../../sanity/client";
+import { client } from "../../../../sanity/client";
+
+import { BlogEntry } from "./BlogEntry";
 
 const EVENTS_QUERY = `
 *[
@@ -32,7 +34,16 @@ export const BlogData = () => {
   return (
     <div>
       {events.map((event) => {
-        return <p key={event.title}>{event.title}</p>;
+        return (
+          <BlogEntry
+            key={event.title + event.createdAt}
+            createdAt={event._createdAt}
+            title={event.title}
+            slug={event.slug}
+            description={event.description}
+            tags={event.tags}
+          />
+        );
       })}
     </div>
   );

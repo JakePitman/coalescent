@@ -1,0 +1,24 @@
+.title {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.titleExpanded {
+  text-wrap: wrap;
+  text-overflow: clip;
+  overflow: visible;
+}
+
+/* Remove scroll styles */
+.tagContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.tagContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tag {
+  text-wrap: nowrap;
+}

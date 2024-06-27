@@ -4,7 +4,7 @@ import { mobileBreakPoint } from "@sharedData/index";
 import { useWindowDimensions } from "@/app/_utilities/hooks/useWindowDimensions";
 import styles from "./dialogueBox.module.css";
 import { FormattedMessage } from "react-intl";
-import messages from "../../i18n/messages/en-US";
+import messages from "../../i18n/messages/en-UK";
 import { LOCALES } from "../../i18n/constants";
 const ENGLISH_MESSAGES = messages[LOCALES.ENGLISH];
 
