@@ -10,10 +10,6 @@
   overflow: visible;
 }
 
-.bottomContainerExpanded {
-  flex-wrap: wrap;
-}
-
 /* Remove scroll styles */
 .tagContainer {
   -ms-overflow-style: none;  /* IE and Edge */
@@ -21,13 +17,6 @@
 }
 .tagContainer::-webkit-scrollbar {
   display: none;
-}
-
-.tagContainerClosed {
-  overflow: scroll
-}
-.tagContainerExpanded {
-  flex-wrap: wrap;
 }
 
 .tag {

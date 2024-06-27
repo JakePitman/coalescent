@@ -31,12 +31,10 @@ export const BlogEntry = ({
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
           <h3
-            className={classnames(
-              "text-3xl",
-              bebasNeue.className,
-              { [styles.title]: !isExpanded },
-              { [styles.titleExpanded]: isExpanded }
-            )}
+            className={classnames("text-3xl", bebasNeue.className, {
+              [styles.title]: !isExpanded,
+              [styles.titleExpanded]: isExpanded,
+            })}
           >
             {title}
           </h3>
@@ -64,14 +62,13 @@ export const BlogEntry = ({
 
       <div
         className={classnames("flex justify-between items-center", {
-          [styles.bottomContainerExpanded]: isExpanded,
+          "flex-wrap": isExpanded,
         })}
       >
         <div
-          className={classnames("flex flex-grow", {
-            [styles.tagContainer]: true,
-            [styles.tagContainerClosed]: !isExpanded,
-            [styles.tagContainerExpanded]: isExpanded,
+          className={classnames("flex flex-grow", styles.tagContainer, {
+            "overflow-scroll": !isExpanded,
+            "flex-wrap": isExpanded,
           })}
         >
           {tags.map(({ value }, i) => (
