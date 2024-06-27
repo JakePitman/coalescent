@@ -98,6 +98,12 @@ const Settings = {
   settingsCurrentLanguage: "En",
 };
 
+const WorkInProgress = {
+  projectsPageComingSoon: "Projects page coming soon...",
+  blogSiteComingSoon:
+    "Jake is currently working on a blog site. Once it's complete, you can link to articles from here. Please stay tuned!",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...dialogue,
@@ -107,6 +113,7 @@ const messages = {
     ...dashboard,
     ...IncomingData,
     ...Settings,
+    ...WorkInProgress,
   },
 };
 export default messages;

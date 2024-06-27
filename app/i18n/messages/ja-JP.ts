@@ -98,6 +98,12 @@ const Settings = {
   settingsCurrentLanguage: "日本",
 };
 
+const WorkInProgress = {
+  projectsPageComingSoon: "作品のページはもうすぐです。少々お待ちください。",
+  blogSiteComingSoon:
+    "ジェイクは今、ブログのサイトを作っています。完了したら、このページから記事に直接アクセス出来るようになります。少々お待ちください。",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...dialogue,
@@ -107,6 +113,7 @@ const messages = {
     ...dashboard,
     ...IncomingData,
     ...Settings,
+    ...WorkInProgress,
   },
 };
 export default messages;
