@@ -55,7 +55,7 @@ export const BlogEntry = ({
       </div>
 
       {isExpanded && (
-        <p className="border-l-[6px] border-slate-400 pl-3 text-slate-400">
+        <p className="my-3 border-l-[6px] border-slate-400 pl-3 text-slate-400">
           {description}
         </p>
       )}
