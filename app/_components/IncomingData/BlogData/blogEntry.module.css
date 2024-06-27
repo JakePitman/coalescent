@@ -1,0 +1,14 @@
+.title {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Remove scroll styles */
+.tagContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.tagContainer::-webkit-scrollbar {
+  display: none;
+}
