@@ -3,6 +3,7 @@ import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { MdOpenInNew } from "react-icons/md";
 import { Bebas_Neue } from "next/font/google";
+import { useIntl } from "react-intl";
 import classnames from "classnames";
 
 import styles from "./blogEntry.module.css";
@@ -27,12 +28,22 @@ export const BlogEntry = ({
   tags,
 }: BlogEntryProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const intl = useIntl();
+
+  const alertMessage = intl.formatMessage({
+    id: "blogSiteComingSoon",
+    defaultMessage:
+      "Jake is currently working on a blog site. Once it's complete, you can link to articles from here. Please stay tuned!",
+  });
 
   return (
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
-          <button className="relative overflow-hidden pr-5 text-left">
+          <button
+            className="relative overflow-hidden pr-5 text-left"
+            onClick={() => alert(alertMessage)}
+          >
             <h3
               className={classnames("text-3xl relative", bebasNeue.className, {
                 [styles.title]: !isExpanded,
