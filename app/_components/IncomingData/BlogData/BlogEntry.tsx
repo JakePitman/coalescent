@@ -58,7 +58,7 @@ export const BlogEntry = ({
             </h3>
             <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
           </button>
-          <hr className="flex-grow mx-3 border-slate-400" />
+          <hr className="flex-grow mx-3 border-slate-600" />
         </div>
 
         <div className="h-full mt-2">
@@ -86,35 +86,53 @@ export const BlogEntry = ({
         })}
       >
         <div
-          className={classnames("flex flex-grow", styles.tagContainer, {
-            "overflow-scroll": !isExpanded,
-            "flex-wrap": isExpanded,
-          })}
+          className={classnames(
+            "relative overflow-scroll w-full",
+            styles.tagContainer
+          )}
         >
-          {tags.map(({ value }, i) => (
-            <p
+          {!isExpanded && (
+            <div
               className={classnames(
-                "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
-                styles.tag,
-                {
-                  "mt-3": isExpanded,
-                }
+                "absolute h-full right-0 w-[10px]",
+                styles.tagContainerFadeBar
               )}
-              key={value + i}
-            >
-              {value}
-            </p>
-          ))}
+            />
+          )}
+          <div
+            className={classnames("flex flex-grow", styles.tagContainer, {
+              "overflow-scroll": !isExpanded,
+              "flex-wrap": isExpanded,
+            })}
+          >
+            {tags.map(({ value }, i) => (
+              <p
+                className={classnames(
+                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                  styles.tag,
+                  {
+                    "mt-3": isExpanded,
+                  }
+                )}
+                key={value + i}
+              >
+                {value}
+              </p>
+            ))}
+          </div>
         </div>
         <em
           className={classnames(
-            "sm:text-sm text-xs text-slate-400 ml-3 text-end",
+            "sm:text-sm text-xs text-slate-400  text-end flex justify-end items-center",
             {
               "w-full mt-3": isExpanded,
             }
           )}
         >
-          <FormattedDate value={createdAt} />
+          <hr className="flex-grow border-slate-600" />
+          <p className="ml-3">
+            <FormattedDate value={createdAt} />
+          </p>
         </em>
       </div>
     </div>

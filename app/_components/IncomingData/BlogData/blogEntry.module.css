@@ -19,6 +19,10 @@
   display: none;
 }
 
+.tagContainerFadeBar {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #00092A);
+}
+
 .tag {
   text-wrap: nowrap;
 }
