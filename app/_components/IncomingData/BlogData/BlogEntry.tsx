@@ -94,7 +94,7 @@ export const BlogEntry = ({
           {!isExpanded && (
             <div
               className={classnames(
-                "absolute h-full right-0 w-3",
+                "absolute h-full right-0 w-[10px]",
                 styles.tagContainerFadeBar
               )}
             />
