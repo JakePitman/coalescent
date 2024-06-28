@@ -58,7 +58,7 @@ export const BlogEntry = ({
             </h3>
             <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
           </button>
-          <hr className="flex-grow mx-3 border-slate-400" />
+          <hr className="flex-grow mx-3 border-slate-600" />
         </div>
 
         <div className="h-full mt-2">
@@ -123,13 +123,16 @@ export const BlogEntry = ({
         </div>
         <em
           className={classnames(
-            "sm:text-sm text-xs text-slate-400 ml-3 text-end",
+            "sm:text-sm text-xs text-slate-400  text-end flex justify-end items-center",
             {
               "w-full mt-3": isExpanded,
             }
           )}
         >
-          <FormattedDate value={createdAt} />
+          <hr className="flex-grow border-slate-600" />
+          <p className="ml-3">
+            <FormattedDate value={createdAt} />
+          </p>
         </em>
       </div>
     </div>
