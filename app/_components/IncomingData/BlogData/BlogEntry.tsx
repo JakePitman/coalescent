@@ -86,25 +86,40 @@ export const BlogEntry = ({
         })}
       >
         <div
-          className={classnames("flex flex-grow", styles.tagContainer, {
-            "overflow-scroll": !isExpanded,
-            "flex-wrap": isExpanded,
-          })}
+          className={classnames(
+            "relative overflow-scroll w-full",
+            styles.tagContainer
+          )}
         >
-          {tags.map(({ value }, i) => (
-            <p
+          {!isExpanded && (
+            <div
               className={classnames(
-                "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
-                styles.tag,
-                {
-                  "mt-3": isExpanded,
-                }
+                "absolute h-full right-0 w-3",
+                styles.tagContainerFadeBar
               )}
-              key={value + i}
-            >
-              {value}
-            </p>
-          ))}
+            />
+          )}
+          <div
+            className={classnames("flex flex-grow", styles.tagContainer, {
+              "overflow-scroll": !isExpanded,
+              "flex-wrap": isExpanded,
+            })}
+          >
+            {tags.map(({ value }, i) => (
+              <p
+                className={classnames(
+                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                  styles.tag,
+                  {
+                    "mt-3": isExpanded,
+                  }
+                )}
+                key={value + i}
+              >
+                {value}
+              </p>
+            ))}
+          </div>
         </div>
         <em
           className={classnames(
