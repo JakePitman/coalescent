@@ -58,7 +58,7 @@ const jakeData = {
 
 const interestsData = {
   interestsDataMainBody:
-    "ターゲットの一番目大事なことはプログラミングですけど、暇の時に活動することでエネルギーを増やすそうです。",
+    "ターゲットの一番大事なことはプログラミングですけど、暇の時に活動することでエネルギーを増やすそうです。",
   interestsDataExploringTitle: "自然の散策",
   interestsDataExploringText: "ターゲットは好奇心旺盛そうです。",
   interestsDataDivingTitle: "スキューバダイビング",
