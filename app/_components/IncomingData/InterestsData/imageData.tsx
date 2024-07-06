@@ -59,6 +59,7 @@ export const GUITAR_IMAGES: ImageData[] = [
     alt: "Ibanez guitar",
   },
   { group: "GUITAR", imageURL: "/images/guitar/guitar.jpg", alt: "Guitar" },
+  { group: "GUITAR", imageURL: "/images/guitar/narita.jpg", alt: "Narita" },
 ];
 
 export const IMAGES: ImageData[] = [
