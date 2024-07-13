@@ -3,7 +3,6 @@ import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { MdOpenInNew } from "react-icons/md";
 import { Bebas_Neue } from "next/font/google";
-import { useIntl } from "react-intl";
 import classnames from "classnames";
 
 import styles from "./blogEntry.module.css";
@@ -16,33 +15,27 @@ const bebasNeue = Bebas_Neue({
 type BlogEntryProps = {
   createdAt: string;
   title: string;
-  slug: string;
+  slug: { current: string };
   description: string;
   tags: { value: string }[];
 };
 export const BlogEntry = ({
   createdAt,
   title,
-  slug, // TODO: Use this to link to blog site when completed
+  slug,
   description,
   tags,
 }: BlogEntryProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const intl = useIntl();
-
-  const alertMessage = intl.formatMessage({
-    id: "blogSiteComingSoon",
-    defaultMessage:
-      "Jake is currently working on a blog site. Once it's complete, you can link to articles from here. Please stay tuned!",
-  });
 
   return (
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
-          <button
+          <a
             className="relative overflow-hidden pr-5 text-left"
-            onClick={() => alert(alertMessage)}
+            href={`https://jakepitmanblog.vercel.app/articles/${slug.current}`}
+            target="_blank"
           >
             <h3
               className={classnames(
@@ -57,7 +50,7 @@ export const BlogEntry = ({
               {title}
             </h3>
             <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
-          </button>
+          </a>
           <hr className="flex-grow mx-3 border-slate-600" />
         </div>
 
