@@ -33,7 +33,10 @@ export const BlogEntry = ({
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
           <a
-            className="relative overflow-hidden pr-5 text-left"
+            className={classnames(
+              "relative overflow-hidden pr-5 text-left",
+              "focus-styles-inset"
+            )}
             href={`https://jakepitmanblog.vercel.app/articles/${slug.current}`}
             target="_blank"
           >
@@ -56,11 +59,17 @@ export const BlogEntry = ({
 
         <div className="h-full mt-2">
           {isExpanded ? (
-            <button onClick={() => setIsExpanded(false)}>
+            <button
+              className="focus-styles"
+              onClick={() => setIsExpanded(false)}
+            >
               <FaChevronUp />
             </button>
           ) : (
-            <button onClick={() => setIsExpanded(true)}>
+            <button
+              className="focus-styles"
+              onClick={() => setIsExpanded(true)}
+            >
               <FaChevronDown />
             </button>
           )}
