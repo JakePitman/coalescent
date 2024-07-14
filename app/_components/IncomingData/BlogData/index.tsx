@@ -38,19 +38,37 @@ export const BlogData = () => {
   return (
     <div>
       {blogEntries.map((entry) => {
+        let localisedData;
+        switch (locale) {
+          case LOCALES.ENGLISH:
+            localisedData = {
+              title: entry.title,
+              description: entry.description,
+              tags: entry.tags,
+            };
+            break;
+          case LOCALES.JAPANESE:
+            localisedData = {
+              title: entry.jpTitle,
+              description: entry.jpDescription,
+              tags: entry.jpTags,
+            };
+            break;
+          default:
+            localisedData = {
+              title: entry.title,
+              description: entry.description,
+              tags: entry.tags,
+            };
+        }
         return (
-          // TODO: Find a more elegant way to handle this
           <BlogEntry
             key={entry.title + entry.createdAt}
             createdAt={entry._createdAt}
-            title={locale === LOCALES.JAPANESE ? entry.jpTitle : entry.title}
+            title={localisedData.title}
             slug={entry.slug}
-            description={
-              locale === LOCALES.JAPANESE
-                ? entry.jpDescription
-                : entry.description
-            }
-            tags={locale === LOCALES.JAPANESE ? entry.jpTags : entry.tags}
+            description={localisedData.description}
+            tags={localisedData.tags}
           />
         );
       })}
