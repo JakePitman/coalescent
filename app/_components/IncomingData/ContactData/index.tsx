@@ -84,7 +84,7 @@ export const ContactData = () => {
             onChange={(e) => setMessageInput(e.target.value)}
             onFocus={() => setMessageHasBeenTouched(true)}
             className={classnames(
-              "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full h-60",
+              "border-2 rounded p-2 bg-sky-950 w-full h-60",
               "focus-styles-inset",
               {
                 "border-red-700": messageHasBeenTouched && !messageIsValid,
