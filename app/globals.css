@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .focus-styles {
+    @apply focus:outline-none focus:ring-2 focus:ring-green-400  focus:border-transparent;
+  }
+  .focus-styles-inset {
+    @apply focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-inset  focus:border-transparent;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

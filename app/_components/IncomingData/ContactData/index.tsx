@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
+import classnames from "classnames";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -38,38 +39,49 @@ export const ContactData = () => {
           action="https://formspree.io/f/xbjnnjaq"
           method="POST"
         >
-          <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">
+          <motion.div variants={variants} className="block mb-3">
+            <label className="mb-1" htmlFor="email-input">
               <FormattedMessage
                 id="contactDataYourEmail"
                 defaultMessage="Your email:"
               />
-            </p>
+            </label>
             <input
               type="email"
               name="email"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full"
+              id="email-input"
+              className={classnames(
+                "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full",
+                "focus-styles-inset"
+              )}
             />
-          </motion.label>
-          <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">
+          </motion.div>
+          <motion.div variants={variants} className="block mb-3">
+            <label className="mb-1" htmlFor="message-field">
               <FormattedMessage
                 id="contactDataYourMessage"
                 defaultMessage="Your message:"
               />
-            </p>
+            </label>
             <textarea
               name="message"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full h-60"
-            ></textarea>
-          </motion.label>
+              id="message-field"
+              className={classnames(
+                "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full h-60",
+                "focus-styles-inset"
+              )}
+            />
+          </motion.div>
           <motion.div
             className="w-full flex justify-center"
             variants={variants}
           >
             <button
               type="submit"
-              className="border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
+              className={classnames(
+                "border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all",
+                "focus-styles"
+              )}
             >
               <FormattedMessage id="contactDataSend" defaultMessage="Send" />
             </button>
