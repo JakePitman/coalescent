@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
+import classnames from "classnames";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -49,7 +50,10 @@ export const ContactData = () => {
               type="email"
               name="email"
               id="email-input"
-              className="border-sky-700 border-2 rounded p-1 bg-sky-950 w-full"
+              className={classnames(
+                "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full",
+                "focus-styles-inset"
+              )}
             />
           </motion.div>
           <motion.div variants={variants} className="block mb-3">
@@ -62,7 +66,10 @@ export const ContactData = () => {
             <textarea
               name="message"
               id="message-field"
-              className="border-sky-700 border-2 rounded p-1 bg-sky-950 w-full h-60"
+              className={classnames(
+                "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full h-60",
+                "focus-styles-inset"
+              )}
             />
           </motion.div>
           <motion.div
@@ -71,7 +78,10 @@ export const ContactData = () => {
           >
             <button
               type="submit"
-              className="border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
+              className={classnames(
+                "border-2 rounded border-sky-500 px-5 py-2 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all",
+                "focus-styles"
+              )}
             >
               <FormattedMessage id="contactDataSend" defaultMessage="Send" />
             </button>
