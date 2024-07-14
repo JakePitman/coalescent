@@ -4,10 +4,10 @@
 
 @layer components {
   .focus-styles {
-    @apply focus:outline-none focus:ring-2 focus:ring-green-400  focus:border-transparent;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400  focus-visible:border-transparent;
   }
   .focus-styles-inset {
-    @apply focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-inset  focus:border-transparent;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-inset  focus-visible:border-transparent;
   }
 }
 
