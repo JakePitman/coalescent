@@ -55,7 +55,7 @@ const ControlBar = ({
           {currentTime}
         </p>
       </div>
-      <button onClick={handleDismiss}>
+      <button onClick={handleDismiss} className="focus-styles">
         <CgCloseR className="text-xl" />
       </button>
     </div>
