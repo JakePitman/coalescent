@@ -38,31 +38,33 @@ export const ContactData = () => {
           action="https://formspree.io/f/xbjnnjaq"
           method="POST"
         >
-          <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">
+          <motion.div variants={variants} className="block mb-3">
+            <label className="mb-1" htmlFor="email-input">
               <FormattedMessage
                 id="contactDataYourEmail"
                 defaultMessage="Your email:"
               />
-            </p>
+            </label>
             <input
               type="email"
               name="email"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full"
+              id="email-input"
+              className="border-sky-700 border-2 rounded p-1 bg-sky-950 w-full"
             />
-          </motion.label>
-          <motion.label variants={variants} className="block mb-3">
-            <p className="mb-1">
+          </motion.div>
+          <motion.div variants={variants} className="block mb-3">
+            <label className="mb-1" htmlFor="message-field">
               <FormattedMessage
                 id="contactDataYourMessage"
                 defaultMessage="Your message:"
               />
-            </p>
+            </label>
             <textarea
               name="message"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full h-60"
-            ></textarea>
-          </motion.label>
+              id="message-field"
+              className="border-sky-700 border-2 rounded p-1 bg-sky-950 w-full h-60"
+            />
+          </motion.div>
           <motion.div
             className="w-full flex justify-center"
             variants={variants}
