@@ -61,8 +61,12 @@ export const ContactData = () => {
             id="email-input"
             ref={emailInputRef}
             className={classnames(
-              "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full",
-              "focus-styles-inset"
+              " border-2 rounded p-2 bg-sky-950 w-full",
+              "focus-styles-inset",
+              {
+                "border-red-700": emailHasBeenTouched && !emailIsValid,
+                "border-sky-700": !emailHasBeenTouched || emailIsValid,
+              }
             )}
           />
         </motion.div>
@@ -81,7 +85,11 @@ export const ContactData = () => {
             onFocus={() => setMessageHasBeenTouched(true)}
             className={classnames(
               "border-sky-700 border-2 rounded p-2 bg-sky-950 w-full h-60",
-              "focus-styles-inset"
+              "focus-styles-inset",
+              {
+                "border-red-700": messageHasBeenTouched && !messageIsValid,
+                "border-sky-700": !messageHasBeenTouched || messageIsValid,
+              }
             )}
           />
         </motion.div>
