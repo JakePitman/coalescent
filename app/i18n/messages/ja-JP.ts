@@ -77,7 +77,7 @@ const contactData = {
     "五年間フロントのソフトエンジニアの仕事していて、喜んでお役に立ちます。良ければ、下のフォームで連絡して、話しましょう！",
   contactDataYourEmail: "あなたのメールアドレス:",
   contactDataYourMessage: "あなたのメッセージ:",
-  contactDataSend: "送る",
+  contactDataSend: "送信",
 };
 
 const dashboard = {
