@@ -61,7 +61,7 @@ export const ContactData = () => {
             id="email-input"
             ref={emailInputRef}
             className={classnames(
-              " border-2 rounded p-2 bg-sky-950 w-full",
+              "border-2 rounded p-2 bg-sky-950 w-full",
               "focus-styles-inset",
               {
                 "border-red-700": emailHasBeenTouched && !emailIsValid,

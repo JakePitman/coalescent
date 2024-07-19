@@ -34,3 +34,23 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Reset autofill styles for input */
+/* Selecting an autofill option would normally set the input
+   background to white */
+   input:-webkit-autofill,
+   input:-webkit-autofill:hover, 
+   input:-webkit-autofill:focus, 
+   input:-webkit-autofill:active{
+        /* sky-950 */
+       -webkit-box-shadow: 0 0 0 30px #082F49 inset !important;
+        /* sky-300 */
+       -webkit-text-fill-color: #7DD3FC !important;
+   }
+   input:-webkit-autofill:focus, 
+   input:-webkit-autofill:active{
+     outline: 2px solid ;
+     outline-offset: -2px;
+        /* green-400 */
+     outline-color: #4ADE80;
+   }
