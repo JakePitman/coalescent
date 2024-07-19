@@ -46,6 +46,7 @@ body {
        -webkit-box-shadow: 0 0 0 30px #082F49 inset !important;
         /* sky-300 */
        -webkit-text-fill-color: #7DD3FC !important;
+       caret-color: #7DD3FC;
    }
    input:-webkit-autofill:focus, 
    input:-webkit-autofill:active{
