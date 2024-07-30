@@ -9,6 +9,20 @@ import classnames from "classnames";
 
 import styles from "./project.module.css";
 
+type LinkProps = {
+  href: string | undefined;
+  children: React.ReactNode;
+};
+const Link = ({ href, children }: LinkProps) => {
+  return !!href ? (
+    <a className="text-sky-300 mr-1 last:mr-0" href={href} target="_blank">
+      {children}
+    </a>
+  ) : (
+    <div className="text-slate-700 mr-1 last:mr-0">{children}</div>
+  );
+};
+
 type TitleProps = {
   label: string;
   liveLink: string | undefined;
@@ -171,10 +185,14 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
           )}
         >
           <hr className="flex-grow border-slate-600" />
-          <div className="ml-3  text-sky-300 flex items-center">
+          <div className="ml-3 flex items-center">
             {/* TODO: Turn these into links and disable if no link */}
-            <MdOutlineOpenInNew size={30} />
-            <FaSquareGithub size={27} />
+            <Link href={links.live}>
+              <MdOutlineOpenInNew size={30} />
+            </Link>
+            <Link href={links.github}>
+              <FaSquareGithub size={27} />
+            </Link>
           </div>
         </em>
       </div>
