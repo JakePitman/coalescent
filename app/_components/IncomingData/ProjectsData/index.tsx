@@ -58,6 +58,7 @@ export const ProjectsData = () => {
               tags: project.tags,
             };
         }
+
         return (
           <Project
             key={i}

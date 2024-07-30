@@ -9,6 +9,57 @@ import classnames from "classnames";
 
 import styles from "./project.module.css";
 
+type TitleProps = {
+  label: string;
+  liveLink: string | undefined;
+  isExpanded: boolean;
+};
+const Title = ({ label, liveLink, isExpanded }: TitleProps) => {
+  const Wrapper = !!liveLink
+    ? ({ children }: { children: React.ReactNode }) => (
+        <a
+          className={classnames(
+            "relative overflow-hidden pr-5 text-left",
+            "focus-styles-inset"
+          )}
+          href={liveLink}
+          target="_blank"
+        >
+          {children}
+        </a>
+      )
+    : ({ children }: { children: React.ReactNode }) => (
+        <h3
+          className={classnames(
+            "relative overflow-hidden pr-5 text-left",
+            "focus-styles-inset"
+          )}
+        >
+          {children}
+        </h3>
+      );
+
+  return (
+    <Wrapper>
+      <h3
+        className={classnames(
+          "sm:text-3xl text-xl relative",
+          bebasNeue.className,
+          {
+            [styles.title]: !isExpanded,
+            [styles.titleExpanded]: isExpanded,
+          }
+        )}
+      >
+        {label}
+      </h3>
+      {!!liveLink && (
+        <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
+      )}
+    </Wrapper>
+  );
+};
+
 const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -41,28 +92,7 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
-          <a
-            className={classnames(
-              "relative overflow-hidden pr-5 text-left",
-              "focus-styles-inset"
-            )}
-            href={links.live}
-            target="_blank"
-          >
-            <h3
-              className={classnames(
-                "sm:text-3xl text-xl relative",
-                bebasNeue.className,
-                {
-                  [styles.title]: !isExpanded,
-                  [styles.titleExpanded]: isExpanded,
-                }
-              )}
-            >
-              {title}
-            </h3>
-            <MdOpenInNew className="absolute top-[-2px] right-0 text-slate-400" />
-          </a>
+          <Title label={title} liveLink={links.live} isExpanded={isExpanded} />
           <hr className="flex-grow mx-3 border-slate-600" />
         </div>
 
@@ -142,6 +172,7 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
         >
           <hr className="flex-grow border-slate-600" />
           <div className="ml-3  text-sky-300 flex items-center">
+            {/* TODO: Turn these into links and disable if no link */}
             <MdOutlineOpenInNew size={30} />
             <FaSquareGithub size={27} />
           </div>
