@@ -1,0 +1,28 @@
+.title {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.titleExpanded {
+  text-wrap: wrap;
+  text-overflow: clip;
+  overflow: visible;
+}
+
+/* Remove scroll styles */
+.tagContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.tagContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tagContainerFadeBar {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #00092A);
+}
+
+.tag {
+  text-wrap: nowrap;
+}

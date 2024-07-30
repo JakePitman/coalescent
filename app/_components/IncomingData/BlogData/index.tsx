@@ -22,7 +22,7 @@ const BLOGS_QUERY = `
 }
 `;
 
-const fetchEvents = async () => {
+const fetchBlogEntries = async () => {
   const res = await client.fetch<SanityDocument[]>(BLOGS_QUERY);
   return res;
 };
@@ -32,7 +32,7 @@ export const BlogData = () => {
   const [blogEntries, setBlogEntries] = useState<SanityDocument[]>([]);
 
   useEffect(() => {
-    fetchEvents().then((res) => setBlogEntries(res));
+    fetchBlogEntries().then((res) => setBlogEntries(res));
   }, []);
 
   return (
