@@ -103,6 +103,7 @@ export type ProjectData = {
 type Props = Omit<ProjectData, "jpTitle" | "jpDescription" | "jpTags">;
 export const Project = ({ title, description, tags, image, links }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isImageLoaded, setImageIsLoaded] = useState(false);
 
   return (
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
@@ -144,6 +145,11 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
               alt={image.alt}
               fill
               style={{ objectFit: "cover" }}
+              onLoad={() => setImageIsLoaded(true)}
+              className={classnames("transition-all", {
+                "opacity-0": !isImageLoaded,
+                "opacity-100": isImageLoaded,
+              })}
             />
           </div>
         </div>
