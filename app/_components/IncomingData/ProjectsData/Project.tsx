@@ -6,8 +6,10 @@ import { MdOutlineOpenInNew } from "react-icons/md";
 import { FaSquareGithub } from "react-icons/fa6";
 import { Bebas_Neue } from "next/font/google";
 import classnames from "classnames";
+import Image from "next/image";
 
 import styles from "./project.module.css";
+import { urlFor } from "../../../../sanity/client";
 
 type LinkProps = {
   href: string | undefined;
@@ -130,9 +132,21 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
       </div>
 
       {isExpanded && (
-        <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 text-slate-400">
-          {description}
-        </p>
+        <div className="relative min-h-[200px]">
+          <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 pr-2 text-slate-400 relative z-20 bg-gradient-to-r from-[#00092A] to-[#00092A]/80 w-max max-w-[80%] top-3">
+            {description}
+          </p>
+
+          <div className="absolute h-[200px] aspect-video right-0 top-0">
+            <div className="absolute h-full w-full bg-[#00092A]/80 z-10" />
+            <Image
+              src={urlFor(image).url()}
+              alt={image.alt}
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        </div>
       )}
 
       <div
