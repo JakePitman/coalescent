@@ -133,12 +133,12 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
 
       {isExpanded && (
         <div className="relative min-h-[200px]">
-          <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 pr-2 text-slate-400 relative z-20 bg-gradient-to-r from-[#00092A] to-[#00092A]/80 w-max max-w-[80%] top-3">
+          <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 pr-2 text-slate-400 relative z-20 bg-gradient-to-r from-darkBlue to-darkBlue/70 w-max max-w-[80%] top-3">
             {description}
           </p>
 
           <div className="absolute h-[200px] aspect-video right-0 top-0">
-            <div className="absolute h-full w-full bg-[#00092A]/80 z-10" />
+            <div className="absolute h-full w-full bg-darkBlue/70 z-10" />
             <Image
               src={urlFor(image).url()}
               alt={image.alt}
@@ -177,7 +177,7 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
             {tags.map(({ value }, i) => (
               <p
                 className={classnames(
-                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-darkBlue mr-2",
                   styles.tag,
                   {
                     "mt-3": isExpanded,
