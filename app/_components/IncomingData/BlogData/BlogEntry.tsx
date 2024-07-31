@@ -29,7 +29,7 @@ export const BlogEntry = ({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
+    <div className="bg-darkBlue rounded mb-3 last:mb-0 py-2 px-4">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
           <a
@@ -110,7 +110,7 @@ export const BlogEntry = ({
             {tags.map(({ value }, i) => (
               <p
                 className={classnames(
-                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-[#00092A] mr-2",
+                  "sm:text-base text-sm bg-sky-700 rounded py-1 px-2 text-darkBlue mr-2",
                   styles.tag,
                   {
                     "mt-3": isExpanded,

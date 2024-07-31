@@ -78,6 +78,11 @@ export const InterestsPage: Story = {
     return <IncomingDataWithControls isForcedOpen page="/interests" />;
   },
 };
+export const ProjectsPage: Story = {
+  render: () => {
+    return <IncomingDataWithControls isForcedOpen page="/projects" />;
+  },
+};
 export const BlogPage: Story = {
   render: () => {
     return <IncomingDataWithControls isForcedOpen page="/blog" />;
