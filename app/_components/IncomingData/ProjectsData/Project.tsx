@@ -206,7 +206,6 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
         >
           <hr className="flex-grow border-slate-600" />
           <div className="ml-3 flex items-center">
-            {/* TODO: Turn these into links and disable if no link */}
             <Link href={links.live}>
               <MdOutlineOpenInNew size={30} />
             </Link>
