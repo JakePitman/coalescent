@@ -139,7 +139,7 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
           </p>
 
           <div className="sm:absolute relative h-[200px] max-w-full aspect-video right-0 top-0 mb-1">
-            <div className="absolute h-full w-full bg-darkBlue/70 z-10" />
+            <div className="absolute h-full w-full bg-darkBlue/50 z-10" />
             <Image
               src={urlFor(image).url()}
               alt={image.alt}
