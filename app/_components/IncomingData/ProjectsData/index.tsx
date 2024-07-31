@@ -16,7 +16,7 @@ const PROJECTS_QUERY = `
   jpTags,
   image,
   links
-}
+} | order(_createdAt desc)
 `;
 
 const fetchProjects = async () => {
