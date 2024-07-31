@@ -106,7 +106,7 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
 
   return (
     <div className="bg-[#00092A] rounded mb-3 last:mb-0 py-2 px-4">
-      <div className="w-full flex items-start mb-2">
+      <div className="w-full flex items-start sm:mb-2">
         <div className="flex items-center flex-grow overflow-hidden">
           <Title label={title} liveLink={links.live} isExpanded={isExpanded} />
           <hr className="flex-grow mx-3 border-slate-600" />
@@ -133,11 +133,11 @@ export const Project = ({ title, description, tags, image, links }: Props) => {
 
       {isExpanded && (
         <div className="relative min-h-[200px]">
-          <p className="sm:text-base text-sm my-3 border-l-[6px] border-slate-400 pl-3 pr-2 text-slate-400 relative z-20 bg-gradient-to-r from-darkBlue to-darkBlue/70 w-max max-w-[80%] top-3">
+          <p className="sm:text-base text-sm sm:my-3 mb-7 border-l-[6px] border-slate-400 pl-3 pr-2 text-slate-400 relative z-20 bg-gradient-to-r from-darkBlue to-darkBlue/70 sm:w-max sm:max-w-[80%] top-3">
             {description}
           </p>
 
-          <div className="absolute h-[200px] aspect-video right-0 top-0">
+          <div className="sm:absolute relative h-[200px] max-w-full aspect-video right-0 top-0 mb-1">
             <div className="absolute h-full w-full bg-darkBlue/70 z-10" />
             <Image
               src={urlFor(image).url()}
